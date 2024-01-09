@@ -7,7 +7,7 @@ HOMEWORK = homework$(LECTURENO)
 
 .PHONY: all clean
 
-all: NOTES HOMEWORK
+all: $(NOTES).pdf $(HOMEWORK).pdf
 
 $(NOTES).pdf: $(NOTES).tex
 	pdflatex $(NOTES).tex
