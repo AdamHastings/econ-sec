@@ -1,12 +1,145 @@
 \documentclass[11pt]{article}
-\usepackage{xcolor}
-\usepackage{listings}
+\usepackage{geometry}
+\setlength{\parskip}{\baselineskip}%
+\setlength{\parindent}{0pt}%
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
 
-\title{The Economics of Cybersecurity}
+\title{The Economics of Cybersecurity --- Lecture 1 Notes}
+\date{January 16, 2024}
+
 \author{Adam Hastings}
+
 
 \begin{document}
 
+
 \maketitle
+
+\section*{Pre-Class}
+\begin{itemize}
+    \item Write title, course number, hours, on blackboard
+    \item Write out sections of discussion
+\end{itemize}
+
+\section{Introduction}
+\begin{itemize}
+    \item Adam Hastings, 6th and final year PhD student
+    \item Advised by Simha Sethumadhavan
+    \item My area of research: this class! 
+    \item Background: Computer engineering at BYU, digital design, FPGAs
+    \item Added on a Masters degree where I started to get into security w/ FPGAs
+    \item Decided to do PhD in hardware security, came to Columbia
+    \item Started out wanting to build defenses and discover new attacks 
+    \item Kind of got started doing that at first. Came to realization that TODO
+    % \item Lab discussion with Mohamed on Califorms---``so ''
+    \item Conclusion: What matters is studying what actually produces security {\it outcomes}. Was (and remains) a lack of this in the field.
+    \item PhD since then has been on understanding the economic side of security, particularly hardware security.
+\end{itemize}
+
+
+\section{Syllabus}
+
+An economics class for computer scientists/people interested in computer security, not a computer security class for economists
+(but economists are welcome to join!).
+
+\subsection{Topics}
+\begin{itemize}
+    \item Market forces in security
+\end{itemize}
+
+\subsection{Prerequisites}
+
+\begin{itemize}
+    \item Economics---no experience required or expected
+    \item COMS 4181 (Security I) or equivalent. Some exposure to security. Basic understanding of security goals like confidentiality, integrity, and availability. Basic understanding of how attacks are carried out. Basic understanding of various security primitives like isolation, privileges, cryptography, et cetera. 
+    \item 2 COMS/CSEE 41xx or equivalent. Some exposure to the technical elements of how systems are built. You should know how a computer works, meaning some level of technical exposure to software, operating systems, compilers, hardware, et cetera. We are going to discuss security failures at a technical level and you should be able keep up and contribute to these conversations.
+    \item Some level of mathematical maturity. Economics is a field that likes to be quantitative about things and this class will be no exception. Some readings will be on topics of economic modeling and game theory, plus we will likely discuss various statistical methods by economists, and you should be able to read and understand these types of works. Nothing advanced! But you should have used math in some form or another between now and high school. 
+    \item Ability to try something new! This is a rather interdisciplinary topic, and whatever background you come from, at some point in this class you will use part of your brain you have ever used before (?)
+\end{itemize}
+
+Not meant to be exclusionary. Meant to ensure a sufficiently high level of discussion in the class. 
+A lack of technical skills may be compensated by students who have a sufficiently strong security background.
+
+
+\subsection{Grading}
+
+\begin{itemize}
+    \item 50\% final project 
+    \item 10\% in-class participation (may include quizzes). Come prepared to class having read papers! 
+    \item 15\% homework (weekly presentation/analysis)
+    \item 15\% in-class presentations
+\end{itemize}
+
+
+\section{Get-to-Know-You Round}
+
+This class will be very discussion-based. Who has taken a 6000-level class before?
+\\ \\ 
+We should know each other, our backgrounds, etc. to facilitate discussions. You have to feel comfortable speaking up. (Anecdote about being shy in Hardware Security class --- didn't feel like I knew enough to contribute much to discussion! If this is you, my recommendation is to {\it ask questions!})
+
+Please state:
+
+\begin{itemize}
+    \item Name
+    \item Degree type, year in school
+    \item Any relevant background in systems design, security, or economics
+    \item I sort of hate the ``fun fact'' question because panic and can never think of anything fun about myself and I end up saying something like ``I like peanut butter'', which interests nobody and causes me lots of anxiety. 
+    % But I still want us to get to know each other so my compromise is in lieu of a fun fact, you will tell us the last book you read, last movie you watched, or piece of music you listened to
+    But I still want to get to know you so I'll ask a very New York-themed ``Would You Rather'' question--Would you rather have a rat scurry across your feet wearing close-toed shoes, or have a cockroach land your head? Give your answer and your best attempt to intellectualize which one is worse. 
+    \item (I have experienced both! For me the cockroach was twice as bad! Exposure to bare skin! No way to know when it's over!)
+\end{itemize}
+
+
+\section{Security as a Systems-Level Problem}
+
+\subsection{Computer Science Systems vs real-world systems}
+
+Make a table comparing the two.
+
+In CS:
+\begin{itemize}
+    \item The systems are ones that {\bf we design} (or ones that others have designed)
+    \item The systems are {\bf understandable} and comprise of deliberate abstractions
+    \item Quantities are {\bf measurable}
+\end{itemize}
+
+In real-world systems:
+\begin{itemize}
+    \item The systems are ones we {\bf inherit}
+    \item There is often {\bf no agreed-upon definition} of what the system is and is not
+    \item Quantities are often {\bf not measurable}
+\end{itemize}
+
+{\it Ask: Are there any other dimensions that we can use to delineate computer systems from real-world systems?}
+
+{\it Ask: Where does security fit into this categorization? Answer: both}. But computer scientists are trained to work with computer systems, whereas the economists/policy people can only work with the other. I'm a bit of an engineering chauvinist so I think that because security is a ``both'' type of problem, the people who are best situated to solve security problems are engineers who learn the economics since it's very hard for economists to learn the engineering.
+
+\subsection{Illustrated Example}
+Some guidelines:
+\begin{itemize}
+    \item Quantities as boxes
+    \item Things that can change the quantities as arrows.
+\end{itemize}
+
+{\it Discuss the diagram}
+
+Some possible takeaways:
+\begin{enumerate}
+    \item There are a LOT of assumptions built in here! It might just be a neat way of organizing our assumptions! But this itself is useful!
+    \item You are necessarily going to have to leave things out! You can't fit everything into a diagram! Key is to fit in the parts that are most relevant and the parts that will be the most informative.
+    \item Feels ``messy'' compared to what technical people are used to. ``Amount of public concern on cybersecurity''??? ``Law enforcement spending'' somehow appearing in a diagram in a computer science class? How is this a science? It's the best we can do.
+    \item Probably every box deserves its own cloud for all the ``other'' things that can influence the quantities. Should this be included? Or is this just noise?
+\end{enumerate}
+
+{\it Ask: What else can go into this model? What is it missing?}
+
+{\it Ask: What's wrong with this model?} Answer: 
+
+{\it Ask: Anything come to mind when looking at this?} (Might remind students of dynamic systems and control engineering. Why don't we apply control engineering theory to security? Probably because things like ``amount of public concern on cybersecurity'' is not a very good signal!)
+
+\section{Homework}
+
+This course will require much more writing and {\it arguing} than perhaps you are likely used to.
+
 
 \end{document}
