@@ -1,5 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage{geometry}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+
 \setlength{\parskip}{\baselineskip}%
 \setlength{\parindent}{0pt}%
 \geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
@@ -39,8 +42,7 @@
 
 \section{Syllabus}
 
-An economics class for computer scientists/people interested in computer security, not a computer security class for economists
-(but economists are welcome to join!).
+
 
 \subsection{Topics}
 \begin{itemize}
@@ -49,8 +51,11 @@ An economics class for computer scientists/people interested in computer securit
 
 \subsection{Prerequisites}
 
+An economics class for computer scientists/people interested in computer security, not a computer security class for economists
+(but economists are welcome to join if you meet the prereqs!).
+
 \begin{itemize}
-    \item Economics---no experience required or expected
+    \item Economics---no experience required or expected.
     \item COMS 4181 (Security I) or equivalent. Some exposure to security. Basic understanding of security goals like confidentiality, integrity, and availability. Basic understanding of how attacks are carried out. Basic understanding of various security primitives like isolation, privileges, cryptography, et cetera. 
     \item 2 COMS/CSEE 41xx or equivalent. Some exposure to the technical elements of how systems are built. You should know how a computer works, meaning some level of technical exposure to software, operating systems, compilers, hardware, et cetera. We are going to discuss security failures at a technical level and you should be able keep up and contribute to these conversations.
     \item Some level of mathematical maturity. Economics is a field that likes to be quantitative about things and this class will be no exception. Some readings will be on topics of economic modeling and game theory, plus we will likely discuss various statistical methods by economists, and you should be able to read and understand these types of works. Nothing advanced! But you should have used math in some form or another between now and high school. 
@@ -65,11 +70,12 @@ A lack of technical skills may be compensated by students who have a sufficientl
 
 \begin{itemize}
     \item 50\% final project 
+    \item 20\% homework (weekly presentation/analysis)
+    \item 20\% in-class presentations
     \item 10\% in-class participation (may include quizzes). Come prepared to class having read papers! 
-    \item 15\% homework (weekly presentation/analysis)
-    \item 15\% in-class presentations
 \end{itemize}
 
+Late policy: Lowest homework assignment will be dropped. 
 
 \section{Get-to-Know-You Round}
 
@@ -119,7 +125,13 @@ Some guidelines:
 \begin{itemize}
     \item Quantities as boxes
     \item Things that can change the quantities as arrows.
+    \item Write type of effect that one quantity has on another (increase? decrease? stay proportional?)
 \end{itemize}
+
+\begin{figure}[h]
+    \includegraphics*[width=\textwidth]{ransomware-sys-diagram.pdf}
+\end{figure}
+
 
 {\it Discuss the diagram}
 
@@ -133,13 +145,20 @@ Some possible takeaways:
 
 {\it Ask: What else can go into this model? What is it missing?}
 
-{\it Ask: What's wrong with this model?} Answer: 
+{\it Ask: What's wrong with this model?} Necessarily leaves out critical details. Hard to know when you've written out the ``right'' model. E.g. why not include number of cyber insurance companies?
 
 {\it Ask: Anything come to mind when looking at this?} (Might remind students of dynamic systems and control engineering. Why don't we apply control engineering theory to security? Probably because things like ``amount of public concern on cybersecurity'' is not a very good signal!)
 
 \section{Homework}
 
 This course will require much more writing and {\it arguing} than perhaps you are likely used to.
+You will also likely have to make subjective decisions and defend them more than you are used to. This is part of the subject! You need to practice these skills
+
+(Review Homework 1 together)
+
+At the beginning of next class, you will be asked to present your solution to the rest of the class! Submit on Courseworks. Due at {\bf 5:00 pm} the day of class. This is so I can compile into a slideshow so that we don't have to deal with the hassle of everyone plugging in and unplugging laptops. You can also use the blackboard to explain your work if you'd prefer (but you still have to submit your work on Courseworks by 5:00pm).
+
+Then at start of next class, we'll spend probably 5 minutes on each of your submissions. Discuss choices, defend choices, suggest improvements. Depending on time we may have only a subset of students do this. Perhaps called upon at random. 
 
 
 \end{document}
