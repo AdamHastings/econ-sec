@@ -58,7 +58,7 @@ An economics class for computer scientists/people interested in computer securit
     \item Economics---no experience required or expected.
     \item COMS 4181 (Security I) or equivalent. Some exposure to security. Basic understanding of security goals like confidentiality, integrity, and availability. Basic understanding of how attacks are carried out. Basic understanding of various security primitives like isolation, privileges, cryptography, et cetera. 
     \item 2 COMS/CSEE 41xx or equivalent. Some exposure to the technical elements of how systems are built. You should know how a computer works, meaning some level of technical exposure to software, operating systems, compilers, hardware, et cetera. We are going to discuss security failures at a technical level and you should be able keep up and contribute to these conversations.
-    \item Some level of mathematical maturity. Economics is a field that likes to be quantitative about things and this class will be no exception. Some readings will be on topics of economic modeling and game theory, plus we will likely discuss various statistical methods by economists, and you should be able to read and understand these types of works. Nothing advanced! But you should have used math in some form or another between now and high school. 
+    \item Some level of mathematical maturity. Economics is a field that likes to be quantitative about things and this class will be no exception. Some readings will be on topics of economic modeling and game theory, plus we will likely discuss various statistical methods by economists, and you should be able to read and understand these types of works. Nothing advanced! But you should have used math in some form or another between now and high school. A good understanding of statistics if helpful.
     \item Ability to try something new! This is a rather interdisciplinary topic, and whatever background you come from, at some point in this class you will use part of your brain you have ever used before (?)
 \end{itemize}
 
@@ -79,7 +79,7 @@ Late policy: Lowest homework assignment will be dropped.
 
 \section{Get-to-Know-You Round}
 
-This class will be very discussion-based. Who has taken a 6000-level class before?
+This class will be very discussion-based. Has anyone taken a 6000-level class before?
 \\ \\ 
 We should know each other, our backgrounds, etc. to facilitate discussions. You have to feel comfortable speaking up. (Anecdote about being shy in Hardware Security class --- didn't feel like I knew enough to contribute much to discussion! If this is you, my recommendation is to {\it ask questions!})
 
@@ -118,15 +118,19 @@ Make a table comparing the two.
 In CS:
 \begin{itemize}
     \item The systems are ones that {\bf we design} (or ones that others have designed)
-    \item The systems are {\bf understandable} and comprise of deliberate abstractions
+    \item Systems have finite {\bf boundaries}
+    \item Underlying functions and interactions are known ({\bf known underlying function})
     \item Quantities are {\bf measurable}
+    \item The pieces and structure of the system are generally {\bf under our control} 
 \end{itemize}
 
 In real-world systems:
 \begin{itemize}
     \item The systems are ones we {\bf inherit}
-    \item There is often {\bf no agreed-upon definition} of what the system is and is not
+    \item {\bf Unclear boundaries}
+    \item Underlying functions and interactions are unknown ({\bf unknown underlying function})
     \item Quantities are often {\bf not measurable}
+    \item Many pieces/structure of system itself may be {\bf out of our control}
 \end{itemize}
 
 {\it Ask: Are there any other dimensions that we can use to delineate computer systems from real-world systems?}
@@ -150,6 +154,15 @@ Some guidelines:
 
 Some possible takeaways:
 \begin{enumerate}
+    \item ``All models are wrong, but some are useful'' --- George Box
+    \item ``The map is not the territory''
+    \item ``When we draw structural diagrams and then write equations, we are forced
+    to make our assumptions visible and to express them with rigor. We have
+    to put every one of our assumptions about the system out where others
+    (and we ourselves) can see them...Getting models out into the light of day, making them as rigorous as
+    possible, testing them against the evidence, and being willing to scuttle
+    them if they are no longer supported is nothing more than practicing the
+    scientifi c method—something that is done too seldom even in science'' --- Donella Meadows
     \item There are a LOT of assumptions built in here! It might just be a neat way of organizing our assumptions! But this itself is useful!
     \item You are necessarily going to have to leave things out! You can't fit everything into a diagram! Key is to fit in the parts that are most relevant and the parts that will be the most informative.
     \item Feels ``messy'' compared to what technical people are used to. ``Amount of public concern on cybersecurity''??? ``Law enforcement spending'' somehow appearing in a diagram in a computer science class? How is this a science? It's the best we can do.
