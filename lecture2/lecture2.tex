@@ -1,6 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage{geometry}
 \usepackage{graphicx}
+\usepackage[table,xcdraw]{xcolor}
+
 \graphicspath{{figures/}}
 
 \setlength{\parskip}{\baselineskip}%
@@ -36,6 +38,8 @@ Conclusion: It's kind of messy! Good segue...
 
 \subsection{``Wicked problem'' paper review (6:25)}
 
+Don't want to spend too much time on this so let's briefly review.
+
 Discussion:
 \begin{itemize}
     \item Initial thoughts?
@@ -46,9 +50,67 @@ Discussion:
 
 This concludes our discussion of ``systems-thinking'' although the mindset is going to pervade much of the rest of the semester.
 
-\section{Foundations of Economics (6:30)}
+\section{Big Ideas in Economics (6:30)}
 
 So far we've talked about security as a system and maybe talked about some open issues in security but up to this point we haven't really talked about security as an {\it economics} problem.
+
+This class doesn't assume any economics knowledge. So we're going to establish a basic foundation.
+You may have seen some of this stuff before if you've ever taken an economics class before.
+But we need to 
+
+\subsection{Big Idea \#1: Goods}
+
+Economics is fundamentally about the distribution of goods and services. 
+
+{\it Ask: What is a good?}
+
+A {\bf good} is an item that provides value or utility for someone. Something that someone wants. Something that someone is willing to sacrifice something to obtain. Example: A table, or a barrel of oil.
+
+{\it Ask: What are some goods we deal with in security?} Hardware, obviously. Software can also be a good (even though it is sort of intangible).
+
+{\it Ask: What about services? How are they different?}
+
+A {\bf service} is an act that someone performs because someone else values the act and is willing to pay for it. 
+A good is transferrable. A service is not. 
+Example: a haircut.
+
+Different from goods in that they are always {\bf intangible} (whereas goods can be tangible or intangible). 
+Another difference is that services are {\bf non-transferrable}: Once a service is performed, it can't be transferred to someone else. 
+If I can't a haircut I can't undo it and give it someone else.
+Different from a transferrable good like a chair.
+
+{\it Ask: What are some services we deal with in security?} Penetration testing, incident response. 
+
+\subsubsection{Types of Goods}
+
+We can taxonomize goods in a few ways.
+Two main ones are used: rivalrousness and exclusivity.
+
+(Write out 2x2 grid)
+
+{\bf Rivalrous}: Consumption by one person $\rightarrow$ cannot be consumed by another.
+Example: If I eat an apple, you can't also eat it.  
+
+{\bf Exclusive}: Consumption can be restricted to certain people only.
+
+
+\begin{table}[]
+\begin{tabular}{lccll}
+\cline{1-3}
+\multicolumn{1}{|l|}{\cellcolor[HTML]{EFEFEF}}                       & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Excludable}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Non-Excludable}} &  &  \\ \cline{1-3}
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{Rivarlrous}}    & \multicolumn{1}{c|}{private goods}                               & \multicolumn{1}{c|}{common-pool resources}                           &  &  \\ \cline{1-3}
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{Non-Rivalrous}} & \multicolumn{1}{c|}{club goods}                                  & \multicolumn{1}{c|}{public goods}                                    &  &  \\ \cline{1-3}
+                                                                        & \multicolumn{1}{l}{}                                             & \multicolumn{1}{l}{}                                                 &  & 
+\end{tabular}
+\end{table}
+
+
+\subsection{Big Idea \#2: Some goods are more valuable to some people than to others}.
+
+
+
+Some goods can even be more or less valuable to the same people depending on circumstances.
+E.g. if it's a sunny day, I might not care to have an umbrella; if it's raining really hard, I'm really going to want one. 
 
 \subsection{The Supply Curve (6:30)}
 
