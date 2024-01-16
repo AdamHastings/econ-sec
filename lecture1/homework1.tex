@@ -1,30 +1,24 @@
 \documentclass[11pt]{article}
 \usepackage{hyperref}
+\usepackage{listings}
+\usepackage{amsmath, amssymb, amscd, amsthm, amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref,enumitem}
 
 \title{The Economics of Cybersecurity: Homework 1}
 \date{Due: January 23 at 5:00pm}
 \author{}
 
+\newcommand\fakesec[1]{\vspace*{2pt} \noindent \hskip .01in \textbf{#1}}
+\DeclareMathOperator{\conv}{conv} \DeclareMathOperator{\aff}{aff}
+
+
 \begin{document}
 
 \maketitle
 
-\section{Paper 1 (5 points)}
-
-We have not yet talked about approaches towards {\it solving} security problems using an economic mindset 
-
-Read the paper ``\href{https://link.springer.com/article/10.1007/bf01405730}{Dilemmas in a general theory of planning}'' by Rittel \& Webber. Answer the following question:
-
-\begin{enumerate}
-    \item Rittel \& Webber list ten criteria for a problem to be considered a ``wicked problem''. Security may be considered to be such a problem. Which three criteria are the most applicable or relevant to security? Write one paragraph for each or $\sim$500 words total, defending your choices. Cite any sources used, including the use of generative AI tools.  
-\end{enumerate}
-
-\section{Paper 2 (5 points)}
-
-Read the paper ``\href{https://ieeexplore.ieee.org/abstract/document/991552}{Why information security is hard - an economic perspective}''. Come prepared to class ready to discuss the paper.
-
-
-\section{Systems Diagram (10 points)}
+\fakesec{Submission Guidelines:} Please submit your work on Courseworks. Cite any sources used.
+\section*{Part 1 (10 points)}
 
 \begin{enumerate}
     \item Choose a security problem that you are interested in. Add your name and chosen topic to the spreadsheet \href{https://docs.google.com/spreadsheets/d/1SdaMpeCo4CE8o0U_irGhWmVXJYHybRWoiX4uwZYMhCE/edit#gid=0}{here}. You may draw from the provided list of suggested topics in the spreadsheet if you do not have a particular topic of interest. Please pick a topic that is different from the other students in the class.
@@ -34,6 +28,47 @@ Read the paper ``\href{https://ieeexplore.ieee.org/abstract/document/991552}{Why
 Notes:
 \begin{itemize}
     \item Systems are not processes! A process can be thought of as a path {\it through} a system. The implication here is that there should be no element of ordering or time involved in your systems diagram.
+    \item You may find it useful to pick some quantity central to your chosen topic and work outwards from there.
+    \item Use as much or as little space and complexity as you think you need to capture your chosen problem. Please note that more is not necessarily better---the process of distilling a problem down to its most basic form can be very insightful. Keep in mind the following: {\it ``Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.''} --- Antoine de Saint-Exupéry
+    
 \end{itemize}
+
+\newpage
+
+\section*{Part 2 (5 points)}
+
+Read the following two papers:
+\begin{itemize}
+    \item \href{https://ieeexplore.ieee.org/abstract/document/991552}{Why information security is hard - an economic perspective}
+    \item \href{https://www.science.org/doi/full/10.1126/science.1130992}{The Economics of Information Security}
+\end{itemize}
+
+The second paper is very similar to the first but contains some additional examples worth knowing.
+Come to next class prepared to discuss the papers.
+\\ \\
+Please also answer the following question:
+
+\begin{enumerate}
+    \item Are any of the issues described in the papers (information asymmetry, monopolies, misaligned incentives, et cetera) present in the system diagram you created in Part 1? If so, how? If not, please give your justification.
+\end{enumerate}
+
+
+% \section*{Part 3 (5 points)}
+
+% We have not yet talked about approaches towards {\it solving} security problems using an economic mindset 
+
+% Read the paper ``\href{https://link.springer.com/article/10.1007/bf01405730}{Dilemmas in a general theory of planning}'' by Rittel \& Webber. Answer the following question:
+
+% \begin{enumerate}
+%     \item Rittel \& Webber list ten criteria for a problem to be considered a ``wicked problem''. Security may be considered to be such a problem. Which three criteria are the most applicable or relevant to security? Write one paragraph for each or $\sim$500 words total, defending your choices. Cite any sources used, including the use of generative AI tools.  
+% \end{enumerate}
+
+% Read the paper ``\href{https://link.springer.com/article/10.1007/bf01405730}{Dilemmas in a general theory of planning}''. This is not a security paper or even a computer science paper---it was written by two urban planning scholars---but it introduces the concept of a ``wicked'' problem and the themes resonate with many of the issues facing security economics. Answer the following question:
+
+% \begin{enumerate}
+%     \item Is computer security a wicked problem? How so? Or why not? Which of Rittel \& Webber's ten criteria are met, if any? You may cite examples in the above two papers by Ross Anderson, or provide additional examples. Please limit responses to less than 250 words.
+% \end{enumerate}
+
+% {\bf Note:} You may use generative AI tools to assist you if you wish, but please append your submission with all prompts and generated outputs. Please also note that if you rely on generative AI tools to write your response for you, it will likely not give high quality responses! Personally I find generative AI tools to write in a fluffed-up and padded writing style that sounds like a high schooler trying to reach a word count.
 
 \end{document}
