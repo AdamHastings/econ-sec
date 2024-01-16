@@ -46,7 +46,17 @@
 
 \subsection{Topics}
 \begin{itemize}
-    \item Market forces in security
+    \item Market forces that affect security
+    \item Analyzing security via economic models 
+    \item Behavioral economics + security
+    \item Contemporary security problems (memory safety, speculation security, password weakness, patching issues, many more!)
+    \item Cybercrime
+    \item Hacker economics
+    \item Game theory approaches to security
+    \item Systems control + mechanism design
+    \item Cyber insurance
+    \item Economics of bug bounties
+    \item Approaches to security regulation
 \end{itemize}
 
 \subsection{Prerequisites}
@@ -98,22 +108,25 @@ Please state:
 
 \section{Security as a Systems-Level Problem}
 
-Note: This is {\it not} the same thing as systems engineering! 
+This class will approach security using a very different set of tools than computer scientists are used to. I want to start by talking about security as a systems problem.
+
+It's probably unclear what I mean by this.This is {\it not} the same thing as systems engineering! 
+
 \begin{itemize}
     \item Systems engineering with similar problems, but systems engineering is about how to manage the integration of technical components towards some high level goal, like e.g. someone making an airplane has to have some role be the glue between aerospace engineers, mechanical engineers, software engineers, manage the intergration, deal with concerns like product lifecycle, et cetera. 
     \item On the other hand, systems thinking is a kind of interdisciplinary quasi-field of study.
     \item More of an academic study of how systems in general are structured and how they behave
-    \item for example how can we understand something like drug addiction when this is a problem that overlaps and combines with many other components, things like the physiology of addition, but also mental health, homelessness, pain medication prescriptions, drug smuggling, public attitudes to drugs, all they way to things like a drought in Afghanistan affecting the poppy plant yield.
+    \item For example how can we understand something like drug addiction when this is a problem that overlaps and combines with many other components, things like the physiology of addition, but also mental health, homelessness, pain medication prescriptions, drug smuggling, public attitudes to drugs, all they way to things like a drought in Afghanistan affecting the poppy plant yield.
     \item Systems thinking is figuring out how these components fit together and the structure between the components.
 \end{itemize}
 
 Very similar but certainly different from systems engineering, a term you may have heard of before. 
 
-I think it's a good way to at least introduce the types of problems we're going to deal with in this class and the types of {\it messiness} we're going to have to get accustomed to. 
+It's a good way to introduce the types of problems we're going to deal with in this class and the types of {\it messiness} we're going to have to get accustomed to. 
 
 \subsection{Computer Science Systems vs real-world systems}
 
-Make a table comparing the two.
+Let's talk about the types of systems we are going to deal with in this class.
 
 In CS:
 \begin{itemize}
@@ -121,49 +134,55 @@ In CS:
     \item Systems have finite {\bf boundaries}
     \item Underlying functions and interactions are known ({\bf known underlying function})
     \item Quantities are {\bf measurable}
-    \item The pieces and structure of the system are generally {\bf under our control} 
+    \item The pieces and structure of the system are generally {\bf under our control} (or under someone's control)
+    \item Tradeoffs can be made {\bf quantitatively}
 \end{itemize}
 
-In real-world systems:
+In real-world systems (like security):
 \begin{itemize}
     \item The systems are ones we {\bf inherit}
     \item {\bf Unclear boundaries}
     \item Underlying functions and interactions are unknown ({\bf unknown underlying function})
     \item Quantities are often {\bf not measurable}
     \item Many pieces/structure of system itself may be {\bf out of our control}
+    \item Tradeoffs often must be made {\bf qualitatively}. Many cases impossible to decide tradeoffs quantitatively.
 \end{itemize}
 
 {\it Ask: Are there any other dimensions that we can use to delineate computer systems from real-world systems?}
 
-{\it Ask: Where does security fit into this categorization? Answer: both}. But computer scientists are trained to work with computer systems, whereas the economists/policy people can only work with the other. I'm a bit of an engineering chauvinist so I think that because security is a ``both'' type of problem, the people who are best situated to solve security problems are engineers who learn the economics since it's very hard for economists to learn the engineering.
+{\it Ask: Where does security fit into this categorization? Answer: both}. But computer scientists are trained to work with computer systems, whereas the economists/policy people can only work with the other. I'm a bit of an engineering chauvinist so I think that because security is a ``both'' type of problem, the people who are best situated to solve security problems are engineers who learn the economics since it's very hard for economists to learn the engineering. Thats what this class is for!
 
 \subsection{Illustrated Example}
-Some guidelines:
+
+Dealing with real-world systems involves a bit of wading through the chaos. Trying to even define the problems we're working on is a bit like trying to nail jello to a wall. But not all hope is lost! One way we can try to bring order to the chaos is through systems diagrams.
+
+There are lots of ways you can draw out a system but in my personal experience these are some good  \underline{guidelines} to follow:
 \begin{itemize}
     \item Quantities as boxes
     \item Things that can change the quantities as arrows.
-    \item Write type of effect that one quantity has on another (increase? decrease? stay proportional?)
+    \item Direction of change written as part of arrow (increase? decrease? stay proportional?)
 \end{itemize}
+
+{\it Draw out systems diagram one step at a time, starting with number of ransomware attacks per year. Ask students to help build out diagram. OK if it looks different than diagram in notes.}
 
 \begin{figure}[h]
     \includegraphics*[width=\textwidth]{ransomware-sys-diagram.pdf}
 \end{figure}
 
 
-{\it Discuss the diagram}
+{\it Discuss the diagram. What do students think about this? Is this a useful way of understanding security problems?}
 
 Some possible takeaways:
 \begin{enumerate}
     \item ``All models are wrong, but some are useful'' --- George Box
-    \item ``The map is not the territory''
+    \item ``The map is not the territory'' (obvious in this case)
+    \item There are a LOT of assumptions built in here! It might just be a neat way of organizing our assumptions! But this itself is useful!
     \item ``When we draw structural diagrams and then write equations, we are forced
     to make our assumptions visible and to express them with rigor. We have
     to put every one of our assumptions about the system out where others
-    (and we ourselves) can see them...Getting models out into the light of day, making them as rigorous as
-    possible, testing them against the evidence, and being willing to scuttle
+    (and we ourselves) can see them...Getting models out into the light of day, making them as rigorous as possible, testing them against the evidence, and being willing to scuttle
     them if they are no longer supported is nothing more than practicing the
-    scientifi c method—something that is done too seldom even in science'' --- Donella Meadows
-    \item There are a LOT of assumptions built in here! It might just be a neat way of organizing our assumptions! But this itself is useful!
+    scientific method'' --- Donella Meadows
     \item You are necessarily going to have to leave things out! You can't fit everything into a diagram! Key is to fit in the parts that are most relevant and the parts that will be the most informative.
     \item Feels ``messy'' compared to what technical people are used to. ``Amount of public concern on cybersecurity''??? ``Law enforcement spending'' somehow appearing in a diagram in a computer science class? How is this a science? It's the best we can do.
     \item Probably every box deserves its own cloud for all the ``other'' things that can influence the quantities. Should this be included? Or is this just noise?
