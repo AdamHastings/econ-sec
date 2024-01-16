@@ -119,7 +119,9 @@ Example: this class! Supposed to be available to those who pay tuition. But if s
 \end{enumerate}
 
 
-\subsection{Big Idea \#2: Some goods are more valuable to some people than to others}
+\subsection{Big Idea \#2: We can model the value of goods}
+
+Some goods are more valuable to some people than to others.
 
 Some goods can even be more or less valuable to the same people depending on circumstances.
 E.g. if it's a sunny day, I might not care to have an umbrella; if it's raining really hard, I'm really going to want one. 
@@ -145,20 +147,61 @@ A typical way of expressing how much people value something is via indifference 
 
 This is a 2D space of possible goods you can acquire. We're going to make some simplifying assumptions and say that we're dealing with ``normal'' goods (like e.g. more is better. May not be a realistic assumption! Economics can handle more advanced cases but take an econ class if you want to learn more about that).
 
-We can draw the line of the 
+Each point is a different combination of goods, like $Q_x$ of good X and $Q_y$ of good Y. (Draw $(Q_x, Q_y)$ on the board) We call this point a {\bf bundle}.
 
-(Draw axes + 1 indifference line)
-
-
+An {\bf indifference curve} is the line connecting all the bundles that someone finds to be equally attractive (draw a few indifference curves).
 
 {\it Ask: I drew it convex. Why?} Diminishing marginal utility. Lets use a computer systems analogy. Let's say I have a system where X is my CPU clock frequency (it's something we want! It's a good!) and Y is all other system design constraints. If my goal is to make a fast system, and my clock frequency is very low, this could be the bottleneck in system performance
 
+Normal goods are usually convex like this. There are of course some exceptions.
+
 {\it Ask: What does it mean if I draw the indifference curve as a straight line?} It means that X and Y are perfect substitutes---I don't care if I have one or the other. 
 
+Another variation is indifference curves with a ``bliss point'' i.e. an optimum. single point w/ surrounding lines. Looks like a topographic map!
 
-\subsection{The Supply Curve (6:30)}
+One important element of an indifference curve is that the slope at each point is equal to the {\bf marginal rate of substitution (MRS)}, which is the rate at which the consumer is wiling to substitute good $X$ for good $Y$.
 
-\subsection{The Demand Curve (6:40)}
+\subsubsection{The budget line}
+
+Recall that we usually deal with normal goods, so more = better. In this case people would always want to maximize $(q_x, q_y)$, i.e. the top-rightmost possible point. But people don't have unlimited budgets so we have to make some constraints.
+
+A common assumption in many econ problems is that people are working with a fixed budget of money they have to spend. We can call this amount $m$. Then it necessarily follows that
+$$p_Xq_X + p_Yq_Y = m$$
+This is just the formula of a straight line {\it (draw negative sloped line)}.
+
+
+\subsubsection{Composite goods}
+One thing about this arrangement (indifference curves) is that it expresses how much someone values one good in terms of another. This might be useful if there were only two things people want. But if we want to know how much someone values apples, does this mean we need to make a new set of indifference curves for every possible other good out there? Apples vs pears? Apples vs corn? Apples vs iron ore? Apples vs movie theater tickets? No, there's a better solution. We can instead just let the other variable $Y$ be a {\bf composite good}, which represents ``everything else the consumer might want to consume'' (Varian). In this case we can just write $p_Y = 1$ since the price of one dollar is one dollar.
+
+\subsubsection{Optimal Choice}
+
+The {\bf optimal choice} is the point where the the budget line is tanget to the indifference curve. This is the most preferrable bundle of goods. We can call this bundle $(q_x^*, q_y^*)$ {\it (draw dashed lines connecting to tangent point $(q_x^*, q_y^*)$)}
+
+At this point the marginal rate of substitution is equal to the slope of the budget line.
+
+\subsubsection{Changing prices}
+
+As prices change, the budget line and indifference curves intersect at different points {\it (draw \ref{fig:demand}-A)}.
+As the price decreases, the budget line pivots outwards.
+
+
+\subsection{The Demand Curve}
+
+Another important way of expressing peoples wants is through demand curves. 
+A {\bf demand curve} is the optimum quantity of a good as a function of its price. 
+For reasons I'm not entirely clear on this is typically drawn with the {\it price on the Y axis even though demand is a function of price!}
+(I think this might be because when economists talk about supply, it's the opposite where they view price as a function of demand, so putting both on the same graph means one gets stuck with the unconventional plotting.)
+
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=3.5in]{demandcurve.png}
+    \caption{Source: Intermediate Microeconomics by Hal Varian, 8th ed.}
+    \label{fig:demand}
+\end{figure}
+
+\subsection{The Supply Curve}
 
 \subsection{Pareto efficiency (6:50)}?
 
