@@ -1,6 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage{geometry}
 \usepackage{graphicx}
+\usepackage{float}
+\usepackage[normalem]{ulem}
 \usepackage[table,xcdraw]{xcolor}
 
 \graphicspath{{figures/}}
@@ -30,7 +32,7 @@
 
 (Discuss agenda for the day. Write agenda on board)
 
-(New Would-You-Rather question). The thing about Would-You-Rather questions is that that are perfectly suited for a class on economics. Why? Because economics is largely about quantifying preferences. A good would-you-rather question is about identifying interesting splits in peoples' preferences. 
+(New Would-You-Rather question). The thing about Would-You-Rather questions is that that are perfectly suited for a class on economics. Why? Because economics is largely about quantifying and ranking {\it preferences}. A good would-you-rather question is about identifying interesting splits in peoples' preferences. 
 
 Getting to know each other through silly questions is a good way to feel more comfortable speaking up and making this a discussion-based class, which as a 6000-level seminar it should be discussion-based. 
 
@@ -38,19 +40,27 @@ What makes a good would-you-rather?
 
 \begin{itemize}
     \item Splits responses roughly 50/50
-    \item Exposes peoples values in a meaningful way (I.e. it's not very interesting to ask ``what do you prefer---red or blue'')
+    \item Exposes peoples values in a meaningful way (it's not very interesting to ask ``what do you prefer---red or blue'')
     \item Compares two very disparate things
+    \item For this class --- let's avoid gross topics
 \end{itemize}
 
 In fact, a big part of experimental economics research is clever ways of asking would-you-rather questions :) 
 
-\subsection{Systems diagrams review (6:10)}
 
-(Depending on class size, pick on 2--3 to share their chosen problem and diagram)
+I also want students to state their names again. In one seminar class I was in, we did names and introductions the first week but then I forgot everyone's names so it was awkward because when talking to people I had to say ``hey you'' instead of their names.... 
+
+\subsection{Systems diagrams review (6:15)}
 
 \begin{itemize}
-    \item I want to be very clear about something here. We are not taking a ``high level'' view of security. This {\it is} the problem of security. 
+    \item I have made a slideshow of everyone's submissions, ready to be displayed on the screen. 
+    \item We're going to take a look at some examples of systems that we've identified, and then discuss, critique, and offer suggestions.
+    \item {\it Does anyone want to volunteer to present what they have?}
+    \item Let me just add that it is a privilege and an honor to have the opportunity to get time and attention of your peers to help you analyze and critique your work. Volunteering to have your work discussed is like free XP points :) 
+    \item Other benefits of sharing our work: It seems like there is a moderate amount of variance in the level of security background in the class. So by sharing work, we can not only practice the actual task at hand (thinking in systems) but also help teach other students about areas of security that perhaps they didn't know about beforehand.
+    \item I want to be very clear about something here. We are not taking a ``high level'' view of security. I would argue that security is first and foremost a ``high-level'' problem. But because it's so high-level I think that computer scientists like to abstract away this view of security, or focus on a small subset of the problem. And that's OK! We can't solve every problem in every research project we do. But let's not forget that even though it's maybe fuzzy and nebulous, this is the {\it actual scope} of the problem of cybersecurity. 
     \item {\bf Big takeaway}: A common theme we're going to run into in this class, and a skill that we are going to develop, is the art of making something {\bf defensible}. There's no right answer to any of these systems-level problems you've created. There's no such thing as an optimal systems understanding of something. You may be able to rank things in terms of better or worse, {\it if you're lucky}, but how ``good'' something is really depends on context, how it's being used, et cetera. So for better or for worse, in security economics, you're going to have to make the case that your interpretation and understanding is correct. 
+    \item Learning the art of what makes something defensible is an art, and hopefully by looking at examples of papers that the economics and security community have deemed to be worthwhile and important will help us develop an intuition for what a defensible set of assumptions are. 
 \end{itemize}
 
 This brings up a few other questions:
@@ -87,36 +97,7 @@ You may have seen some of this stuff before if you've ever taken an economics cl
 But we need to establish a shared baseline. A lot of this (in my opinion) is just providing you with the {\it vocabulary} needed to discuss things like an economist would. Many of the ideas we're going to talk may sometimes feel obvious but that's because we're maybe taking for granted the mindset that economists have given the world. Maybe obvious in hindsight but highly non-obvious at the time they were formulated. Same thing in computer systems. The idea that code could be treated just like any other data is beyond obvious at this point but you just have to keep in mind that at one point things like this were revolutionary. Same with the ``bit''---not coined until 1947! Let's give these maybe seemingly obvious ideas the respect they deserve.
 
 
-\subsection{Macroeconomics vs. Microeconomics}
-
-There are two main branches of economics: Macroeconomics and microeconomics. 
-
-{\it Ask: Does anyone know the difference}
-
-{\it (Draw table on chalkboard)}
-
-\begin{table}
-    \centering
-    \begin{tabular}{c|c}
-        \hline
-        {\bf Macroeconomics} & {\bf Microeconomics} \\
-        A large-scale view of how an economy works & How goods + services are allocated   \\ 
-        \hline
-        GDP (Gross Domestic Product) & \\
-        Inflation & \\
-        Interest rates & \\
-        Unemployment & \\ 
-        Economic growth & \\ 
-        Business cycles & \\ 
-
-        \hline
-    \end{tabular}
-\end{table}
-        
-{\it Ask: Which one of these do you think computer scientists and security people are usually more interested in? (Answer --- microeconomics. To me (and others), an economic understanding of security is an understanding of the incentives that underlie security and the decisions that people make and the types of tradeoffs they prefer. So when we talk about economics things in this class, keep in mind we'll mostly be talking about microeconomics).}
-
-
-\subsection{Big Idea \#1: Goods}
+\subsection{\sout{Big Idea \#1: Goods}}
 
 Economics is fundamentally about the distribution of goods and services. 
 
@@ -157,7 +138,6 @@ Example: Concerts. You physically cannot get access without buying a ticket.
 I'm writing these as binary categories but in reality they exist more on spectrums.
 Example: this class! Supposed to be available to those who pay tuition. But if someone wanted to audit, I wouldn't physically prevent them from entering the classroom (could even enhance if they contribute to the discussion!). So this class is semi-excludable.
 
-
 \begin{table}[]
     \centering
     \begin{tabular}{lccll}
@@ -176,8 +156,7 @@ Example: this class! Supposed to be available to those who pay tuition. But if s
     \item Common-pool resources: rivalrous but non-excludable. Example: Fish in the sea. Internet traffic?
 \end{enumerate}
 
-
-\subsection{Big Idea \#2: We can model the value of goods}
+\subsection{\sout{Big Idea \#2: We can model the value of goods}}
 
 Some goods are more valuable to some people than to others.
 
@@ -277,6 +256,46 @@ For the above model to work it assumes that a number of conditions are being met
 
 So does that mean that the above is doomed to fail? No, definitely not, just means that our models need to maybe take into account more information.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Intro to Microeconomics Redux (6:30)}
+
+Last week I did some very introductory microeconomics on the board. We talked about types of goods---{\it Ask: What were the four types of goods? Along what axes did we categorize them?}. I sort of just put a bunch on information on the board but I think it's useful to finish our introduction of microeconomic theory by making this a bit more engaging and hands-on.
+
+\subsection{Macroeconomics vs. Microeconomics (6:30)}
+
+Since this class assumes no background in economics whatsoever, we're going to talk a little more about the lay of the land. 
+
+There are two main branches of economics: Macroeconomics and microeconomics. Very good chance you've heard these terms before. Totally OK if you haven't.
+
+{\it Ask: Does anyone know the difference}
+
+{\it (Draw table on chalkboard)}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c}
+        \hline
+        {\bf Macroeconomics} & {\bf Microeconomics} \\
+        A large-scale view of how an economy works & How goods + services are allocated   \\ 
+        \hline
+        GDP (Gross Domestic Product) & Individuals' preferences \\
+        Inflation & Supply and demand\\
+        Interest rates & Modeling behavior and choices\\
+        Unemployment & Markets \\ 
+        Economic growth & Utility functions \\ 
+        Business cycles & Prices (and where they come from)\\ 
+
+        \hline
+    \end{tabular}
+\end{table}
+        
+{\it Ask: Which one of these do you think computer scientists and security people are usually more interested in? (Answer --- microeconomics. To me (and others), an economic understanding of security is an understanding of the incentives that underlie security and the decisions that people make and the types of tradeoffs they prefer. So when we talk about economics things in this class, keep in mind we'll mostly be talking about microeconomics).}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Market Failures in Security (7:00)}
 
 
@@ -292,7 +311,7 @@ For homework I had you read a couple of papers. They were pretty straightforward
 
 \subsubsection{Initial thoughts}
 
-What did we think of these papers?
+{\it Ask: What did we think of these papers?}
 
 \begin{itemize}
     \item What stood out to everyone?
@@ -329,14 +348,7 @@ Introductory discussion things to note:
     \item A big part of this class is going to be studying methods. This paper has no methods! But in future papers we will highlight methods used. 
 \end{enumerate}
 
-\subsection{How to Read a Paper}
-
-{\it Ask: Remind me (by raise of hands)---who here is an undergrad? MS? PhD?}
-
-{\it Ask: How much exposure do you have to reading papers? By raise of hands does anyone here think they've read over 20 papers top-to-bottom?} (Some students like will not have).
-
-Before we go into discussing this paper, it might be useful to talk about {\it how} to read a paper. Reading a paper is not like reading a book or a newspaper. It is a distinct skill that requires practice.
-
+{\it (Discussion)}
 
 
 \subsection{Types of Market Failures in Security}
@@ -354,8 +366,6 @@ Remember the 2x2 grid of types of goods from last week? Remember ``common pool r
 
 {\it Ask: Can someone give an example of a common pool resource?} (Example: fish in the sea)
 
-(description)
-
 {Ask: So does this mean that every time there is a common pool resource, we need outside government influence?} No, probably not. Economist Elinor Ostrom wrote a book called ``Managing the Commons'' on situations where those dependent on the commons are able to manage its consumption.
 
 {Ask: So in the two papers we read, what were some of the examples of tragedies of the commons?}
@@ -372,6 +382,10 @@ Remember the 2x2 grid of types of goods from last week? Remember ``common pool r
 
 \subsubsection{Perverse Incentives}
 
+The canonical story 
+
+This is a case where I think a systems diagram would have been helpful! 
+
 \subsection{Conclusion}
 
 “In general, where the party who is in a position to protect a system is not the party who would suffer the results of security failure, then problems may be expected.”
@@ -384,6 +398,9 @@ There's a big range of methodologies that are available, and they each can be us
 Each one is like a different tool that can solve a different problem.
 
 I'm now going to go through what some of these available tools are and when you might use them.
+This is one of those things that may be very obvious, and you probably already know what most of these are, but I never had anyone really sit me down and tell me that this is the lay of the land, so as your kind-hearted instructor who wants the best for you, that is exactly what I'm going to do. I'm using a taxonomy that I found in a paper by an econ professor. He breaks economics research methodologies into three main groups: Theory, Experiments, and Empirics.
+
+(Source: ``Methods Used in Economic Research: An Empirical Study of Trends and Levels'' by Paldam)
 
 \begin{itemize}
     \item Theory
@@ -416,9 +433,11 @@ I'm now going to go through what some of these available tools are and when you 
 
 This taxonomy is probably not exhaustive. In fact, I borrowed this taxonomy from an econ professor who of course was specifically talking about economics research. {\it Ask: What are the research methodologies used in computer science and security? (My response: They look remarkably similar.)}.
 
-A task for the class: Can we think of any fields of security or research topics in security that are examples of the above taxonomy?
+{\it A task for the class: Can we think of any fields of security or research topics in security that are examples of the above taxonomy? How can we taxonomize research papers in computer science and security?}
 
-
+\begin{itemize}
+    \item Theory --- not much theory in security! Seems to actively {\it defy} security in many cases. One notable exception may be cryptography.
+\end{itemize}
 
 
 {\it Ask: Is anyone aware of any classes of research methodologies that might be missing? }
@@ -429,6 +448,26 @@ A task for the class: Can we think of any fields of security or research topics 
 
 
 \section{The Tragedy of the Commons --- Modeling Techniques}
+
+\subsection{How to Read a Paper}
+
+{\it Ask: Remind me (by raise of hands)---who here is an undergrad? MS? PhD?}
+
+{\it Ask: How much exposure do you have to reading papers? By raise of hands does anyone here think they've read over 20 papers top-to-bottom?} (Some students like will not have).
+
+Before we go into discussing this paper, it might be useful to talk about {\it how} to read a paper. Reading a paper is not like reading a book or a newspaper. It is a distinct skill that requires practice.
+
+Some good questions to ask yourself when reading a paper:
+
+\begin{itemize}
+    \item What year did this paper come out? What do we know about what was happening in the rest of the world at this point? (Why Information Security is Hard --- 2001. A lot of the topics in that paper had been observed before, but this was around the time that most of the rest of the world was getting online for the first time, and probably around the time that cybersecurity started to become a concern in the average persons' life.)
+    \item Follow up question---what is the timeliness of the paper?
+    \item Why did the author or authors write this paper? Are they trying to open up a dialogue? More common in the humanities.
+    \item What are the claims they are making in the paper?
+    \item Do they support their claims with evidence? If so, how good is the evidence?
+    \item 
+\end{itemize}
+
 
 \section{Gordon-Loeb --- Modeling Techniques}
 
