@@ -87,6 +87,35 @@ You may have seen some of this stuff before if you've ever taken an economics cl
 But we need to establish a shared baseline. A lot of this (in my opinion) is just providing you with the {\it vocabulary} needed to discuss things like an economist would. Many of the ideas we're going to talk may sometimes feel obvious but that's because we're maybe taking for granted the mindset that economists have given the world. Maybe obvious in hindsight but highly non-obvious at the time they were formulated. Same thing in computer systems. The idea that code could be treated just like any other data is beyond obvious at this point but you just have to keep in mind that at one point things like this were revolutionary. Same with the ``bit''---not coined until 1947! Let's give these maybe seemingly obvious ideas the respect they deserve.
 
 
+\subsection{Macroeconomics vs. Microeconomics}
+
+There are two main branches of economics: Macroeconomics and microeconomics. 
+
+{\it Ask: Does anyone know the difference}
+
+{\it (Draw table on chalkboard)}
+
+\begin{table}
+    \centering
+    \begin{tabular}{c|c}
+        \hline
+        {\bf Macroeconomics} & {\bf Microeconomics} \\
+        A large-scale view of how an economy works & How goods + services are allocated   \\ 
+        \hline
+        GDP (Gross Domestic Product) & \\
+        Inflation & \\
+        Interest rates & \\
+        Unemployment & \\ 
+        Economic growth & \\ 
+        Business cycles & \\ 
+
+        \hline
+    \end{tabular}
+\end{table}
+        
+{\it Ask: Which one of these do you think computer scientists and security people are usually more interested in? (Answer --- microeconomics. To me (and others), an economic understanding of security is an understanding of the incentives that underlie security and the decisions that people make and the types of tradeoffs they prefer. So when we talk about economics things in this class, keep in mind we'll mostly be talking about microeconomics).}
+
+
 \subsection{Big Idea \#1: Goods}
 
 Economics is fundamentally about the distribution of goods and services. 
@@ -234,6 +263,20 @@ For reasons I'm not entirely clear on this is typically drawn with the {\it pric
 
 Supply side economics is equally important---to economists. We won't focus on it so much in this class. In classical microeconomics it suffices to say that those who produce goods are incentivized to produce more when prices are higher. The amount that acutally gets produced is the point where the supply curves and demand curves intersect. This is called the {\bf market clearing price}. Of course this is a huge simplification and there are lots of caveats so go read an econ book if you want to learn more. 
 
+
+\subsection{Assumptions built into the above models}
+
+The above is a model of the world that has proven itself to have remarkable predictive power.
+But it doesn't solve every problem. (?)
+For the above model to work it assumes that a number of conditions are being met. For example:
+
+\begin{itemize}
+    \item Rationality: Assumes that peoples' preferences are rational. E.g. if I prefer good A to good B, and prefer good B to good C, then if I were being rational I would prefer good A to good C (this particular property is called {\bf transitivity}). But in the real world people don't always behave like that.
+    \item Others? 
+\end{itemize}
+
+So does that mean that the above is doomed to fail? No, definitely not, just means that our models need to maybe take into account more information.
+
 \section{Market Failures in Security (7:00)}
 
 
@@ -260,7 +303,7 @@ What did we think of these papers?
 Some things that stand out to me:
 
 \begin{itemize}
-    \item There 
+    \item There are no figures! No charts! Very little data. Mostly a constellation of anecdotes that point to some larger thing going on.
 \end{itemize}
 
 {\it Ask: What kinds of assumptions are needed to make markets efficient?}
@@ -279,18 +322,115 @@ Some suggested answers:
 
 \section{Paper Discussion: Why Information Security is Hard (7:00)}
 
+
 Introductory discussion things to note:
 \begin{enumerate}
     \item This is a seminal paper. So where are the experiments? Where are the graphs and tables? There are none. How can this be? (If you're looking for a technical rigor to this class, we will make sure we cover that too).
     \item A big part of this class is going to be studying methods. This paper has no methods! But in future papers we will highlight methods used. 
 \end{enumerate}
 
+\subsection{How to Read a Paper}
+
+{\it Ask: Remind me (by raise of hands)---who here is an undergrad? MS? PhD?}
+
+{\it Ask: How much exposure do you have to reading papers? By raise of hands does anyone here think they've read over 20 papers top-to-bottom?} (Some students like will not have).
+
+Before we go into discussing this paper, it might be useful to talk about {\it how} to read a paper. Reading a paper is not like reading a book or a newspaper. It is a distinct skill that requires practice.
+
+
+
 \subsection{Types of Market Failures in Security}
+
+\subsubsection{Tragedy of the Commons}
+
+{\it Poll: Before reading this paper, who knew what the tragedy of the commons was?}
+
+A bit of etymology first: The word ``common'' is most often used today as an adjective, for example ``sneakers are a common type of shoe''.
+But ``common'' is also a noun, like Carleton Commons in Mudd, denoting a place with resources that is shared by many. In medeival Europe, the ``commons'' were the plots of land that were ``owned'' by a Lord but available for use by the ``commoners''
+
+Remember the 2x2 grid of types of goods from last week? Remember ``common pool resources''?
+
+{\it Ask: What is a common pool resource? Specifically, what are the two critera?} (Rivalrous and non-excludable)
+
+{\it Ask: Can someone give an example of a common pool resource?} (Example: fish in the sea)
+
+(description)
+
+{Ask: So does this mean that every time there is a common pool resource, we need outside government influence?} No, probably not. Economist Elinor Ostrom wrote a book called ``Managing the Commons'' on situations where those dependent on the commons are able to manage its consumption.
+
+{Ask: So in the two papers we read, what were some of the examples of tragedies of the commons?}
+
+{Ask: In security, what might other examples be?}
+
+\subsubsection{Free Riding}
+
+(description)
+
+\subsubsection{The Market for Lemons}
+
+\subsubsection{Moral Hazards}
+
+\subsubsection{Perverse Incentives}
 
 \subsection{Conclusion}
 
 “In general, where the party who is in a position to protect a system is not the party who would suffer the results of security failure, then problems may be expected.”
 
+
+\section{Research Methodologies Used in Economics}
+
+The papers we read so far were a bit light on methodology---mostly they were just the author telling the audience the world as he sees it. Which may be suitable in some cases but a big portion of this class will be understanding and applying economics' attempts to apply rigor through various methodologies so that we don't just rely on vibes. 
+There's a big range of methodologies that are available, and they each can be useful in cybersecurity. 
+Each one is like a different tool that can solve a different problem.
+
+I'm now going to go through what some of these available tools are and when you might use them.
+
+\begin{itemize}
+    \item Theory
+        \begin{itemize}
+            \item Economic theory
+            \item Statistical methods
+            \item Surveys
+                \begin{itemize}
+                    \item Assessed Surveys
+                    \item Meta-studies
+                \end{itemize}
+        \end{itemize}
+    \item Experiments
+        \begin{itemize}
+            \item Lab experiments
+            \item Event studies
+                \begin{itemize}
+                    \item Field experiments
+                    \item Natural experiments
+                \end{itemize}
+        \end{itemize}
+    \item Empirics
+        \begin{itemize}
+            \item Descriptive studies
+            \item Classical empirics
+            \item Newer empirics
+        \end{itemize}
+\end{itemize}
+
+
+This taxonomy is probably not exhaustive. In fact, I borrowed this taxonomy from an econ professor who of course was specifically talking about economics research. {\it Ask: What are the research methodologies used in computer science and security? (My response: They look remarkably similar.)}.
+
+A task for the class: Can we think of any fields of security or research topics in security that are examples of the above taxonomy?
+
+
+
+
+{\it Ask: Is anyone aware of any classes of research methodologies that might be missing? }
+
+{\it Ask: How do you know which methodology to pick? (Possible answer: A lot of times, you don't exactly have the opportunity to choose.)}
+
+
+
+
+\section{The Tragedy of the Commons --- Modeling Techniques}
+
+\section{Gordon-Loeb --- Modeling Techniques}
 
 
 \end{document}
