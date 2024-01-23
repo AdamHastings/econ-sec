@@ -264,19 +264,6 @@ For reasons I'm not entirely clear on this is typically drawn with the {\it pric
 Supply side economics is equally important---to economists. We won't focus on it so much in this class. In classical microeconomics it suffices to say that those who produce goods are incentivized to produce more when prices are higher. The amount that acutally gets produced is the point where the supply curves and demand curves intersect. This is called the {\bf market clearing price}. Of course this is a huge simplification and there are lots of caveats so go read an econ book if you want to learn more. 
 
 
-\subsection{Assumptions built into the above models}
-
-The above is a model of the world that has proven itself to have remarkable predictive power.
-But it doesn't solve every problem. (?)
-For the above model to work it assumes that a number of conditions are being met. For example:
-
-\begin{itemize}
-    \item Rationality: Assumes that peoples' preferences are rational. E.g. if I prefer good A to good B, and prefer good B to good C, then if I were being rational I would prefer good A to good C (this particular property is called {\bf transitivity}). But in the real world people don't always behave like that.
-    \item Others? 
-\end{itemize}
-
-So does that mean that the above is doomed to fail? No, definitely not, just means that our models need to maybe take into account more information.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Intro to Microeconomics Redux (6:30)}
@@ -316,16 +303,35 @@ There are two main branches of economics: Macroeconomics and microeconomics. You
 % Elasticity?
 You probably already knew that though if you read the assigned readings! Since Ross Anderson explicitly states in the first paper that is about taking a {\it microeconomic} view of security :) 
 
+\subsection{Assumptions built into the above models}
+
+The above is a model of the world that has proven itself to have remarkable predictive power.
+But it doesn't solve every problem. (?)
+For the above model to work it assumes that a number of conditions are being met. For example:
+
+\begin{itemize}
+    \item Rationality: Assumes that peoples' preferences are rational. E.g. if I prefer good A to good B, and prefer good B to good C, then if I were being rational I would prefer good A to good C (this particular property is called {\bf transitivity}). But in the real world people don't always behave like that.
+    \item Perfect information
+    \item No barriers to entry
+    \item Lots of buyers and sellers
+\end{itemize}
+
+
+{\it Ask: Which of the above requirements might be violated in the world of security?}
+
+
+So does that mean that the above is doomed to fail? No, definitely not, just means that our models need to maybe take into account more information.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Market Failures in Security (7:00)}
+\section{Paper Discussion + Market Failures in Security (7:00)}
 
 
 \subsection{Preface}
 
-The main point of this lecture: Why is security an economics problem? Are we here because we want to learn how big the market for firewalls is? Are we here because we love xxxx?
+The main point of this lecture: Why is security an economics problem? Are we here because we want to learn how much money Crowdstrike makes in a year?
 
 No. We are here because security itself is an economics problem. Perhaps before \textit{anything else} it is an economics problem. More than being a problem of software, or hardware, or usability, it is an economics problem.
 
@@ -339,43 +345,25 @@ For homework I had you read a couple of papers. They were pretty straightforward
 
 \begin{itemize}
     \item What stood out to everyone?
-    \item How is this paper different from other academic papers you have read? ({\it Ask: Mix of undergrad and masters students. Who here reads papers?}). 
-    \item How do we evaluate the claims made in a paper like this?
+    \item What was interesting?
+    \item Did this change anything in the way you view or think about security?
 \end{itemize}
 
 Some things that stand out to me:
 
 \begin{itemize}
-    \item There are no figures! No charts! Very little data. Mostly a constellation of anecdotes that point to some larger thing going on.
+    \item How is this paper different from other academic papers you have read? ({\it Ask: Mix of undergrad and masters students. Who here reads papers?}). 
+    \item This is a seminal paper. So where are the experiments? Where are the graphs and tables? There are none. Mostly a constellation of anecdotes that point to some larger thing going on. How can this be?
+    \item A big part of this class is going to be studying methods. {\it Ask: What methods does these papers use?} Do they even use methods?
+    \item How do we evaluate the claims made in a paper like this?  (If you're looking for a technical rigor to this class, we will get to that next week when we look at some classic economic models).
+  
 \end{itemize}
 
-{\it Ask: What kinds of assumptions are needed to make markets efficient?}
-
-
-This section is really the ``why'' this subject needs to exist. 
-Markets are wonderful and they solve many problems of the allocation of goods and services.
-But let's review some of the required assumptions needed for efficient markets.
-
-{\it Ask: Which of the above requirements might be violated in the world of security?}
-
-Some suggested answers:
-\begin{enumerate}
-    \item Perfect information
-\end{enumerate}
-
-\section{Paper Discussion: Why Information Security is Hard (7:00)}
-
-
-Introductory discussion things to note:
-\begin{enumerate}
-    \item This is a seminal paper. So where are the experiments? Where are the graphs and tables? There are none. How can this be? (If you're looking for a technical rigor to this class, we will make sure we cover that too).
-    \item A big part of this class is going to be studying methods. {\it Ask: What methods does these papers use?} Do they even use methods?
-\end{enumerate}
-
-{\it (Discussion)}
-
-
 \subsection{Types of Market Failures in Security}
+
+For me, the value of these papers is not so much in their technical rigor but in their ability to frame something in a new way (the new way being microeconomics, which is not new, but will be new to many programmers and cybersecurity people). The contribution is just pointing out, with many examples, of situations where the market mechanism doesn't work very well. We call these scenarios market failures:
+
+{\bf Market failure}: Situation where the market mechanism produces inefficient outcomes.
 
 There are many cases where the market mechanism doesn't work or don't work well, meaning that the markets don't  produce the most efficient outcome. This could be due to the nature of the goods in question, or due to a flaw or shortcoming in the way we've made our economic models and framed the problem.
 
@@ -458,7 +446,10 @@ This one can be confusing to people because of its name. In fact, I did some res
 
 Also an issue when it comes to things like hedge funds. If take a crazy risk and it really pays off, you get super rich. If your investment goes to zero, it's not your money anyway. So there's an incentive to take big risks becuase you're shielded from the consequences.
 
-{\it Ask: Does this problem exist anywhere in the paper? Or in security?}
+{\it What was the example of this in the papers?} ATM fraud. In several European banks, the burden of proving fraud was placed on the customers, whereas in American banks, the burden was on banks to prove fraud did not happen European banks didn't care if a customer was victim of fraud. The problem didn't affect them! So they were reckless with their security
+In the end, they ended up having to pay more for security and were less secure!
+
+{\it Ask: Does this problem exist anywhere else in security?}
 
 \subsubsection{Misaligned Incentives}
 
@@ -714,5 +705,7 @@ Some good questions to ask yourself when reading a paper:
 
 \section{Gordon-Loeb --- Modeling Techniques}
 
+
+\section{Killing Time activity --- Look for market failures in homework submissions.}
 
 \end{document}
