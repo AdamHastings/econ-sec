@@ -292,7 +292,7 @@ There are two main branches of economics: Macroeconomics and microeconomics. Ver
         
 {\it Ask: Which one of these do you think computer scientists and security people are usually more interested in? (Answer --- microeconomics. To me (and others), an economic understanding of security is an understanding of the incentives that underlie security and the decisions that people make and the types of tradeoffs they prefer. So when we talk about economics things in this class, keep in mind we'll mostly be talking about microeconomics).}
 
-
+% Elasticity?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -345,13 +345,17 @@ Some suggested answers:
 Introductory discussion things to note:
 \begin{enumerate}
     \item This is a seminal paper. So where are the experiments? Where are the graphs and tables? There are none. How can this be? (If you're looking for a technical rigor to this class, we will make sure we cover that too).
-    \item A big part of this class is going to be studying methods. This paper has no methods! But in future papers we will highlight methods used. 
+    \item A big part of this class is going to be studying methods. This paper has no methods! Or does it? 
 \end{enumerate}
 
 {\it (Discussion)}
 
 
 \subsection{Types of Market Failures in Security}
+
+There are many cases where the market mechanism doesn't work or don't work well, meaning that the markets don't  produce the most efficient outcome. This could be due to the nature of the goods in question, or due to a flaw or shortcoming in the way we've made our economic models and framed the problem.
+
+In many of these cases there's a canonical ``story'' that goes along with the example, and I think as part of your education I have to give you the canonical story.
 
 \subsubsection{Tragedy of the Commons}
 
@@ -365,6 +369,9 @@ Remember the 2x2 grid of types of goods from last week? Remember ``common pool r
 {\it Ask: What is a common pool resource? Specifically, what are the two critera?} (Rivalrous and non-excludable)
 
 {\it Ask: Can someone give an example of a common pool resource?} (Example: fish in the sea)
+
+TODO Hardin's model of the commons.
+
 
 {Ask: So does this mean that every time there is a common pool resource, we need outside government influence?} No, probably not. Economist Elinor Ostrom wrote a book called ``Managing the Commons'' on situations where those dependent on the commons are able to manage its consumption.
 
@@ -380,11 +387,78 @@ Remember the 2x2 grid of types of goods from last week? Remember ``common pool r
 
 \subsubsection{Moral Hazards}
 
+This one can be confusing to people because of its name. In fact, I did some researching and found that economists themselves are unclear on where the name came from. But the concept is simple: A {\bf moral hazard} is a situation where the party who  
+
+TODO
+
+% misaligned incentives?
+\subsubsection{Adverse Selection}
+
 \subsubsection{Perverse Incentives}
 
-The canonical story 
+The canonical story/example comes from India during British rule. The story goes that the British, seeing the large number of venomous cobras in the city of Delhi, decided they wanted to reduce the number of deadly snakes by instituting a policy: The British started paying bounties for each cobra killed. And at first it worked. The number of cobras decreased. But then some people had an idea on how they could make some more money---{\it Ask: Anyone know?} They started breeding cobras! And, as the story goes, once the British realized what was going on, they shut down the program, and what did the cobra breeders do? They released them. And now there were more snakes than before!
 
-This is a case where I think a systems diagram would have been helpful! 
+The takeaway is that if you don't consider the full system that you're working with, your policy ``solutions'' may have the exact opposite effect of what you intend. We call this a {\bf perverse incentive}.
+
+Apparently this story may be merely anecdotal and may not have happened exactly like the story goes, but to be honest it doesn't really matter if the story is true or not because it gets the point across so clearly. If you'd like a historically-verified version of the principle, the same thing happened in Vietnam during French rule but with rats instead of cobras.
+
+This principle comes up all the time in systems. Last week when I introduced systems and systems thinking, I gave the example of drug addiction, which as we talked about is a system with many different components in many different domains. One thing I {\it didn't} mention though was a well-known perverse incentive in the system. Like other any other ``good'', the price of drugs are subject to the laws of supply and demand. % (although it's maybe debatable whether or not addictive drugs are a ``good'' at all---they could be considered ``bads'').
+% Drug addiction is generally seen as a bad thing, so many governments may try to reduce drug abuse by making it illegal to sell drugs.
+
+{\it (Draw supply and demand straightline curves on the board)}. 
+
+A government might decide that they don't want their citizens using harmful drugs, so they might make certain drugs illegal and arrest a bunch of drug dealers and destroy seized drugs. {\it Ask: What does this do to the market?} Answer---it reduces supply.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{supplyshift.png}
+    \caption{When supply is constrained, prices go up. With a ``good'' like an addictive drug, we might see something called {\bf inelasticity}. If you are addicted to a drug, you might pay any price to obtain it. Inelastic goods have steeper demand curves. In the most extreme case, the demand curve is a vertical line. This means that consumption of the good is completely independent of price. Presumably this {\it doesn't} mean that the price {\it will} be infinitely high, since there will still be multiple producers competing each other and trying to undercut each others' prices (assumes no monopolies...). This is the opposite of a {\bf elastic} good, which is when the quantity of a good's consumption is highly dependent on its price (in the extreme case, this would be a horizontal demand curve). Usually you see this in cases where the good in question has a good number of substitutes available (e.g. gala apples in place of fuji apples). }
+    \label{fig:sshift}
+\end{figure}
+
+A reduction in supply means less quantity, so in classical microeconomics we represent this as a shift of the supply curve to the left. Let's make this even worse and make assume inelastic demand (vertical demand line). What happens to the equilibrium price when we shift the supply curve to the left? The equilibrium price goes up. What is the effect? The better the police are at getting drugs off the streets, the more valuable it becomes to {\it sell} drugs, which in turn might incentivize more people to produce and sell drugs. It can be a perverse incentive. 
+
+(This is a case where I think a systems diagram would have been helpful!)
+
+{\it Ask: What was an example of a perverse incentive in the papers we read? }
+
+In the paper, this principle was observed with Common Criteria evaluations. For anyone who doesn’t know, CC is an international standard for security certification. The way it works is you have a product with some security features and want to prove to people (or the government) that the security features work as advertised, so you come up with a test plan and have a certified laboratory perform tests according to your test plan to verify that your product meets the requirements. Then your product is CC certified and you can sell it to governments and boast about how secure your product is. And who’s going to pay for this certification? Well naturally the vendor will. 
+
+But the problem, as pointed out in the paper, is that the certification is paid for by the vendors themselves. So the incentive for vendors is to find the worst-quality certification lab you can, who charges next to nothing and certifies your product on a shoestring budget and probably misses a bunch of vulnerabilities along the way. 
+
+{\it Ask: What are some other scenarios in security where there are perverse incentives?} Web certificates perhaps?
+
+{\it Ask: What can be done about fixing something like a CC perverse incentive?}
+
+
+\subsubsection{Externalities}
+
+This is a great example of how an overly-simple model of microeconomic transactions can exclude pieces of a system and hide some of the true costs of things.
+
+We are in New York City, where many people do {\it not} have cars, but let's assume for this example that we drive cars. One of the most common purchase that anyone with a car makes is the purchase of gasoline. There's supply from oil companies, demand from drivers, they settle on an equilibrium price that best satisfies everyone's preferences and we're all perfectly happy with the trade, right?
+
+What's missing? Does the price of a gallon of gas reflect {\it all} of the costs associated with burning a gallon of gasoline?
+No. The price of a gallon of gas does not include the preferences of all the people who have to breathe in my car exhaust and live with the consequences of the pollution. These peoples' preferences are external to the price I pay at the gas pump. In other words I've {\it externalized} part of the true cost of a gallon of gas onto other people.
+
+TODO more ?
+
+
+
+% Suppose I want to buy a new sofa for my apartment. There's supply and demand, IKEA names a price, I buy the sofa, they get my money and I get my sofa, and we're all happy, right? Who might not be happy? The people living by the sofa factory, who now have to deal with the pollution and noise and unpleasantness that comes from living next to a sofa factory. 
+% In this situation we might say that people who live in the town where the sofa factor is are {\it external} to the trade that happened between me and IKEA. 
+% {\it Their} preferences are external  
+
+{\it Side note: I'm being a little bit misleading here, because in many places there are policies in place to explicitly include these externalities and add the costs of pollution into the system. Anyone know one way that governments do this?} Gas taxes. One of the ways governments try to internalize th externality is by taxing consumption. This does two things: 
+\begin{enumerate}
+    \item taxes essentially just make things more expensive---what does that do to demand? It lowers demand. So raising taxes makes things cost more and as a result people may buy less of it. Generally this an undesireable downside of taxes, but for certain types of goods this may be a desired outcome. This is why many governments put such high taxes on gasoline and tobacco products, since they produce negative externalities. A tax on market activities that generate negative externalities is called a {\bf Pigouvian Tax}.
+    \item In the case of gasoline taxes, where does this money actually go? In many places, gasoline taxes fund public transportation. Most public transportation systems do not make enough money on fares alone to remain profitable, so they rely on money from taxes to keep the trains running. This is sort of but not entirely taking into account the externality. It doesn't remove pollution from the air but it does help produce less of it by giving people a viable alternative to driving everywhere.
+\end{enumerate}
+
+{\it Ask: Are externalities all bad?} No (recall: externality == something that is influenced by a trade but not included in the price).
+
+{\it Ask: What would be an example of a positive externality?} If a restaurant puts plants + flowers outside its front door to entice cusomters to come in, the trade is strictly between the restaurant and the flower shop where they bought their flowers. But there is a {\it positive} externality: The restaurant is more appealing, the neighborhood looks nicer, property values go up, et cetera. When the restaurant bought the flowers do you think they were doing it because they were going to be able to make money off of increased property values? No. It's an externality. But generally seen as a good one! So we call it a positive externality.
+
+{\it Ask: What are some positive externalities in cybersecurity?} Example: If I keep my software up to date, I personally benefit from this but I also produce a positive externality because now my device can't be as easily compromised and integrated into some malicious botnet used to DDoS a website. 
 
 \subsection{Conclusion}
 
