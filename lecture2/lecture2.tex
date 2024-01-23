@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{geometry}
 \usepackage{graphicx}
+\usepackage{multirow}
 \usepackage{float}
 \usepackage[normalem]{ulem}
 \usepackage[table,xcdraw]{xcolor}
@@ -368,7 +369,7 @@ Some suggested answers:
 Introductory discussion things to note:
 \begin{enumerate}
     \item This is a seminal paper. So where are the experiments? Where are the graphs and tables? There are none. How can this be? (If you're looking for a technical rigor to this class, we will make sure we cover that too).
-    \item A big part of this class is going to be studying methods. This paper has no methods! Or does it? 
+    \item A big part of this class is going to be studying methods. {\it Ask: What methods does these papers use?} Do they even use methods?
 \end{enumerate}
 
 {\it (Discussion)}
@@ -393,18 +394,31 @@ Remember the 2x2 grid of types of goods from last week? Remember ``common pool r
 
 {\it Ask: Can someone give an example of a common pool resource?} (Example: fish in the sea)
 
-TODO Hardin's model of the commons.
+You read the paper so this should be review. The canonical example comes from a 1968 paper in Science titled “The Tragedy of the Commons”, and this itself was a reference to a 1833 pamphlet, but the general principle has been known since antiquity.
+The tragedy is this: Suppose you are a dairy farmer in medieval village. In your village, there is a shared plot of land—called “the commons”---that is used for cattle grazing. If each farmer puts, say, 10 cows onto the commons, then everybody has lots of milk and cheese to eat and everyone is happy. But you would be even happier if you could put 11 cows onto the commons, and sell the extra milk and cheese to the village down the road. So you add another cow to the commons. But your fellow farmers see this, and so they each put another cow on the commons. And so now you put 12 cows on the commons. And so on. And what happens? The commons has too many cows on it and becomes overgrazed and barren, and so all your cows starved and now you have 0 cows.
+The “tragedy” is that this is the outcome that occurs when each agent is individually acting rationally. If you can put 11 cows onto the commons, you should. But individual rational behavior can create outcomes that is to the detriment of all. That's the tragedy.
+Of course, there are ways to avoid this, but it comes requires that the individual farmers limit the number of cattle they have on the commons, and essentially self-impose an opportunity cost onto themselves
+
+To summarize, commonly-held resources are rationally overused to the detriment of all. No farmer is being individually irrational by putting more and more livestock on the commons. This is the really important part. 
 
 
-{Ask: So does this mean that every time there is a common pool resource, we need outside government influence?} No, probably not. Economist Elinor Ostrom wrote a book called ``Managing the Commons'' on situations where those dependent on the commons are able to manage its consumption.
+% {Ask: So does this mean that every time there is a common pool resource, we need outside government influence?} No, probably not. Economist Elinor Ostrom wrote a book called ``Managing the Commons'' on situations where those dependent on the commons are able to manage its consumption.
 
 {Ask: So in the two papers we read, what were some of the examples of tragedies of the commons?}
+\begin{enumerate}
+    \item DDoS attacks. {\it Ask: What's a DDoS attack?} Distributed denial of service?
+\end{enumerate}
 
-{Ask: In security, what might other examples be?}
+{\it Ask: In security, what might other examples be?}
 
-\subsubsection{Free Riding}
+{\it Ask: What are some possible solutions to tragedies of the commons?} Generally speaking, you need to find some way to coerce people into cooperating with each other. In the case of farmers, maybe they can just work it out amongst themselves but in larger situations you usually need some degree of law and authority and government to manage common pool resource consumption.
 
-(description)
+{\it Ask: Any questions before we move on?}
+
+\subsubsection{Monopolies}
+
+This is another very famous market failure that you probably already know about (although maybe not in terms of it being a market failure). A {\bf monopoly} is when a single seller dominates the market. In classical microeconomics, this is a problem becuase what's called a {\bf discriminating monopolist} can charge people the most that they personally would be willing to pay. 
+
 
 \subsubsection{The Market for Lemons}
 
@@ -483,7 +497,67 @@ TODO more ?
 
 {\it Ask: What are some positive externalities in cybersecurity?} Example: If I keep my software up to date, I personally benefit from this but I also produce a positive externality because now my device can't be as easily compromised and integrated into some malicious botnet used to DDoS a website. 
 
+\subsubsection{Free Riding}
+
+\begin{enumerate}
+    \item Free riding: very similar problem to the tragedy of the commons
+    \item Don't know if the term was originally coined regarding public transportation but it's a perfect illustration. If goods are non-excludable, and you can get the benefit of the consuming the good without having to pay for it, what's going to happen? People are going to rationally not pay for it. If the fare gates on the subway are easy enough to hop over, people are going to do it.
+\end{enumerate}
+
+{\it Ask: What are the consequences of free riding?} In the case of rivalrous goods, it means that whoever is producing the good is getting paid less for it, so it's less enticing to produce the good, so they're going to produce less of it. A shift up in the supply curve. This raises costs for everyone else. 
+
+{\it Ask: What can be done about the free rider problem?} Usually the goal is to find some way to make goods more excludable (i.e. full-body fare gates). Also lets not ignore the role that social norms play here, and the ability to shame people who free ride (since a lot of people feel like it's stealing from them in a way).
+
+{\it Ask: What are some examples from the papers of free riding?} It's a problem when security has positive externalities! This might be counterintuitive. If your network being more secure makes your neighbor's network, your neighbhor may try to free ride off of your security investments. Any other examples?
+
+The free rider problem is very closely related to another very famous coordination problem, the Prisoner's Dilemma
+
+\subsubsection{Prisoner's Dilemma}
+
+This is very famous among not just economists but also policy people, social scientists, mathematicians, computer scientists, et cetera. Who has heard of it before?
+
+This is, in some ways, a game theory version of the free rider problem.
+
+\begin{itemize}
+    \item Imagine youve done some crime with a buddy of yours, and you've both been arrested and put jail in separate cells and can't communicate with each other
+    \item The police don't have enough evidence to convict you both on the principal charge. They plan to sentence both of you to a year in prison for a lesser charge
+    \item But the police offer a bargain: 
+    \begin{itemize}
+        \item If you confess, and testify against your partner, you go free while your partner gets 10 years in prison.
+        \item But if you both confess and testify against each other, you will be sentenced for 5 years.
+    \end{itemize}
+    \item Both of your are concerned only for your own welfare and although you can't communicate are informed that you've both been given the same deal.
+    \item {\it What is the rational choice if you are the prisoner?} The best outcome for you and your partner is if you both stay quiet and serve 1 year each. Collectively you serve 2 years of prison time. 
+    \item But if you defect from this strategy, you can go free while your partner serves 10 years 
+    \item And if you don't defect but your partner does, you are sentenced to 10 years in prison
+    \item The rational strategy is for you to testify against your partner, even though this means you both serve 5 years whereas if you'd just cooperated you'd serve only 1 year each. 
+\end{itemize}
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|ll|ll|l}
+    \cline{1-4}
+    \multicolumn{2}{|l|}{\multirow{2}{*}{}}                                     & \multicolumn{2}{l|}{\textbf{Prisoner 1}}      &  \\ \cline{3-4}
+    \multicolumn{2}{|l|}{}                                                      & \multicolumn{1}{l|}{Confess} & Do not confess &  \\ \cline{1-4}
+    \multicolumn{1}{|l|}{\multirow{2}{*}{\textbf{Prisoner 2}}} & Confess        & \multicolumn{1}{l|}{(5, 5)}  & (10, 0)        &  \\ \cline{2-4}
+    \multicolumn{1}{|l|}{}                                     & Do not confess & \multicolumn{1}{l|}{(0,10)}  & (1, 1)         &  \\ \cline{1-4}
+    \end{tabular}
+\end{table}
+
+{\it Ask: Do any examples in the papers follow this pattern?}
+
+One area where this may be happening is in CPU patches for common weaknesses like speculative execution vulnerabilities. 
+Generally agreed upon that customers don't know what is secure and what is insecure but they do know what is fast and what is not fast.  Perhaps the best outcome is for all CPU vendors to issue patches and make everyone secure against attacks. This would be the ``cooperate'' strategy
+But if you “defect” (the equivalent of ratting out your partner), your product is fast and your competitors’ products are slow, so you may gain a market advantage.
+So the rational strategy is to not issue patches, to the detriment of everyone. 
+
+Other examples? 
+
+
 \subsection{Conclusion}
+
+Conclusion: The rational outcome is not the optimal one! Seems to be a common theme here (after all, that is the very definition of a market failure---situations where people following their true incentives lead to suboptimal outcomes).
+
 
 “In general, where the party who is in a position to protect a system is not the party who would suffer the results of security failure, then problems may be expected.”
 

@@ -3,4 +3,5 @@
 *.log
 *.aux
 *.synctex.gz
+*.out*.synctex*
 *.out
