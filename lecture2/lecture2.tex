@@ -33,23 +33,30 @@
 
 (Discuss agenda for the day. Write agenda on board)
 
-(New Would-You-Rather question). The thing about Would-You-Rather questions is that that are perfectly suited for a class on economics. Why? Because economics is largely about quantifying and ranking {\it preferences}. A good would-you-rather question is about identifying interesting splits in peoples' preferences. 
-
-Getting to know each other through silly questions is a good way to feel more comfortable speaking up and making this a discussion-based class, which as a 6000-level seminar it should be discussion-based. 
-
-What makes a good would-you-rather?
-
 \begin{itemize}
-    \item Splits responses roughly 50/50
-    \item Exposes peoples values in a meaningful way (it's not very interesting to ask ``what do you prefer---red or blue'')
-    \item Compares two very disparate things
-    \item For this class --- let's avoid gross topics
+    \item Last class we started with an introduction round where we said our names and then answered a would-you-rather question about rats vs cockroaches
+    \item There are some new faces in class today.
+    \item I actually liked this quite a bit because 1) people could learn our names but 2) it forced everyone to speak.This a discussion-based class, which as a 6000-level seminar it should be discussion-based; the more discussion we can engender, the better the class will be. 
+    \item Knowing names is important (don't have to called everyone ``hey you'')
+    \item The thing about Would You Rather questions is that they are a tiny little economic experiment. Economics is largely about quantifying and ranking {\it preferences}. A good would-you-rather question is about identifying interesting splits in peoples' preferences.  
 \end{itemize}
 
-In fact, a big part of experimental economics research is clever ways of asking would-you-rather questions :) 
+So here's today's: {\it Would you rather start each class with a quick would you rather question that is {\bf relevant} to the class topic, or would your rather not, and presumably use our class time on other things?}
+
+Go around the room, state your name (even though we did this last week), and tell me if you'd rather do a little would you rather question or not.
 
 
-I also want students to state their names again. In one seminar class I was in, we did names and introductions the first week but then I forgot everyone's names so it was awkward because when talking to people I had to say ``hey you'' instead of their names.... 
+% What makes a good would-you-rather?
+
+% \begin{itemize}
+%     \item Splits responses roughly 50/50
+%     \item Exposes peoples values in a meaningful way (it's not very interesting to ask ``what do you prefer---red or blue'')
+%     \item Compares two very disparate things
+%     \item For this class --- let's avoid gross topics
+% \end{itemize}
+
+% In fact, a big part of experimental economics research is clever ways of asking would-you-rather questions :) 
+
 
 \subsection{Systems diagrams review (6:15)}
 
@@ -627,9 +634,13 @@ Conclusions:
 
 \section{Research Methodologies Used in Economics}
 
-The papers we read so far were a bit light on methodology---mostly they were just the author telling the audience the world as he sees it. Which may be suitable in some cases but a big portion of this class will be understanding and applying economics' attempts to apply rigor through various methodologies so that we don't just rely on vibes. 
-There's a big range of methodologies that are available, and they each can be useful in cybersecurity. 
-Each one is like a different tool that can solve a different problem.
+\begin{itemize}
+    \item The papers we read so far were a bit light on methodology---mostly they were just the author telling the audience the world as he sees it. 
+    \item May be suitable in some cases but a big portion of this class will be understanding and applying economics' attempts to apply rigor through various methodologies so that we don't just rely on vibes. 
+    \item There's a big range of methodologies that are available, and they each can be useful in cybersecurity. 
+    \item Each one is like a different tool that can solve a different problem.
+\end{itemize}
+
 
 I'm now going to go through what some of these available tools are and when you might use them.
 This is one of those things that may be very obvious, and you probably already know what most of these are, but I never had anyone really sit me down and tell me that this is the lay of the land, so as your kind-hearted instructor who wants the best for you, that is exactly what I'm going to do. I'm using a taxonomy that I found in a paper by an econ professor. He breaks economics research methodologies into three main groups: Theory, Experiments, and Empirics.
@@ -637,30 +648,30 @@ This is one of those things that may be very obvious, and you probably already k
 (Source: ``Methods Used in Economic Research: An Empirical Study of Trends and Levels'' by Paldam)
 
 \begin{itemize}
-    \item Theory
+    \item Theory 
         \begin{itemize}
-            \item Economic theory
-            \item Statistical methods
-            \item Surveys
+            \item Economic theory -- Papers are where the main content is the development of a theoretical model. The ideal theory paper presents a (simple) new model that recasts the way we look at something important.
+            \item Statistical methods --- Theoretical econometrics, e.g. research into statistical methodologies themselves. E.g. coming up with new ways of doing regression. 
+            \item Surveys --- not the same as ``surveying'' people! A review of the literature.
                 \begin{itemize}
-                    \item Assessed Surveys
-                    \item Meta-studies
+                    \item Assessed Surveys --- just reading and assessing what the most reliable results are. Lots of judgement involved.
+                    \item Meta-studies --- attempts to quantify and integrate the results of work in the literature.
                 \end{itemize}
         \end{itemize}
     \item Experiments
         \begin{itemize}
-            \item Lab experiments
-            \item Event studies
+            \item Lab experiments --- you bring in study participants, subject them to some lab condition, observe the result. Controlled, but artificial.
+            \item Event studies --- real world experiments. 
                 \begin{itemize}
-                    \item Field experiments
-                    \item Natural experiments
+                    \item Field experiments --- some people get a treatment while others do not. Expensive! May involve ethical implications. UBI is an example
+                    \item Natural experiments --- Taking advantage of some event and studing the effect of it. E.g. two identical towns, one implements a minimum wage, one does not, study what happens.
                 \end{itemize}
         \end{itemize}
-    \item Empirics
+    \item Empirics --- making inferences from ``real'' data. Researcher chooses the sample but does not have control over the data generating process
         \begin{itemize}
-            \item Descriptive studies
-            \item Classical empirics
-            \item Newer empirics
+            \item Descriptive studies --- Trying to find the distribution of one or more variables (e.g. my WTA work). Not trying to test out a hypothesis
+            \item Classical empirics --- Start with a theory, turn into a model. Find supporting data, run regressions. Hypothesis testing 
+            \item Newer empirics --- Bayesian techniques, tests of causality, Kalman filters. I don't think any of the papers we'll read rely on too fancy of methodologies, but maybe we'll see some of these.
         \end{itemize}
 \end{itemize}
 
@@ -671,6 +682,9 @@ This taxonomy is probably not exhaustive. In fact, I borrowed this taxonomy from
 
 \begin{itemize}
     \item Theory --- not much theory in security! Seems to actively {\it defy} security in many cases. One notable exception may be cryptography.
+    \item A lot of computer systems research is combined with engineering. E.g. ``we designed something and then evaluated it''. Is that an experiment or empirics? It seems to be more experimental. But subject to same biases!
+    \item Some security papers are empirical. 
+    \item Classical empirics seems to have a lot to do with model fitting, which is a domain of machine learning! Anyone here have a good machine learning background might want to try out something along these lines for their course project. What are the issues? Choice of model can give different results....
 \end{itemize}
 
 
@@ -695,11 +709,17 @@ Some good questions to ask yourself when reading a paper:
 
 \begin{itemize}
     \item What year did this paper come out? What do we know about what was happening in the rest of the world at this point? (Why Information Security is Hard --- 2001. A lot of the topics in that paper had been observed before, but this was around the time that most of the rest of the world was getting online for the first time, and probably around the time that cybersecurity started to become a concern in the average persons' life.)
-    \item Follow up question---what is the timeliness of the paper?
-    \item Why did the author or authors write this paper? Are they trying to open up a dialogue? More common in the humanities.
+    \item Why did the author or authors write this paper?
+    \begin{itemize}
+        \item Are they trying to open up a dialogue?
+        \item Are they trying to prove some point that they are going to defend?
+        \item Are they trying to refute a point someone else made?
+    \end{itemize}
     \item What are the claims they are making in the paper?
-    \item Do they support their claims with evidence? If so, how good is the evidence?
-    \item 
+    \begin{itemize}
+        \item Do they support their claims with evidence? If so, how good is the evidence?
+        \item What methods do they use to support their claims? Does it fit into the above taxonomy?
+    \end{itemize}
 \end{itemize}
 
 
