@@ -415,22 +415,30 @@ To summarize, commonly-held resources are rationally overused to the detriment o
 
 {\it Ask: Any questions before we move on?}
 
-\subsubsection{Monopolies}
-
-This is another very famous market failure that you probably already know about (although maybe not in terms of it being a market failure). A {\bf monopoly} is when a single seller dominates the market. In classical microeconomics, this is a problem becuase if you have a monopoly you can charge whatever you want. You can also have what's called a {\bf discriminating monopolist} can charge people the most that they personally would be willing to pay (e.g. by holding an auction). 
-
-In the papers, the monopoly problems weren't so much about monopolies in this sense. They were more about network effects and Metcalfe's Law (Number of edges = $n(n-1)/2$, i.e. grows quadratically). In things like social networking, value of the network scales quadratically with the number of users.
-
-What are the consequences? 
-\begin{itemize}
-    \item Race to market. May be winner-take-all situations. If you're a product vendor, and you have the option of either A)spending a bunch of time and money on making your product more secure, or B) just getting it to the market as soon as possible, which one might you choose?
-    \item Technological lock-in compounds this.
-\end{itemize}
-
-{\it Ask: What was the example of this given in the paper?} ``We'll ship it on Tuesday and get it right by Version 3'' approach that Microsoft and others took in the 90s and early 2000s
-
 
 \subsubsection{The Market for Lemons}
+
+This one was in the second paper we read. 
+
+\begin{itemize}
+    \item Consider a used car lot with 50 good cars worth \$2000 and 50 bad cars (also known as “lemons”) worth \$1000
+    \item Suppose that customers cannot tell the difference between a good car and a bad car. The seller knows the difference though.
+     Since odds of a good car are 50/50, customers will pay \$1500
+    \item Sellers will not sell a good car worth \$2000 for \$1500, and will leave the market
+    Price collapses to \$1000 and only the ``lemons'' remain
+\end{itemize}
+
+This is a very famous example of an information asymmetry. An {\bf information asymmetry} is exactly what it sounds like---it means that one party has more information than another. Usually implies important relevant information (like the quality of a used car).
+
+{\it Ask: What was the example given in the paper of the market for lemons?} Software market (keep in mind this was 2006 when you would buy software in a box at Best Buy...business model for software companies has changed a bit but the principle is every bit as true today).
+\begin{itemize}
+    \item It's really hard for users to be able to evaluate the security of a system or a piece of software. It's hard even for product vendors themselves!
+    \item Consumers generally are not going to be willing to pay for something they can't appreciate or identify. 
+    \item A consequence of this is that consumers are not willing to pay extra for security if they don't understand or appreciate the difference
+    \item {\it How does this change the incentives for product vendors?} They're probably not going to go out of their way as much to make their products secure if their customers can't tell the difference.
+\end{itemize}
+
+{\it Ask: What might be one way we can reduce information asymmetry in the marketplace?} Iot Security labels? We'll talk about what some of the proposed solutions are later in the semester.
 
 \subsubsection{Moral Hazards}
 
@@ -491,7 +499,7 @@ A government might decide that they don't want their citizens using harmful drug
 
 \begin{figure}[h]
     \centering
-    \includegraphics*[width=4.5in]{supplyshift.png}
+    \includegraphics*[width=3.5in]{supplyshift.png}
     \caption{When supply is constrained, prices go up. With a ``good'' like an addictive drug, we might see something called {\bf inelasticity}. If you are addicted to a drug, you might pay any price to obtain it. Inelastic goods have steeper demand curves. In the most extreme case, the demand curve is a vertical line. This means that consumption of the good is completely independent of price. Presumably this {\it doesn't} mean that the price {\it will} be infinitely high, since there will still be multiple producers competing each other and trying to undercut each others' prices (assumes no monopolies...). This is the opposite of a {\bf elastic} good, which is when the quantity of a good's consumption is highly dependent on its price (in the extreme case, this would be a horizontal demand curve). Usually you see this in cases where the good in question has a good number of substitutes available (e.g. gala apples in place of fuji apples). }
     \label{fig:sshift}
 \end{figure}
@@ -506,9 +514,23 @@ In the paper, this principle was observed with Common Criteria evaluations. For 
 
 But the problem, as pointed out in the paper, is that the certification is paid for by the vendors themselves. So the incentive for vendors is to find the worst-quality certification lab you can, who charges next to nothing and certifies your product on a shoestring budget and probably misses a bunch of vulnerabilities along the way. 
 
-{\it Ask: What are some other scenarios in security where there are perverse incentives?} Web certificates perhaps?
+{\it Ask: What are some other scenarios in security where there are perverse incentives?} If I could put on my conspiracy theory hat for a minute, you could say that cybersecurity companies---the ones who you pay to due audits, penetration tests, consulting, triaging, incident response---companies pay them to improve their security, but are these companies actually interested in reducing the amount of cybercrime that happens in the world? No, not necessarily! The more cybercrime that happens, the better for them. Sort of like the adage ``no company will ever want to invent a pen that never runs out of ink''---I don't think I believe this (or my conspiracy theory above) but it's worth thinking about.
 
 {\it Ask: What can be done about fixing something like a CC perverse incentive?}
+
+\subsubsection{Monopolies}
+
+This is another very famous market failure that you probably already know about (although maybe not in terms of it being a market failure). A {\bf monopoly} is when a single seller dominates the market. In classical microeconomics, this is a problem becuase if you have a monopoly you can charge whatever you want. You can also have what's called a {\bf discriminating monopolist} can charge people the most that they personally would be willing to pay (e.g. by holding an auction). 
+
+In the papers, the monopoly problems weren't so much about monopolies in this sense. They were more about network effects and Metcalfe's Law (Number of edges = $n(n-1)/2$, i.e. grows quadratically). In things like social networking, value of the network scales quadratically with the number of users.
+
+What are the consequences? 
+\begin{itemize}
+    \item Race to market. May be winner-take-all situations. If you're a product vendor, and you have the option of either A) spending a bunch of time and money on making your product more secure, or B) just getting it to the market as soon as possible, which one might you choose?
+    \item Technological lock-in compounds this.
+\end{itemize}
+
+{\it Ask: What was the example of this given in the paper?} ``We'll ship it on Tuesday and get it right by Version 3'' approach that Microsoft and others took in the 90s and early 2000s
 
 
 \subsubsection{Externalities}
@@ -520,7 +542,7 @@ We are in New York City, where many people do {\it not} have cars, but let's ass
 What's missing? Does the price of a gallon of gas reflect {\it all} of the costs associated with burning a gallon of gasoline?
 No. The price of a gallon of gas does not include the preferences of all the people who have to breathe in my car exhaust and live with the consequences of the pollution. These peoples' preferences are external to the price I pay at the gas pump. In other words I've {\it externalized} part of the true cost of a gallon of gas onto other people.
 
-TODO more ?
+An {\bf externality} is a cost or benefit imposed on someone other than the producer or consumer as a result of economic activity.
 
 
 
@@ -530,7 +552,7 @@ TODO more ?
 
 {\it Side note: I'm being a little bit misleading here, because in many places there are policies in place to explicitly include these externalities and add the costs of pollution into the system. Anyone know one way that governments do this?} Gas taxes. One of the ways governments try to internalize th externality is by taxing consumption. This does two things: 
 \begin{enumerate}
-    \item taxes essentially just make things more expensive---what does that do to demand? It lowers demand. So raising taxes makes things cost more and as a result people may buy less of it. Generally this an undesireable downside of taxes, but for certain types of goods this may be a desired outcome. This is why many governments put such high taxes on gasoline and tobacco products, since they produce negative externalities. A tax on market activities that generate negative externalities is called a {\bf Pigouvian Tax}.
+    \item Taxes essentially just make things more expensive---what does that do to demand? It lowers demand. So raising taxes makes things cost more and as a result people may buy less of it. Generally this an undesireable downside of taxes, but for certain types of goods this may be a desired outcome. This is why many governments put such high taxes on gasoline and tobacco products, since they produce negative externalities. A tax on market activities that generate negative externalities is called a {\bf Pigouvian Tax}.
     \item In the case of gasoline taxes, where does this money actually go? In many places, gasoline taxes fund public transportation. Most public transportation systems do not make enough money on fares alone to remain profitable, so they rely on money from taxes to keep the trains running. This is sort of but not entirely taking into account the externality. It doesn't remove pollution from the air but it does help produce less of it by giving people a viable alternative to driving everywhere.
 \end{enumerate}
 
@@ -601,7 +623,12 @@ Other examples?
 
 \subsection{Conclusion}
 
-Conclusion: The rational outcome is not the optimal one! Seems to be a common theme here (after all, that is the very definition of a market failure---situations where people following their true incentives lead to suboptimal outcomes).
+Conclusions: 
+\begin{itemize}
+    \item The rational outcome is not the optimal one! Seems to be a common theme here (after all, that is the very definition of a market failure---situations where people following their true incentives lead to suboptimal outcomes).
+    \item There are incentives for people and product vendors to {\it not } invest in security. No wonder the state of security is so bad!
+    \item It's not just about software engineers writing bad exploitable code. It's part of a whole system and the outcomes are generally not determined by technical factors. But it still is partially due to technical factors! There are very few people in this world who really understand both, but in my opinion this is what is needed if we want to improve security.
+\end{itemize}
 
 
 “In general, where the party who is in a position to protect a system is not the party who would suffer the results of security failure, then problems may be expected.”
