@@ -53,12 +53,27 @@ I also want students to state their names again. In one seminar class I was in, 
 \subsection{Systems diagrams review (6:15)}
 
 \begin{itemize}
-    \item I have made a slideshow of everyone's submissions, ready to be displayed on the screen. 
-    \item We're going to take a look at some examples of systems that we've identified, and then discuss, critique, and offer suggestions.
-    \item {\it Does anyone want to volunteer to present what they have?}
-    \item Let me just add that it is a privilege and an honor to have the opportunity to get time and attention of your peers to help you analyze and critique your work. Volunteering to have your work discussed is like free XP points :) 
-    \item Other benefits of sharing our work: It seems like there is a moderate amount of variance in the level of security background in the class. So by sharing work, we can not only practice the actual task at hand (thinking in systems) but also help teach other students about areas of security that perhaps they didn't know about beforehand.
-    \item I want to be very clear about something here. We are not taking a ``high level'' view of security. I would argue that security is first and foremost a ``high-level'' problem. But because it's so high-level I think that computer scientists like to abstract away this view of security, or focus on a small subset of the problem. And that's OK! We can't solve every problem in every research project we do. But let's not forget that even though it's maybe fuzzy and nebulous, this is the {\it actual scope} of the problem of cybersecurity. 
+    \item I made a slideshow of submissions
+    \item We're going to take a look at some examples of systems that you've identified, and then discuss, critique, and offer suggestions.
+   \item {\it Does anyone want to volunteer to present what they have?}
+    \begin{itemize}
+        \item Let me just add that it is a privilege and an honor to have the opportunity to get time and attention of your peers to help you analyze and critique your work. Volunteering to have your work discussed is like free XP points :) 
+        \item Other benefits of sharing our work: It seems like there is a moderate amount of variance in the level of security background in the class. So by sharing work, we can not only practice the actual task at hand (thinking in systems) but also help teach other students about areas of security that perhaps they didn't know about beforehand.
+    \end{itemize}
+\end{itemize}
+
+{\it Discuss 3--4 students' diagrams Some questions to ask:}
+{\it 
+\begin{itemize}
+    \item What was your process for creating this diagram?
+    \item How did you decide what to include? How did you decide what to exclude?
+\end{itemize}
+}
+
+{\it Ask: What are the takeaways from this exercise?}
+
+\begin{itemize}
+    \item I want to be very clear: I hesitate calling this taking a  ``high level'' view of security. This is the {\it actual scope} of the problem of security.  I would argue that security is first and foremost a ``high-level'' problem. But because it's so high-level I think that computer scientists like to abstract away this view of security, or focus on a small subset of the problem. And that's OK! But as the saying goes, lets not miss the forest for the trees.
     \item {\bf Big takeaway}: A common theme we're going to run into in this class, and a skill that we are going to develop, is the art of making something {\bf defensible}. There's no right answer to any of these systems-level problems you've created. There's no such thing as an optimal systems understanding of something. You may be able to rank things in terms of better or worse, {\it if you're lucky}, but how ``good'' something is really depends on context, how it's being used, et cetera. So for better or for worse, in security economics, you're going to have to make the case that your interpretation and understanding is correct. 
     \item Learning the art of what makes something defensible is an art, and hopefully by looking at examples of papers that the economics and security community have deemed to be worthwhile and important will help us develop an intuition for what a defensible set of assumptions are. 
 \end{itemize}
@@ -66,9 +81,14 @@ I also want students to state their names again. In one seminar class I was in, 
 This brings up a few other questions:
 \begin{itemize}
     \item If someone presents a model of something (be it systems diagram), how do we know they're right? Peer review? Smell test? Predictive power + real-world validation? Combination of all the above? What else?
-    \item I don't have good answers to this besides just the fact that the longer you work in this area the better you get.  
+    \begin{itemize}
+        \item I don't have good answers to this besides just the fact that the longer you work in this area the better you get.  
+    \end{itemize}
     \item Keep in mind that we're talking about diagrams that we all drew for homework but this discussion will generalize to pretty much everything we're going to talk about in this class. 
-    \item Controversial question: Is economics a science? How is it different from other sciences? Is it just that the models are just less reliable than other hard sciences? Example: Newton's laws of physics are a really good model of the world. They describe most of the physical world that we interact with. But we know it doesn't explain everything, and Newton's laws become incorrect when things get very very small or very very large or start moving very very fast. 
+    \item Controversial question: Is economics a science? How is it different from other sciences? Is it just that the models are just less reliable than other hard sciences? 
+    \begin{itemize}
+        \item Example: Newton's laws of physics are a really good model of the world. They describe most of the physical world that we interact with. But we know it doesn't explain everything, and Newton's laws become incorrect when things get very very small or very very large or start moving very very fast. 
+    \end{itemize}
 \end{itemize}
 
 
@@ -88,7 +108,7 @@ Conclusion: It's kind of messy! Good segue...
 
 % This concludes our discussion of ``systems-thinking'' although the mindset is going to pervade much of the rest of the semester.
 
-\section{Big Ideas in Economics (6:30)}
+\section{\sout{Big Ideas in Economics (6:30)}}
 
 So far we've talked about security as a system and maybe talked about some open issues in security but up to this point we haven't really talked about security as an {\it economics} problem.
 
@@ -260,15 +280,15 @@ So does that mean that the above is doomed to fail? No, definitely not, just mea
 
 \section{Intro to Microeconomics Redux (6:30)}
 
-Last week I did some very introductory microeconomics on the board. We talked about types of goods---{\it Ask: What were the four types of goods? Along what axes did we categorize them?}. I sort of just put a bunch on information on the board but I think it's useful to finish our introduction of microeconomic theory by making this a bit more engaging and hands-on.
+Last week I did some very introductory microeconomics on the board. We talked about types of goods---{\it Ask: What were the four types of goods? Along what axes did we categorize them?}. I sort of just put a bunch on information on the board but I think it's more useful to present this material by building up {\it why} things are the way they are. Less of me {\it telling} and more of us {\it doing}.
 
 \subsection{Macroeconomics vs. Microeconomics (6:30)}
 
-Since this class assumes no background in economics whatsoever, we're going to talk a little more about the lay of the land. 
+Since this class assumes no background in economics whatsoever, we're first going to talk a little more about some really basic distinctions just to get a lay of the land. 
 
-There are two main branches of economics: Macroeconomics and microeconomics. Very good chance you've heard these terms before. Totally OK if you haven't.
+There are two main branches of economics: Macroeconomics and microeconomics. You've likely heard these terms before. Totally OK if you haven't.
 
-{\it Ask: Does anyone know the difference}
+{\it Ask: Does anyone know the difference?}
 
 {\it (Draw table on chalkboard)}
 
@@ -293,6 +313,9 @@ There are two main branches of economics: Macroeconomics and microeconomics. Ver
 {\it Ask: Which one of these do you think computer scientists and security people are usually more interested in? (Answer --- microeconomics. To me (and others), an economic understanding of security is an understanding of the incentives that underlie security and the decisions that people make and the types of tradeoffs they prefer. So when we talk about economics things in this class, keep in mind we'll mostly be talking about microeconomics).}
 
 % Elasticity?
+You probably already knew that though if you read the assigned readings! Since Ross Anderson explicitly states in the first paper that is about taking a {\it microeconomic} view of security :) 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
