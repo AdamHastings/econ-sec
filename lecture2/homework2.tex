@@ -2,16 +2,52 @@
 \usepackage{hyperref}
 
 \title{The Economics of Cybersecurity: Homework 2}
-\date{Due: January 23 at 5:00pm}
+\date{Due: January 30 at 5:00pm}
 \author{}
 
 \begin{document}
 
 \maketitle
 
-\section{}
+\section{Paper 1 -- 5 points}
 
-Review your systems diagram from Homework 1. Does this problem suffer from any of the market failures discussed in class? Which ones? How so? Write $\sim$500 words explaining your reasoning. 
+Read the class economics paper, \href{https://www.jstor.org/stable/1879431}{The Market for ``Lemons'': Quality Uncertainty and the Market Mechanism}. 
+This paper was instrumental in helping the author George Akerlof win the Nobel Memorial Prize in 2001. 
+Focus on trying to understand the economic model proposed in Section II.
 
+A few notes might help you understand the model:
+\begin{itemize}
+    \item Key to understanding the model is the observation that price is linearly correllated with quality. The implication is that if the quality of a car is $x_i$, where $0\leq x_i \leq 2$ (with unspecified quality units), then we can assume that price $p$ is also $0 \leq p \leq 2$ (with unspecified price units).
+    \item Section II.B makes the statement that $Q^d = D(p, \mu)$. $Q^d$ in economics is ``quantity demanded''. Hence this should be interpreted as ``the quantity of cars demanded is a function of exactly two variables, $p$ and $\mu$''.
+    \item We briefly mentioned utility as a concept in class. Utility can be understood as a number that represents value or satisfaction. Although there are no units to utility, you can assume that more (i.e. higher) is always better. Combined with the other assumptions, this simply means that individuals will make decisions that maximize their utility.
+    \item Section II.B defines the utility of Group 2 as $$U_2 = M + \sum_{i=1}^{n}{3/2x_i}$$ The syntax here is somewhat ambiguous. It should be $$U_2 = M + \sum_{i=1}^{n}{\frac{3}{2}x_i}$$
+\end{itemize}
+\vspace{1in}
+Answer the following questions:
+
+\begin{enumerate}
+    \item Akerlof assumes there are two groups---Group 1 and Group 2. 
+    \begin{enumerate}
+        \item Which group(s) have cars? Which group(s) want cars?
+        \item Which group values cars more? Can you quantify how much more this group values cars than the other?
+    \end{enumerate}
+    \item In the asymmetric information case, does the model start in a Pareto efficient state or a Pareto inefficient state? What about in the symmetric information case?
+    \item There are a several simplifying assumptions made in this paper. One of them is that ``(3) $U_1$ and $U_2$ have the odd characteristic that the addition of a second car, or indeed a $k$th car, adds the same amount of utility as the first''. Why is this an odd characteristic? 
+    
+    \textit{Hint: We briefly discussed this concept in class. Even if you don't remember this discussion, think about it carefully and you can probably figure it out.}
+
+    \item Extra credit: There is a technical typo in Section II. Can you find it?
+\end{enumerate}
+
+\section{Paper 2 -- 10 points}
+
+Read the classic cybersecurity economics paper , \href{https://dl.acm.org/doi/abs/10.1145/581271.581274}{The economics of information security investment}, also known as the Gordon-Loeb model.
+
+\begin{enumerate}
+    \item Write a 300-word summary of the paper. 
+    
+    Note: This is not busy work. A key research skill is the ability to compress information, and acquiring this skill requires practice.
+    \item Like all economic models, this model makes several simplifying assumptions about the world. Which assumption do you think is the weakest, and why? Limit responses to 100 words or less.
+\end{enumerate}
 
 \end{document}
