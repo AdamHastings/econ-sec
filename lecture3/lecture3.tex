@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{float}
+\usepackage{amsmath}
 \usepackage[normalem]{ulem}
 \usepackage[table,xcdraw]{xcolor}
 
@@ -29,11 +30,122 @@
     \item Write out sections of discussion
 \end{itemize}
 
-\section{Homework Recap (6:10)} 
-
 
 \section{The Market for Lemons}
 
-In Section II of the paper, Akerlof mentioned Gresham's law. Did anyone look up what this is?
+\subsection{Opening questions}
+\begin{itemize}
+    \item What did people think?
+    \item It was ``straightforward'' microeconomics but it makes assumptions and assumes that the reader knows what these assumptions are. Did anyone struggle to follow any of the arguments being made or struggle to follow the math? I think the math is deceptively simple.
+    \item Akerlof won the Nobel Memorial Prize in Economics for basically this paper alone (maybe a couple others, but on this same topic). Is that surprising to you? (Note: Shared it with Stiglitz---a Columbia professor!)
+    \begin{itemize}
+        \item Side note--The Nobel Prize in Economics is officially the Sveriges Riksbank Prize in Economic Sciences in Memory of Alfred Nobel. Not one of the original Nobel Prizes! Administered by a bank!
+    \end{itemize}
+\end{itemize}
+
+
+
+\subsection{Lemons Model}
+
+I want to cover this model in full detail because it's such a bite-sized example of how we can use mathmatical modeling to explain and illustrate things. It might feel like excruciating detail since you already read the paper but like I said it has a lot of hidden assumptions and by going through the model we can air out and examine what these assumptions are.
+
+
+First, there's the assumption that the market is going to settle on a fixed price $p$. 
+
+
+We also have two groups. Group 1 has a utility function of 
+$$U_1 = M + \sum_{i=1}^N x_i$$
+while Group 2 has a utility funciton of 
+$$U_1 = M + \sum_{i=1}^N \frac{3}{2}x_i$$
+Recall that utility is a quantitative representation of goodness, and that more is better. 
+
+{\it Which group values cars more?} Group 2.
+
+{\it Which group has cars?} Group 1.
+
+{\it What does this mean about the inital allocation of goods? (This was a homework quesiton.)} It means the initial allocation is Pareto inefficient. This means we can make a Pareto optimization. If Group 2 collectively bought all the cars at price $p = \mu$, 
+
+{\it Why call this Group 1 and Group 2? Why not just call them ``buyers'' and ``sellers''?} I think this is because calling them ``buyers'' and ``sellers'' makes it seem like Group 1 wants to sell cars and Group 2 wants to buy cars. That is true but slightly misleading. Group 1 still values cars (as per their utility funciton), and according to their utility function they still would actually buy a car if it was a good deal. Calling Group 1 the ``sellers'' makes it sound like they're going to sell no matter the price, which simply isn't true. Framing things using a utility function allows the model remain simple and allows us to assume that Groups 1 and 2 are the same, just with different valuations of cars.
+
+For example, both groups have demand functions! Let's take a look at them.
+
+Group 1's demand function looks like this:
+\begin{align*}
+D_1(p) = Y_1/p & \qquad \qquad \mu/p > 1 \\
+D_1(p) = 0 & \qquad \qquad \mu/p < 1
+\end{align*}
+
+What does $\mu/p > 1$ mean? I found it easier to rewrite it as $\mu > p$. Recall that quality and price are not the same units but are on the range of 0 to 2. So $\mu > p$ just means that average quality is higher than the price, and $\mu < p$ means that average quality is lower than the price. 
+
+{\it What happens when the average quality is lower than the price?} Well this depends on Group 1's utility function. The scaling factor for each car in Group 1's utility function is 1. Hence for {\it Group~1}, $\mu/p > 1$ is a bad deal. In the case of a bad deal, what is the demand going to be? 0. Hence $D_1(p) = 0, \quad \mu/p < 1$ as above.
+
+What about the other case, where $\mu/p > 1$? Akerlof introduces new variables, $Y_1$ and $Y_2$ to represent Group~1 and Group~2's income respetively, including the income that results from selling cars. 
+
+So we know that $\mu/p > 1$ is a good deal for Group~1 members, and they're going to want cars at this price, so what will the demand be? Somewhere in the above assumptions made is that cars are good, more cars are better, and that the value of each additional car is equal to its quality. So when the price is a good deal, Group~1 wants as many cars as they can get with their $Y_1$ income. And the amount they can get is $Y_1/p$. Does that make sense?
+
+That's how Akerlof constructs the demand curves for Group 1. How does he construct the supply curve? 
+
+We're assuming linear utility. If the price $p=0$, there are going to be 0 cars sold. If the price is $p=2$, there are going to be $N$ cars sold. This is a straight line with slope $N/2$ ({\it Draw this on the board with price $p$ on x-axis}). Hence 
+\begin{equation}
+    S_1 = \frac{pN}{2} \quad p \leq 2
+\end{equation}
+Note that I think this is a typo! Akerlof writes ``$S_2$'' instead of ``$S_1$''! This was the extra credit question in the homework. Good job if you spotted this. If the price $p>2$, we can just assume that all $N$ cars will be sold. 
+
+What is the interpretation of the above? It means that the supply is subject to the price. This is just mathematically encoding the idea that sellers will only sell if the market price is above their car's quality, and will hold onto the car if the market price is below their car's quality. 
+
+There's another derived equation here, for average quality:
+\begin{equation}
+    \mu = p/2
+\end{equation}
+
+Where does this come from? Recall that that at any price $p$, the cars that are sold will be of quality $x_i \leq p$ (which is valid because price and quality are normalized to the same [0,2] scale). If we draw out the PDF of the quality of cars that will sell at price $p$, what is the average quality? $p/2$.
+
+Now let's look at the supply and demand curves for Group 2. What is a ``good deal'' for Group 2? How much utility do they get from a car? They get $\frac{3}{2}x_i$. So on average they get $\frac{3}{2}\mu$ for each car. So they will buy when $\frac{3}{2}\mu > p$.
+As with Group 1, there demand is subject to their own income $Y_2$ and the price of the cars $p$. 
+
+\begin{align*}
+D_1(p) = Y_2/p & \qquad \qquad \frac{3}{2}\mu > p \\
+D_1(p) = 0 & \qquad \qquad \frac{3}{2}\mu < p
+\end{align*}
+
+And Group 2 has no cars so 
+
+$$S_2 = 0$$
+
+Now we can write the combined demand function $D(p, \mu) = D_1 + D_2$. This follows straightforwardly from the above two demand curves. 
+
+If $p<\mu$, then both Group 1 and Group 2 want cars, so $D(p, \mu) = Y_1/p + Y_2/p = (Y_1 + Y_2)/p$.
+
+If $\mu < p < \frac{3\mu}{2}$, then only Group 2 wants cars, so $D(p, \mu) = Y_2/p$.
+
+If $ p > \frac{3\mu}{2}$, then $D(p, \mu) = 0$. 
+
+This is the full model in the case of the asymmetric information, where Group 1 only sells cars if the market price is beneath their car's value. 
+
+But price is $p$ while average quality is $\mu = p/2$. So no sales take place despite the fact that there are Group 1 members who have cars they are willing to sell at prices Group 2 members are willing to pay.
+
+In other words, in this model, there are Pareto optimizations that could occur but the market does not produce this outcome. This system remains Pareto inefficient. This is why this situation is called a market failure.
+
+
+
+
+\subsection{Closing questions}
+
+\begin{enumerate}
+    \item Do you think Akerlof created the model first and then found out that it had this interesting property? (I highly doubt it. More likely that he had the intuition, and then created the model to support the intuition).
+    \begin{itemize}
+        \item What do we think about creating models to ``mathify'' an intuition we have? Is this just adding math as we see fit to make our arguments seem more impressive and more bulletproof? 
+    \end{itemize}
+    \item This paper was rejected twice before publication because the reviewers pointed out that if the model was correct, then no used cars would ever be sold. In other words, the real-world evidence that used cars do in fact sell means that this model is incorrect.
+    \begin{itemize}
+        \item What do we think of this complaint?
+        \item Does this mean that one of the assumptions that Akerlof makes is wrong? Which one?
+        \item A surprising takeaway might be that your model doesn't even need to accurately reflect the real world to be useful. What are your thoughts on that?
+    \end{itemize}
+    \item Do you find it surprising how nonchalant Akerlof is about this? He doesn't seem to be writing about it as if it's a Nobel Memorial Prize-winning paper.
+\end{enumerate}
+
+
+
 
 \end{document}
