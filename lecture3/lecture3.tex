@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{geometry}
 \usepackage{graphicx}
+\usepackage{placeins}
 \usepackage{multirow}
 \usepackage{float}
 \usepackage{amsmath}
@@ -137,7 +138,7 @@ Akerlof also shows what happens when there is symmetric information. What change
     S(p) = 0 & \qquad p < 1
 \end{align*}
 
-It's a step function. Group 1 will sell when the price is greater than 1. 
+It's a step function. Group 1 will sell when the price is greater than 1.
 
 The demand curves are similar:
 \begin{align*}
@@ -152,9 +153,59 @@ Let's break this down by cases. If $p < 1$, then supply is 0 and demand is $(Y_1
 
 Likewise, if $p > 3/2$, demand is 0 but supply is $N$. Again we assume $N>0$ so there will be no intersection of supply and demand here. 
 
-That means that the intersection of supply and demand will be between $p=1$ and $p=3/2$. 
+That means that the intersection of supply and demand will be between $p=1$ and $p=3/2$. What are the conditions needed for $p$ to be in this price range?
 
-At $p=1$, 
+There are three possible cases. 
+
+Case 1 is that $N > Y_2/p$:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{equilibrium1.png}
+    \label{fig:equ1}
+\end{figure}
+\FloatBarrier
+
+
+In this case, supply and demand meet when $p=1$. And hence $N > Y_2/p$,
+\begin{equation}
+    p=1 \quad \text{if} \quad Y_2 < N
+\end{equation}
+
+
+\newpage
+Case 2 is when $N = Y_2/p$:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{equilibrium2.png}
+    \label{fig:equ2}
+\end{figure}
+\FloatBarrier
+
+
+This case requires that $1 < p < 3/2$. So if $N =  Y_2/p \implies p = Y_2/N$, then we get 
+\begin{align*}
+    1 < \frac{Y_2}{N} < \frac{3}{2}  \\
+    1 > \frac{N}{Y_2} > \frac{2}{3}
+\end{align*}
+\begin{equation}
+    \frac{2Y_2}{3} < N < Y_2
+\end{equation}
+
+\newpage
+Case 3 is when $N < Y_2/p$:
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{equilibrium3.png}
+    \label{fig:equ3}
+\end{figure}
+\FloatBarrier
+
+This means that $p=\frac{3}{2}$. Plugging into the above and rearranging yields:
+\begin{equation}
+    N < \frac{2Y_2}{3}
+\end{equation}
 
 
 \subsection{Closing questions}
@@ -178,13 +229,78 @@ This is a great example of how to show a point using a mathematical model. A few
 
 \section{The Economics of Information Security Investment}
 
-The other paper we read was in many ways very similar. It made a mathematical model of something, and then demonstated how this model exhibits interesting behavior.
+The other paper we read was in many ways very similar. It made a mathematical model of something, and then demonstrated how this model exhibits interesting behavior.
 
 \subsection{Opening discussion}
 
+\begin{itemize}
+    \item Focuses on the risk of securing a ``dataset''. But seems to be a much more general model than that? Seems to cover any cases where you have something worth protecting.
+\end{itemize}
+
 \subsection{Model description}
 
+Three parameters:
+\begin{itemize}
+    \item $\lambda$: The loss given that a breach occurs. Finite, less than some very large number $M$.
+    \item $t$: Threat. Probability of a threat occurring. $t \in [0,1]$. Pinned at a fixed value $t > 0$ (since no amount of investment is going to change $t$).
+    \item $v$: Vulnerability. Probability that a threat is successful. $v \in [0,1]$. Hence $v=0 \implies$ perfect security, and $v=1 \implies$ zero security i.e. public information.
+\end{itemize}
+
+Expected loss is therefore $\lambda t v$. The potential loss $L = t \lambda$.
+
+Assumption: Investment can reduce the the vulnerability. Denoted by $z>0$, in same units (i.e. dollars) as $\lambda$. 
+Lets $S(z,v)$ denote the probability that information set with vulnerability $v$ will be breached. 
+
+Then the authors make three assumptions: 
+\begin{itemize}
+    \item A1: $S(z,0) = 0$ for all $z$. {\it Ask: Can someone interpret what this means?} (It means that completely secure data remains perfectly secure regardless of the investment)
+    \item A2: $\forall v, S(0,v) = v$.  {\it Ask: Can someone interpret what this means?} (It means that if there is no investment, the probability of a breach is just equal to its vulnerability score.
+    \item A3: $\forall v \in (0,1), \forall z, S_z(z,v) < 0 \text{ and } S_{zz}(z,v)> 0$, where $S_z$ denotes the partial derivative w.r.t. $z$ and $S_{zz}$ denotes the partial derivative of $S_z$ w.r.t. $z$. Interpretation: there are diminishing marginal returns to investment (example: $f(x) = 1/x$). Also assume that as $\forall v \in (0,1,), z \rightarrow \infty \implies \textit{lim } S(z,v) \rightarrow 0$, i.e. the probability of a breach can be arbitrarily close to 0 with sufficient investment. 
+\end{itemize}
+
+What are our thoughts on these assumptions?
+
+Next the authors assume that firms are risk neutral. {\it What does this mean?} (It was defined in a footnote). It means that you are indifferent towards risk as long as the expected value of interest remains constant. E.g. you would just as likely accept \$10 as you would a 50/50 chance between \$20 and \$10.
+
+Firms are going to make the investment that maximizes their personal benefit. To do this, the authors define an expected benefit of investment in information security, EBIS. Recall that the original expected loss was $v t \lambda = v L$. So with investment the new loss is defined as 
+$$ \text{EBIS}(z) = [v - S(z,v)]L$$
+
+This is how much you expect to lose with investment $z$. But this doesn't take into account the actual investment itself. What firms really want to minimize is expected \textit{net} benefit of investment in information security, or E\textit{N}BIS, which is 
+$$\text{ENBIS}(z) \qquad = \qquad \text{EBIS}(z) - z \qquad=\qquad [v - S(z,v)]L - z$$. 
+What firms want to do is find the $z^*(v)$ that minimizes ENBIS.
+
+
+Initial thoughts:
+\begin{itemize}
+    \item Wise to let $\lambda$ cover all possible types of losses. Keeps the model simple. 
+    \item What does this model miss?
+    \item 
+    \item This is a ``one round'' (aka ``one shot'') game. 
+    \begin{itemize}
+        \item What do we think of this? Is this realistic?
+        \item Security is an ongoing process. Attackers always responding to Defenders' behavior...
+        \item But at the same time, much easier to mathematically work with one shot games than to deal with differential equations.
+        \item What are the alternatives? Giant formulae? Really painful derivations? Simulation perhaps...? Many differential equations have closed form solutions.
+        \item A quote in a footnote: ``A model is supposed to reveal the essence of what is going on: your model should be reduced to just those pieces that are required to make it work'' (Varian). Thoughts?
+    \end{itemize}
+\end{itemize}
+
+
+)
+
+
+
 \subsection{Concluding discussion}
+
+Questions:
+\begin{itemize}
+    \item How practically useful is this? Do you think that firms are using this model to determine how much to invest in cybersecurity?
+    \begin{itemize}
+        \item I don't think I've ever heard of anyone using this in the real world\dots
+        \item Yet this paper has almost 2000 citations. What does that mean?
+        \item Why? Is the model too abstract or too simple to accurately capture the nature of information security? Or is it too hard to come up with good estimates of values like $t$ and $\lambda$?in real world situations? Is it something else?
+    \end{itemize}
+\end{itemize}
 
 
 
