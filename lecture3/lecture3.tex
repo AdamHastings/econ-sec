@@ -304,7 +304,7 @@ One thing this paper has that The Market for Lemons paper does not is model expl
 
 In Section II of the paper (where the model is defined), the shape of $S(z,v)$ is left pretty undefined (some constraints on the sign of its first and second derivatives though).
 
-\subsubsection{Candidate $S(z,v)$ 1}
+\subsubsection{Candidate 1 for $S(z,v)$}
 
 Candidate 1 is $S^I = \frac{v}{(\alpha z + 1)^\beta}$, with $\alpha > 0, \beta \geq 1$. Should we check that this satisfies the above conditions?
 
@@ -324,12 +324,67 @@ Candidate 1 is $S^I = \frac{v}{(\alpha z + 1)^\beta}$, with $\alpha > 0, \beta \
 \end{figure}
 \FloatBarrier
 
-Since we now have a definition of $S(z,v)$, we can comptue the derivative and actually find the optimal security investment, which in this case is 
+Since we now have a definition of $S(z,v)$, we can compute the derivative and actually find the optimal security investment, which in this case is 
 $$z^{I*}(v) = \frac{(v \beta \alpha )^{1/(\beta + 1)} - 1}{\alpha}$$ 
 which I will not derive here and leave as an exercise for the student (it might be in the appendix).
 
-\subsubsection{Candidate $S(z,v)$ 2}
+Plotting this as a function of $v$ gives the following:
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{fig3.png}
+    \label{fig:fig3}
+\end{figure}
+\FloatBarrier
 
+{\it What's a ``plain English'' way of interpreting this chart?} If we assume that our function $S$ is of this Class~I form then for low values of vulnerability, it may make sense not to invest in security at all! This is somewhat surprising. After the point $1/(\alpha \beta L)$, the optimal investment is monotonically increasing.
+
+{\it If we assume that $L$ is very high, where does that shift this breakeven point?} It moves the curve to the left, i.e. this ``grace zone'' shrinks.
+
+Likewise, what happens if we $L$ is very low, meaning that even if a loss happened it wouldn't be very bad? It shifts this curve rightward. Depending on just how far, it might mean that $1/(\alpha \beta L) > 1$, meaning that the optimal investment is 0 regardless of $v$!. This requires a low $L$, a low $\beta$, and a very low $\alpha$.
+
+{\it Anyone remember what $\alpha$ is referred to here?} It's a measure of the effectiveness of your investment (same with $\beta$). So if you don't expect a big loss, and the investment isn't going to be very effective, you might be better off not investing in security as well.
+
+
+\subsubsection{Candidate 2 for $S(z,v)$}
+
+
+$$S^{II}(z,v) = v^{\alpha z + 1}$$
+where $\alpha > 0$. The graph looks like this:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{class2.png}
+    \label{fig:class1}
+    \caption{Class II candidate function for $S(z,v)$ (with $z$ along the x-axis). Note that $0 \leq v \leq 1$.}
+\end{figure}
+\FloatBarrier
+
+Check: {\it Does this satisfy the above three assumptions?} Yes.
+
+Looks like this for various values of $z$:
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{fig4.png}
+    \label{fig:fig4}
+\end{figure}
+\FloatBarrier
+
+Then analysis reveals that there is an optimum investment level at 
+$$z^{II*}(v) = \frac{\ln (1 / -\alpha v L ( \ln v))}{a \ln v}$$ 
+
+Plotting this as a function of $v$ gives the following:
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{fig5.png}
+    \label{fig:fig5}
+\end{figure}
+\FloatBarrier
+
+{\it What's the ``plain English'' interpretation of this chart?} Recall that we are assuming that $v$ is not really a controllable parameter. The interesting takeaway is that for highly vulnerable datasets, there actually is a point at which it makes sense to {\it not invest at all!} I.e. it's so vulnerable that you're better off just accepting as a loss because it would be too expensive to try to secure. 
+
+What's the implication? According to the authors, this concept (which they call Proposition 2 in the paper) means that firms should be careful to concentrate security resources
+
+Proposition 3 states that if we assumes the security breach probability function $S$ belongs to either Class I or Class II. Then it is determined (in the appendix) that optimal investment is $z^*(v) < (1/e) v L$. In other words, the optimal investment is less than $1/e$ of the expected loss $vL$. {\it Anyone know what $1/e$ is, or remember it from the paper?} It's about $0.3679$, or $36.79\%$. So if you expect to lose $\$100$ with no security investment, and assume Class I or Class II for $S$, then you should under no circumstances ever invest more than $\$36.79$ into security. Does anyone else find this surprising?
 
 \subsection{Concluding discussion}
 
@@ -343,6 +398,10 @@ Questions:
     \end{itemize}
     \item Despite all this, the thing I like about this paper is that it is able to make high-level impactful statements, like e.g. for $S^I$ ``a firm can be better off concentrating its resources on high-vulnerability information sets''.
     \item Perhaps just describing the shape of functions and reaching conclusions like ``an optimum exists'' is useful. 
+    \begin{itemize}
+        \item Maybe just being able to list out assets in terms of high, medium, and low risk can---when combined with the model---be useful in deciding where to make security investments.
+    \end{itemize}
+    \item I think the authors list out these limitations well in the paper.
 \end{itemize}
 
 
