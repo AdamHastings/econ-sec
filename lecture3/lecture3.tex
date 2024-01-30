@@ -249,7 +249,7 @@ Three parameters:
 Expected loss is therefore $\lambda t v$. The potential loss $L = t \lambda$.
 
 Assumption: Investment can reduce the the vulnerability. Denoted by $z>0$, in same units (i.e. dollars) as $\lambda$. 
-Lets $S(z,v)$ denote the probability that information set with vulnerability $v$ will be breached. 
+Let $S(z,v)$ denote the probability that information set with vulnerability $v$ will be breached. 
 
 Then the authors make three assumptions: 
 \begin{itemize}
@@ -266,16 +266,29 @@ Firms are going to make the investment that maximizes their personal benefit. To
 $$ \text{EBIS}(z) = [v - S(z,v)]L$$
 
 This is how much you expect to lose with investment $z$. But this doesn't take into account the actual investment itself. What firms really want to minimize is expected \textit{net} benefit of investment in information security, or E\textit{N}BIS, which is 
-$$\text{ENBIS}(z) \qquad = \qquad \text{EBIS}(z) - z \qquad=\qquad [v - S(z,v)]L - z$$. 
+$$\text{ENBIS}(z) \qquad = \qquad \text{EBIS}(z) - z \qquad=\qquad [v - S(z,v)]L - z$$
 What firms want to do is find the $z^*(v)$ that minimizes ENBIS.
+
+This is a concave fucntion (upside-down cup) starting at 0 and reaching some maximum before decreasing back to 0. 
+
+The derivative with respect to $z$ is then 
+$$ ENBIS_z(z^*) = S_z(z^*,v)L - 1 = 0$$
+$$ \implies \quad -S(z^*,v)L = 1$$
+
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{fig1.png}
+    \label{fig:fig1}
+\end{figure}
+\FloatBarrier
 
 
 Initial thoughts:
 \begin{itemize}
     \item Wise to let $\lambda$ cover all possible types of losses. Keeps the model simple. 
-    \item What does this model miss?
-    \item 
-    \item This is a ``one round'' (aka ``one shot'') game. 
+    \item I think the model's biggest limitation is that  you need to know the function $S(z,v)$. Very difficult (maybe impossible!) to do so. (but a few classes of candidate $S(z,v)$ functions are provided!)
+    \item Economic modeling like this has a huge similarity with machine learning. What is it? (In both cases, the challenge is usually defining a loss function, and then achieving optimum points either by direct analysis or by computation).
+    \item That brings up another point----this is a ``one round'' (aka ``one shot'') game (unlike in ML). 
     \begin{itemize}
         \item What do we think of this? Is this realistic?
         \item Security is an ongoing process. Attackers always responding to Defenders' behavior...
@@ -285,9 +298,37 @@ Initial thoughts:
     \end{itemize}
 \end{itemize}
 
+\subsection{Model Exploration}
 
-)
+One thing this paper has that The Market for Lemons paper does not is model exploration. 
 
+In Section II of the paper (where the model is defined), the shape of $S(z,v)$ is left pretty undefined (some constraints on the sign of its first and second derivatives though).
+
+\subsubsection{Candidate $S(z,v)$ 1}
+
+Candidate 1 is $S^I = \frac{v}{(\alpha z + 1)^\beta}$, with $\alpha > 0, \beta \geq 1$. Should we check that this satisfies the above conditions?
+
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{class1.png}
+    \label{fig:class1}
+    \caption{Class I candidate function for $S(z,v)$ (with $z$ along the x-axis)}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=4.5in]{fig2.png}
+    \label{fig:class1}
+    \caption{Class I: Expected Loss as a function of vulnerability $v$. Higher investments (higher levels of $z$) produce less expected loss.}
+\end{figure}
+\FloatBarrier
+
+Since we now have a definition of $S(z,v)$, we can comptue the derivative and actually find the optimal security investment, which in this case is 
+$$z^{I*}(v) = \frac{(v \beta \alpha )^{1/(\beta + 1)} - 1}{\alpha}$$ 
+which I will not derive here and leave as an exercise for the student (it might be in the appendix).
+
+\subsubsection{Candidate $S(z,v)$ 2}
 
 
 \subsection{Concluding discussion}
