@@ -14,7 +14,7 @@
 \setlength{\parindent}{0pt}%
 \geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
 
-\title{The Economics of Cybersecurity --- Lecture 2 Notes}
+\title{The Economics of Cybersecurity --- Lecture 3 Notes}
 \date{January 23, 2024}
 
 \author{Adam Hastings}
@@ -30,6 +30,8 @@
     \item Write title, course number, hours, on blackboard
     \item Write out sections of discussion
 \end{itemize}
+
+{\bf Would you rather question:} Would you rather code every day for the rest of your life or never code again?
 
 
 \section{The Market for Lemons}
@@ -66,11 +68,13 @@ Recall that utility is a quantitative representation of goodness, and that more 
 
 {\it Which group has cars?} Group 1.
 
-{\it What does this mean about the inital allocation of goods? (This was a homework quesiton.)} It means the initial allocation is Pareto inefficient. This means we can make a Pareto optimization. If Group 2 collectively bought all the cars at price $p = \mu$, 
+{\it What does this mean about the inital allocation of goods? (This was a homework quesiton.)} It means the initial allocation is Pareto inefficient. This means we can make a Pareto optimization. If Group 2 collectively bought all the cars at some price $p$ where $1 < p < 3/2$, then Group 1's utility is higher because they were paid more for their cars than their cars were worth to them, {\it and} Group 2's utility is higher because they paid {\it less} for their cars than the cars were worth to them. {\it Does that make sense?}
 
 {\it Why call this Group 1 and Group 2? Why not just call them ``buyers'' and ``sellers''?} I think this is because calling them ``buyers'' and ``sellers'' makes it seem like Group 1 wants to sell cars and Group 2 wants to buy cars. That is true but slightly misleading. Group 1 still values cars (as per their utility funciton), and according to their utility function they still would actually buy a car if it was a good deal. Calling Group 1 the ``sellers'' makes it sound like they're going to sell no matter the price, which simply isn't true. Framing things using a utility function allows the model remain simple and allows us to assume that Groups 1 and 2 are the same, just with different valuations of cars.
 
 For example, both groups have demand functions! Let's take a look at them.
+
+\subsubsection{Group 1}
 
 Group 1's demand function looks like this:
 \begin{align*}
@@ -103,6 +107,8 @@ There's another derived equation here, for average quality:
 
 Where does this come from? Recall that that at any price $p$, the cars that are sold will be of quality $x_i \leq p$ (which is valid because price and quality are normalized to the same [0,2] scale). If we draw out the PDF of the quality of cars that will sell at price $p$, what is the average quality? $p/2$.
 
+\subsubsection{Group 2}
+
 Now let's look at the supply and demand curves for Group 2. What is a ``good deal'' for Group 2? How much utility do they get from a car? They get $\frac{3}{2}x_i$. So on average they get $\frac{3}{2}\mu$ for each car. So they will buy when $\frac{3}{2}\mu > p$.
 As with Group 1, there demand is subject to their own income $Y_2$ and the price of the cars $p$. 
 
@@ -125,7 +131,16 @@ If $ p > \frac{3\mu}{2}$, then $D(p, \mu) = 0$.
 
 This is the full model in the case of the asymmetric information, where Group 1 only sells cars if the market price is beneath their car's value. 
 
-But price is $p$ while average quality is $\mu = p/2$. Of the three demand curve cases above, which one does this correspond to? It corresponds to $D = 0, p>3\mu/4 = p > \frac{3}{4}p$. So demand is zero. No sales take place despite the fact that there are Group 1 members who have cars they are willing to sell at prices Group 2 members are willing to pay.
+But price is $p$ while average quality is $\mu = p/2$. Of the three demand curve cases above, which one does this correspond to? 
+
+Let's rewrite the above inequalities to be in terms of $p$ instead of $\mu$:
+\begin{itemize}
+    \item Does $p < (p/2)$? No, never for a positive $p$. So this case doesn't apply.
+    \item Does $\frac{p}{2} < p < \frac{3}{2}(\frac{p}{2})$? No, never.
+    \item The last one holds, though: $p > \frac{3 \mu}{2} \equiv p > \frac{3p}{4}$. What is the combined demand in this case? It's 0.
+\end{itemize}
+
+No sales take place despite the fact that there are Group 1 members who have cars they are willing to sell at prices Group 2 members are willing to pay.
 
 In other words, in this model, there are Pareto optimizations that could occur but the market does not produce this outcome. This system remains Pareto inefficient. This is why this situation is called a market failure.
 
@@ -155,13 +170,11 @@ Likewise, if $p > 3/2$, demand is 0 but supply is $N$. Again we assume $N>0$ so 
 
 That means that the intersection of supply and demand will be between $p=1$ and $p=3/2$. What are the conditions needed for $p$ to be in this price range?
 
-There are three possible cases. 
-
-Case 1 is that $N > Y_2/p$:
-
+\newpage
+There are three possible cases. Case 1 is that $N > Y_2/p$:
 \begin{figure}[h]
     \centering
-    \includegraphics*[width=4.5in]{equilibrium1.png}
+    \includegraphics*[width=3.5in]{equilibrium1.png}
     \label{fig:equ1}
 \end{figure}
 \FloatBarrier
@@ -173,12 +186,11 @@ In this case, supply and demand meet when $p=1$. And hence $N > Y_2/p$,
 \end{equation}
 
 
-\newpage
 Case 2 is when $N = Y_2/p$:
 
 \begin{figure}[h]
     \centering
-    \includegraphics*[width=4.5in]{equilibrium2.png}
+    \includegraphics*[width=3.5in]{equilibrium2.png}
     \label{fig:equ2}
 \end{figure}
 \FloatBarrier
@@ -207,8 +219,16 @@ This means that $p=\frac{3}{2}$. Plugging into the above and rearranging yields:
     N < \frac{2Y_2}{3}
 \end{equation}
 
+But in all cases there is a point at which supply equals demand.
+In economics this is called a {\bf market clearing price}.
+And just like the name implies, at this price, {\it all goods in the market will sell!}
+
+{\it What does this mean for the two groups' utility functions?} Both groups are better off after the trade. We have made a Pareto improvement. I think it's even Pareto optimal, meaning that no further optimizations are possible.
+
 
 \subsection{Closing questions}
+
+Is this mindblowing or what? From these super simple models, Akerlof proves that in the presence of asymmetric information, markets are not an efficient way to allocate goods, and everyone is worse off than they could otherwise be as a result.
 
 This is a great example of how to show a point using a mathematical model. A few quesitons come up:
 \begin{enumerate}
@@ -224,7 +244,7 @@ This is a great example of how to show a point using a mathematical model. A few
         \item Does this mean that one of the assumptions that Akerlof makes is wrong? Which one?
         \item A surprising takeaway might be that your model doesn't even need to accurately reflect the real world to be useful. What are your thoughts on that?
     \end{itemize}
-    \item Do you find it surprising how nonchalant Akerlof is about this? He doesn't seem to be writing about it as if it's a Nobel Memorial Prize-winning paper.
+    % \item Do you find it surprising how nonchalant Akerlof is about this? He doesn't seem to be writing about it as if it's a Nobel Memorial Prize-winning paper.
 \end{enumerate}
 
 \section{The Economics of Information Security Investment}
@@ -305,6 +325,8 @@ One thing this paper has that The Market for Lemons paper does not is model expl
 In Section II of the paper (where the model is defined), the shape of $S(z,v)$ is left pretty undefined (some constraints on the sign of its first and second derivatives though).
 
 \subsubsection{Candidate 1 for $S(z,v)$}
+
+Two candidates for $S(z,v)$ are considered.
 
 Candidate 1 is $S^I = \frac{v}{(\alpha z + 1)^\beta}$, with $\alpha > 0, \beta \geq 1$. Should we check that this satisfies the above conditions?
 
@@ -390,6 +412,7 @@ Proposition 3 states that if we assumes the security breach probability function
 
 Questions:
 \begin{itemize}
+    \item Why might we choose $S^I$ over $S^{II}$? What is the ``plain English'' difference between them?
     \item How practically useful is this? Do you think that firms are using this model to determine how much to invest in cybersecurity?
     \begin{itemize}
         \item I don't think I've ever heard of anyone using this in the real world\dots
