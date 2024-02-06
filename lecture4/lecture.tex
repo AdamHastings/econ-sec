@@ -23,32 +23,9 @@
 \begin{document}
 \maketitle
 
-\section{Homework Review}
+\section{Would You Rather}
 
-I couldn't access the training since I'd already completed it. 
-\begin{itemize}
-    \item What did we think?
-    \item How long did it take?
-    \item Was anything surprising?
-\end{itemize}
-
-You now have the credentials needed to conduct studies on human subjects. 
-But that doesn't mean you can actually go out and do it yet. 
-Before you can actually begin, you need to submit a protocol to the IRB to be reviewed and approved.
-At Columbia they usually have a turnaround time of a few days, but it's highly unlikely that you're going to receive approval on your first try. 
-Not because there's anything wrong or dangerous about your research plan, but because of bureaucratic things, small details, or they're picky with how things are worded.
-The full process will probably take about a week if you know what you're doing, probably longer if it's your first time.
-
-\section{In-Class Experiment}
-
-\subsection{Loss Aversion}
-
-Imagine that you receive \$1000. Would you rather:
-
-
-
-
-\subsection{Risk Seeking vs. Risk Aversion}
+% \subsection{Risk Seeking vs. Risk Aversion}
 
 Would you rather:
 \begin{itemize}
@@ -78,19 +55,32 @@ These are biases that affect human cognition.
 {\it Does this mean that humans are irrational?} Maybe it means that the standard definition of ``rational'' is too simple and too abstracted.
 
 
-\begin{figure}[h]
-    \centering
-    \includegraphics*[width=3.5in]{prospect_theory.png}
-    \caption{Propsect theory in a nutshell}
-    \label{fig:ptheory}
-\end{figure}
+\section{Homework Review}
+
+I couldn't access the training since I'd already completed it. 
+\begin{itemize}
+    \item What did we think?
+    \item How long did it take?
+    \item Was anything surprising?
+\end{itemize}
+
+You now have the credentials needed to conduct studies on human subjects. 
+But that doesn't mean you can actually go out and do it yet. 
+Before you can actually begin, you need to submit a protocol to the IRB to be reviewed and approved.
+At Columbia they usually have a turnaround time of a few days, but it's highly unlikely that you're going to receive approval on your first try. 
+Not because there's anything wrong or dangerous about your research plan, but because of bureaucratic things, small details, or they're picky with how things are worded.
+The full process will probably take about a week if you know what you're doing, probably longer if it's your first time.
+
+
 
 
 
 
 \section{Paper Discussion}
 
+Let's start today's class by framing this paper, since it's at the intersection of several fields:
 
+\FloatBarrier
 \subsection{Framing the paper}
 
 \begin{figure}[h]
@@ -101,30 +91,61 @@ These are biases that affect human cognition.
 \end{figure}
 \FloatBarrier
 
-\subsection{Intro}
 
-I think by this point in the class we have well an truly established that information asymmetry exists in computer security, and that this is a hindrance towards improving security.
-Whenever this topic comes up, I ask the class for suggestions on what to do about it. 
-
-This paper is all about ``soft paternalism''. Paternalism is when one party has a degree of control or responsibility over another party and makes decisions on their, typically under the guise of it being ``for their own good''.
-The word ``paternalism'' itself comes from the latin word {\it pater} for ``father'', so paternalism can be when a child wants to eat cookies for breakfast and their parent says no, because they know what's best for their child.
-
-
-
-% This paper: Privacy and security
-% Topics go well together but We will focus on the security portion
-
-{\it Can someone define what a ``nudge'' is for me?}
-
-\subsection{Incomplete and Asymmetric Information}
 \begin{itemize}
-    \item A topic we have already covered many times
-    \item One new example: Defenders don't know which vector attackers will use (i.e. not just consumers not being able to acertain quality)
+    \item {\bf Economics and Security:} This intersection is the focus of this class
+    \item {\bf Psychology:} Study of the human mind 
+    \item The intersection of these two is {\bf behavioral economics}, which is the study of how and make decisions and why they make the decisions they do. This overlaps with questions of security; this intersection is the topic of today's class.
+    \item So where does this paper fit it? The authors of this paper come from the field of {\bf Usability}, which is the study of how humans interact with systems and the task of designing ways to make interacting with systems and software an easier experience. This intersects with psychology, economics, and security.
+    \item {\it This paper} is specifically focused on a the intersection of these fields, and in particular it's focused on two subsets of behavioral economics called {\bf prospect theory} and {\bf nudges}, which are closely related and maybe two sides of the same coin. 
 \end{itemize}
 
-\subsection{What is Prospect Theory?}
+\subsubsection{Prospect Theory}
+{\bf Propsect theory} is an alternative to {\bf expected utility theory}, which is the hypothesis used in much of economics that people are rational agents who maximize utility.
 
-\subsection{Heuristics and Bounded Rationality}
+Let's try the would you rather questions again: 
+
+Would you rather:
+\begin{itemize}
+    \item receive \$900?
+    \item take a 90\% chance of winning \$1100?
+\end{itemize}
+
+Would you rather:
+\begin{itemize}
+    \item lose \$900?
+    \item take a 90\% chance of losing \$1100?
+\end{itemize}
+
+It's likely that your decisions do not align with classic utility theory! You may have chosen the option that has a lower expected value! Prospect theory is about capturing these quirks and biases of human cognition and incorporating them into our econmic models, tied together by the theme that our decisions are largely driven by the way that our decisions will make us feel rather than strictly by the utility of our decisions.
+
+\FloatBarrier
+Prospect theory can be summarized using this following graph:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics*[width=3.5in]{prospect_theory.png}
+    \caption{Propsect theory in a nutshell. Diminishing value of utility is expected by classical economics (convex slope). Propsect theory adds the lower portion of this chart. Two things to note: 1) It's asymmetric (loss aversion). 2) It's convex in lower portion (risk seeking instead of risk averse). This chart has been experimentally verified.}
+    \label{fig:ptheory}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Nudges}
+Prospect theory supposes that humans are ``predictably irrational'' in quantifiable and expected ways.
+Nudges are a complement to this, particularly trying to harness or exploit the cognitive biases that we all have.  
+A {\bf nudge} is something that encourages someone to make some decision without either 1) constraining their behavior, or 2) even bringing the nudge to the subjects' attention.
+
+One example: let's say you're in charge of the breakfast buffet at the student dorms. If you place healthy food right at the entrace to the buffet like fruits and vegtables you are likely going to nudge people into eating healthier food. If you place doughnuts right at the entrace, people might eat unhealthier food. If people were perfectly rational they would simply choose what they want regardless of where it's placed, but by exploiting human biases and cognition you can nudge people towards making certain decisions without them even realizing it. 
+
+This has lots of implications for security! We've covered that most users don't really understand security and don't know what the tradeoffs are. Yet we don't want to constrain people's behavior. {\it This paper is a survey of the body of research on how to nudge people towards making better security and privacy decisions.}
+
+{\it Any questions?}
+
+This is called ``soft paternalism'' in the paper. Paternalism is when one party has a degree of control or responsibility over another party and makes decisions on their, typically under the guise of it being ``for their own good''.
+% The word ``paternalism'' itself comes from the latin word {\it pater} for ``father'', so paternalism can be when a child wants to eat cookies for breakfast and their parent says no, because they know what's best for their child.
+
+\subsection{Important topics from the paper}
+\subsubsection{Heuristics and Bounded Rationality}
 
 \begin{itemize}
     \item In CS we use heuristics to guide algorithms to compute more efficiently (e.g. A* vs Dijsktra's, or hillclimbing to find optima)
@@ -146,18 +167,35 @@ Some examples:
     \item {\bf Availability heuristic:} Paper defines it loosely as ``our estimates for event probabilities and likelihoods is shaped by examples we can 
 \end{itemize}
 
-\subsection{Not in paper? Experiments themselves interfering with results}
 
-TODO talk about this.
+% \subsection{Not in paper? Experiments themselves interfering with results}
+
+% TODO talk about this.
 
 \section{Paper Presentations}
+
+What I want from these presentations:
+\begin{itemize}
+    \item I want us to get a sense of the type of research in this subfield in cybersecurity economics.
+    \item {\it But more importantly} I wanted you to dive in to the actual studies and get a sense of what researchers actually do to answer questions in this domain.
+\end{itemize}
+
+\subsection{3.2.2 Education in Privacy and Security}
+\subsection{3.2.3 Feedback for Privacy and Security}
+\subsection{3.3.4 Presentation Nudges for Privacy and Security}
+\subsection{3.4.2 Defaults in Privacy and Security}
+\subsection{3.5.2 Costs of Privacy and Security}
+\subsection{3.5.3 Incentives for Security}
 
 
 \section{Danger Zone!}
 
-Behavioral Economics is having a bit of a reckoning at the moment:
+Behavioral Economics is having a bit of a reckoning at the moment: It seems to be a field that has a disproportionate share of academic misconduct in recent years. 
 \begin{itemize}
     \item Many of the big names in the field have been called out for using questionable research practices or in some cases using outright faked data (Ariely, Gino, Wansink).
+    \item Many studies do not replicate (replication crisis bleeding over from psychology)
+    \item Signals that people are testing for are likely very weak (i.e. retracted honesty study w/ signature at top vs bottom).
+    \item Small sample sizes (studies are expensive), pressure to publish --> p-hacking 
     \item There have been a lot of notable retractions (I don't know if any of the papers cited in our reading paper have been retracted, but there is a citation to a professor at Duke who has recently had several high-profile retractions).
     \item What can we do? What is the value of this line of research if everything is so questionable?
     \begin{itemize}
