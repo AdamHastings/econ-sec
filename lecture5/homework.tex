@@ -1,20 +1,53 @@
 \documentclass[11pt]{article}
 \usepackage{hyperref}
+\usepackage{enumitem}
 
-\title{The Economics of Cybersecurity: Homework 3}
-\date{Due: February 6 at {\bf 5:00pm}}
+
+\title{The Economics of Cybersecurity: Homework 4}
+\date{Due: February 13 at {\bf 5:00pm}}
 \author{}
 
 \begin{document}
 
 \maketitle
 
+\section*{CVE Exploration (10 points)}
 
-\section*{Paper 1 (10 points)}
 
-Read the paper \href{https://dl.acm.org/doi/abs/10.1145/3133956.3134072}{A Large-Scale Empirical Study of Security Patches}. Answer the following questions:
-\begin{itemize}
-    \item Is this a theory paper, an experimental paper, or an empirics paper? Or something else? 
-\end{itemize}
+One of the main objectives in this class is to examine the various attempts that have been made to mesaure and quantify security. 
+One notable example of this is the National Vulnerability Database (NVD) and associated list of Common Vulnerabilities and Exposures (CVEs).
+
+
+All CVEs follow the same naming convetion: The tag ``CVE'', folllowed by the year of discovery, and then by a chronological index number (e.g. ``CVE-2024-22211''). The Cybersecurity and Infrastructure Security Agency (part of the U.S. Department of Homeland Security) maintains a database of CVEs. Browse the list of known exploited vulnerabilities on CISA's website: \href{https://www.cisa.gov/known-exploited-vulnerabilities-catalog}{https://www.cisa.gov/known-exploited-vulnerabilities-catalog}. 
+Choose and click on a CVE from the list and answer the following questions:
+
+\begin{enumerate}
+    \item What your chosen CVE's ID?
+    \item What software is affected by this vulnerability?
+    \item What is the Base Score of your chose CVE?
+    \item Look under ``References to Advisories, Solutions, and Tools'', where there may be a link to an advisory from the software vendor. Can you determine if this vulnerability has been patched? Can you find a link to the patch itself? 
+    \item Although each CVE is unique, many have the same underlying root causes. Hence CVEs are taxonomized using the Common Weakness Enumeration (or C\textit{W}E) list. What is this CVE's CWE ID and Name? Look under the ``Weakness Enumeration'' section. Click on the CWE link and briefly describe what the weakness is.
+\end{enumerate}
+
+The ``Base Score'' above is a quantitative indicator of the CVE's severity. CVEs are given a severity score using the Common Vulnerability Scoring System (CVSS), which is a series of calculations based on metrics like exploitability and impact. Take a look at the scoring calculator here: 
+
+
+
+\noindent \href{https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator}{https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator}
+
+\begin{enumerate}[resume]
+    \item Select various metrics and see how they affect the scores. Which combination of metrics yields the highest possible score of 10? This should be fairly easy to do, but you may also click on ``Show Equations'' to observe exactly how scores are calculated. 
+\end{enumerate}
+
+
+\section*{Paper 1 (0 points)}
+
+Read the paper \href{https://dl.acm.org/doi/abs/10.1145/3133956.3134072}{A Large-Scale Empirical Study of Security Patches}. 
+Come to class prepared to discuss the paper (you may be called upon at random in class).
+
+\section*{Paper 2 (0 points)}
+
+Read the paper \href{https://dl.acm.org/doi/10.1145/3587135.3592194}{How Much is Performance Worth to Users?}. 
+Come to class prepared to discuss the paper (you may be called upon at random in class).
 
 \end{document}
