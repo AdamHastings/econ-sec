@@ -26,6 +26,10 @@
 
 \section*{Homework Review}
 
+Can someone volunteer to share what they found in their homework?
+
+Really straightforward. I just wanted to gently force you to engage with what the security community does to deal with patching. The goal was hopefully for you to better understand patching to help you make sense of the assigned paper. 
+
 \section*{Discussion: General Economics of Patching}
 
 What are the economic forces that affect the ecosystem of patching?
@@ -37,7 +41,7 @@ What are the economic forces that affect the ecosystem of patching?
     \item What does a typical patch look like? How many lines of code is it?
     \item What are some deployment considerations when it comes to patching?
     \begin{itemize}
-        \item How easy is it to patch software that you wrote yoursefl on your own system? Even this may not be simple
+        \item How easy is it to patch software that you wrote yourself on your own system? Even this may not be simple
     \end{itemize}
     \item Why might someone {\it not} want to patch a system?
     \begin{itemize}
@@ -52,14 +56,27 @@ What are the economic forces that affect the ecosystem of patching?
             \item There are lots of very difficult questions to answer here that intersect with computer science, economics, policy, and law. We will discuss these topics more later in the semester.
         \end{itemize}
     \end{itemize}
+    \item Are all systems patchable?
+    \begin{itemize}
+        \item We already mentioned pacemakers, which are physically inaccessible. Or are they? Should we allow over-the-air software updates?
+        \item Some devices (particularly embedded devices) have things like security fuses which are physical fuses that are deliberately blown prior to deployment that physically remove the ability to interface with a device. For example JTAG is a set of communication protocols for interfacing between a circuitboard and a testing device. Could allow access to sensitive information on a device. You can use JTAG to interface with a board but then might blow the fuses on the device to make sure that no one else has low-level access to your device after deployment.
+        \item Patchability also depends on physical components. Some types of memory (like EPROM) require the use of strong UV lights to program (specifically to erase). If your program is stored in EPROM, are you going to be able to patch it?
+        \item In domains where performance is super critical, you may not use a general purpose processor and instead make a dedicated silicon chip (ASIC) to compute some function. If there's a security flaw in the circuit, can this easily be patched? No. Hence some domains may need to use FPGAs (essentially re-programmable circuits) which can be ``patched'' like traditional software.
+    \end{itemize}
     \item {\bf Important Question:} Does giving products the ability to be updated increase or decrease the product's security level?
     \begin{itemize}
         \item Increase: If vulnerabilities are found, they can be fixed
+        \item Decrease: It alerts attackers that a certain piece of software is vulnerable, and even tells you exactly what and where the issue is!
         \item Decrease: It means that someone somewhere has the ability to change the code that's running on a device. Is the update mechanism secure?
         \begin{itemize}
             \item I did a hardware security internship at Bloomberg, who makes their own biometric authentication devices (fingerprint swipe). One of the projects I worked on was writing firmware that decided whether or not to allow a patch. A lot of steps need to happen to make sure this is done securely!
         \end{itemize}
         \item It's not immediately clear if patching is always better. I suspect it is (and suspect that the majority of security professionals would agree with me) but this is based on intuition rather than evidence. 
+    \end{itemize}
+    \item How can you get everyone to patch when they need to?
+    \begin{itemize}
+        \item via culture (``Patch Tuesday'', second Tuesday of each month. But this leads to ``Exploit Wednesday''!)
+        \item Auto-updates (iOS does this). Maybe appropriate for consumer devices. But will e.g. a bank want Microsoft to be able to remotely access and modify their machines? Probably not. What if the patch breaks something important?
     \end{itemize}
     \item What might be done to make sure that patches can be done securely?
     \begin{itemize}
@@ -95,6 +112,79 @@ What are the economic forces that affect the ecosystem of patching?
 
 \section*{A Large-Scale Empirical Study of Security Patches}
 
+\begin{itemize}
+    \item What is the purpose of this paper?
+    \item What is the methodology used? 
+    \item What types of patches were the authors interested in? (Security patches)
+    \item But how do you actually acquire a large-scale amount of data on security patches upon which you can do your empirical analysis?
+    \begin{enumerate}
+        \item Obtained a list of vulnerabilities from the NVD (as CVEs).
+        \item Found URLs in the CVE entries. Many conatined \texttt{*git*} in them. Likely link to a Git repo. Everybody here knows what a Git repo is right?
+        \item Did anyone's homework contain a link to a Git repo?
+        \item OK, so they get a git commit. How do they actually determine that this specific commit actually is related to security? Many times systems are patched due to functionality reasons. They authors use a logistic regression method based on n-grams to build a classifier. 
+        \begin{itemize}
+            \item What other paper have we read so far that uses logistic regression? (Mine)
+            \item What is an n-gram? Did anyone look it up? Because I'm guessing some of you didn't already know what this was.
+            \item Relies on manually annotating git commits into either ``security'' or ``non-security'' classifications.
+        \end{itemize}
+        \item How can we evaluate the quality of their classifier?
+        \begin{itemize}
+            \item They give numbers for recall (82\%) and precision (91\%). 
+            \item Recall is the proportion of actual positives identified correctly: (TP) / (TP + FN)
+            \item Precision is the proportion of actual positives that were actually correct: (TP) / (TP + FP)
+            \item When building a classifier, these are at odds with one another. 
+            \item So how good are these? I don't know. It seem OK to me. It sort of depends on community standards. 
+        \end{itemize}
+    \end{enumerate}
+    \item How do the authors then extract a patch from the commit? (They compare file extensions before and after commit. Not sure how this is different from the commit itself! The authors also limit to file extensions of programming languages)
+    \item How do the authors estimate vulnerability disclosure dates? Per-site web scrapers.
+    \item How do they verify the results? Randomly sample 100 crawled pages (all relevant dates correctly abstracted). Reasonable?
+    \item What are the methodological biases that are introduced as a result of their chosen methods?
+    \begin{itemize}
+        \item Not everyone uses Git! And those that do may be of a certain kind of software or developer.
+        \item For example, the Android project uses https://android.googlesource.com/kernel/common as its git repo. The authors' methodology would have skipped this and other projects that were self hosted. 
+        \item What about projects that are not open source? Can anything be done to collect data here? There may be a database of patches themselves but I'm unaware of any. It would be really hard to collect this data. You'd have to scour individual websites. Even then, patches themselves may be encrypted! Likely not a fruitful path. We have to be happy with what we can get sometimes.
+        \item Not all vulnerabilities are made public. Biased towards trends in open source community.
+        \item I think the authors do a good job of laying out the limitations.
+    \end{itemize}
+    \item Next, the authors do data characterzation.
+    \item Figure 3: Log-scale y-axis, but I think this trend has continued. Most of bug finding these days is done via automated bug-finding tools
+    \item Figure 4: Uses CVSS Version 2. Homework had you use Version 3. Same scale though. 
+    \item Table 2: CWEs. Did anyone's CVE chosen for the homework have one of these CWEs?
+    \begin{itemize}
+        \item Does anyone want me to clarify what some of these CWEs are? (They're also listed on MITRE's website)
+        \item What stands out to you?
+        \item Note that Buffer Overflow is the top CVE. Does anyone know what this is?
+        \item Did you know that Buffer Overflows were called the ``vulnerability of the decade''...back in the year 2000??
+        \item When I say security is an economics problem, this is what I mean. We have programming languages that make it impossible to do buffer overflows. We have tools that make it impossible for your system to execute a buffer overflow. Yet year after year this is the top vulnerability. Are you seeing why when in comes to real world security the limiting factor is often not a technical one? This is exactly why this topic---this class---is so important. It doesn't matter that we know how to fix buffer overflows if we can't figure out a way to balance the costs of the defense. This is going to the topic of next week's class.
+    \end{itemize}
+    \item Figure 5---this can be somewhat tricky to interpret. Can someone tell me what it means? (Solid line---CDF of all commits; dashed line---CVE commits. CVE commits are a small fraction of overall commits---makes sense.)
+    \item Section 5: Null hypotheses and p-values. Does anyone know what these are?
+    \begin{itemize}
+        \item Null hypothesis: hypothesis that there is no significant difference between two distributions
+        \item p-value: Probability that observed data occured given that the null hypothesis is true. 
+        \item Look up statistical hypothesis testing if you want to learn more about this.
+    \end{itemize}
+    \item Vulnerability lifetime method: What do we think? I'm not sure I understand the difference between ``code base lifetime'' and ``window of exposure''. Can anyone help me understand?
+    \item Use \texttt{git blame} to determine most recent blame data across patch lines to estimate the date of vulnerability introduction. Thoughts?
+    \item Results in Figure 7. Median vulnerability had a lifespan of 438 days. Anyone surprised by this? Study of Ubuntu kernel vulnerability found that the lifespan was roughly 5 years!
+    \item Do more severe vulnerabilities have shorter lives? No correllation observed. What method was used? What is the advantage of this over say Pearson correlation? (Doesn't assume linearity)
+    \item Table 3: Different vulnerability classes have different lifespans! Why?
+    \item Figure 8: What is the interpretation (80\% of vulnerabilities are patched the same day they are announced). Why is it not 100\%? What would it take to get this to 100\%?
+    \item Note: Everything in that 20\% is the danger zone---known vulnerability, no patch yet; all it takes is for an attacker to exploit the now publicly-known vulnerability and they can attack a system. 
+    \item Figure 8: Some vulnerabilities take over 1000 days to be patched. Maybe these are low-risk issues? Yes. 88\% of high-severity were patched prior to announcement, compared to only 59\% of low-severity vulnerabilities.
+    \item Do security and non-security bug fixes always modify source code? Surprisingly no. Erroneous config settings, broken build dependencies, undocumented requirements. 
+    \item Figure 10: 50\% are < 10 LOC changes, 80\% < 100 LOC changes. Median was 7 LOC changes. Generally less LOC changes that bug fixes!
+    \item Other comparisons are made to bug fixes. I didn't find these to be as interesting. Maybe you did. 
+\end{itemize}
+
+That concludes our paper read-through. In hindsight, what did we think?
+\begin{itemize}
+    \item Did they answer there questions well?
+    \item Are there any other questions you wish they'd have answered using their methodology? (Personally I'm interested in the runtime overheads of patches but I don't know how I would do this using their web scraping methodology).
+    \item Who is most affected by this paper? Who does it benefit?
+\end{itemize}
+
 \section*{How Much is Performance Worth to Users?}
 
 \begin{itemize}
@@ -117,6 +207,7 @@ Post-talk discussion:
 I want to subsantively discuss the {\it content} of this paper, but I do also want to briefly discuss the 
 \begin{itemize}
     \item What do you think I did well in this presentation?
+    \item What do you think could have been better?
 \end{itemize}
 
 
