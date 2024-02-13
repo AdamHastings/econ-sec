@@ -24,6 +24,100 @@
 \maketitle
 
 
+\section*{Homework Review}
+
+\section*{Discussion: General Economics of Patching}
+
+What are the economic forces that affect the ecosystem of patching?
+\begin{itemize}
+    \item Who benefits from patching?
+    \item Who loses out from patching?
+    \item What are the costs of patching? Who pays them?
+    \item What do we think about the "Ship it tomorrow and fix in the next release" line from Anderson's paper?
+    \item What does a typical patch look like? How many lines of code is it?
+    \item What are some deployment considerations when it comes to patching?
+    \begin{itemize}
+        \item How easy is it to patch software that you wrote yoursefl on your own system? Even this may not be simple
+    \end{itemize}
+    \item Why might someone {\it not} want to patch a system?
+    \begin{itemize}
+        \item May be because they're an IT manager who is busy with other tasks
+        \item May be because patching a system will cause unacceptable downtime 
+        \item May be because system is remote or unaccessible (e.g. pacemaker). 
+        \begin{itemize}
+            \item This brings up another question:  Should companies be forced to make their systems patchable?
+            \item What happens if someone discovers an issue with pacemaker code? Could be a security issue or simply a functional one. 
+            \item Healthcare devices are pretty strictly regulated by the FDA. Should other domains be regulated the same amount? Should in-home security cameras be required to have a patching system in place? What about a children's toys?
+            \item Side note: These questions are being asked and discussed by governments around the world today, and with some regulations (in Europe mostly) already affecting product vendors.  
+            \item There are lots of very difficult questions to answer here that intersect with computer science, economics, policy, and law. We will discuss these topics more later in the semester.
+        \end{itemize}
+    \end{itemize}
+    \item {\bf Important Question:} Does giving products the ability to be updated increase or decrease the product's security level?
+    \begin{itemize}
+        \item Increase: If vulnerabilities are found, they can be fixed
+        \item Decrease: It means that someone somewhere has the ability to change the code that's running on a device. Is the update mechanism secure?
+        \begin{itemize}
+            \item I did a hardware security internship at Bloomberg, who makes their own biometric authentication devices (fingerprint swipe). One of the projects I worked on was writing firmware that decided whether or not to allow a patch. A lot of steps need to happen to make sure this is done securely!
+        \end{itemize}
+        \item It's not immediately clear if patching is always better. I suspect it is (and suspect that the majority of security professionals would agree with me) but this is based on intuition rather than evidence. 
+    \end{itemize}
+    \item What might be done to make sure that patches can be done securely?
+    \begin{itemize}
+        \item Depends on the domain. But generally is going to involve some level of certificates.
+        \item Security I was listed as a prerequisite for this class. Can someone tell me what a certificate is?
+        \item Let's back up even more: Can someone tell me what a digital signature is?
+        \begin{itemize}
+            \item It's a set of algorithms:
+            \item Key generation: Create a public-private keypair. Based on special properties of fields usually. 
+            \item Signing: Using the private key, create a signature. In ECDSA (common signature scheme), this is 64-bytes.
+            \item Verification: Using a hash of the signed data, the public key (available to everyone), and the signature, verify that the signature was created using the public key. 
+        \end{itemize}
+        \item Conclusion: If I'm a product vendor, I could sign some piece of data (like a patch) using my private key, and then using my public key, you (or your device) could verify the signature before deciding to accept the patch.
+        \item What's the problem here? 
+        \begin{itemize}
+            \item The problem is that someone could impersonate me. A malicious attacker could make their own keypair, give you a patch with a signature, and ask you to verify the signature. And the signature verification would succeed! So we need some trusted way of verifying that the public key belongs to a specific person or company. This is where certificate come into play.
+        \end{itemize}
+        \item What's a certificate?
+        \begin{itemize}
+            \item A certificate is a signature by a trusted party that a certain public key belongs to a certain individual or company.
+            \item Who here has used cerificates before? Trick question---all of you! Whenever you access an HTTPS website, it means that communication beween you and the website is encrypted using public key cryptography. But to ensure that you are actually communicating with the website you think you're communicating with, your browser will check the website's certificate, which says ``this website's public key is XYZ'' and will be signed by a certificate authority, which are companies that are trusted just to 
+        \end{itemize}
+        \item What's the problem here? It's requires you to trust the cerificate authority to do the vetting process for you. This process has been compromised before!
+        \item If you are the device manufacturer though, you may be able to act as your own Certificate Authority though. But this brings up other questions...
+        \item What happens if my private key gets stolen?
+        \begin{itemize}
+            \item I'd have to create a new keypair
+            \item What if your device was programmed on only accept one single public key though?
+        \end{itemize}
+    \end{itemize}
+    \item Discussion conclusion: Patching is not simple. There can be significant costs involved depending on the level of security required. 
+\end{itemize}
+
+\section*{A Large-Scale Empirical Study of Security Patches}
+
+\section*{How Much is Performance Worth to Users?}
+
+\begin{itemize}
+    \item Why do you think I assigned this paper to discuss on the day we talk about patching? Is this paper even about patching?
+    \item You may find it interesting that the initial reason why we did this work was because we were interested in the effects that patching has on users. What does this paper have to do with patching?
+    \begin{itemize}
+        \item My research area is in hardware security, and in hardware 
+    \end{itemize}
+\end{itemize}
+
+(Give 15-minute conference presetation)
+
+Post-talk discussion:
+\begin{itemize}
+    \item What did we think of this work?
+    \item (Answer any other questions students may have)
+    \item One thing that you may find interesting is that the motivation for this 
+\end{itemize}
+
+I want to subsantively discuss the {\it content} of this paper, but I do also want to briefly discuss the 
+\begin{itemize}
+    \item What do you think I did well in this presentation?
+\end{itemize}
 
 
 \end{document}
