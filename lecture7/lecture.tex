@@ -33,82 +33,127 @@ In this class we will look at three approaches towards measuring cybercrime: One
     \end{itemize}
 \end{itemize}
 
-(show Venn Diagram of Cybersecurity, Economics, and Cybercrime. A standard 3-dim Venn diagram!)
+{\it Show Venn Diagram of Security, Technology, and Crime:}
 
-\section*{}
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=5.5in]{crime_vd.png}
+\end{figure}
 
-Activity: Have students list out some of the attacks mentioned in the papers. Ask students to define them. 
 
-Activity: Have students try to rank which attack classes they thought would be highest.
+We might think of this topic like this. But I might make a bold claim that the orange and purple sections are really just a part of the brown section. Example: Social engineering often relies on tricking a victim in some way, e.g. phishing for credentials via a false website. In many ways that is not a technology problem. The technology is not being exploited, it's social trust that's being exploited. Or is it? You could also argue that passwords are inherently weak and authentication shouldn't rely on passwords in the first place, and should be physical-token-based authentication. So is this a security problem?
 
-Question: Should the law enforcement community take a proportionate response to cybercrime based on the amount of harm done?
-Should the security community?
 
-Question: Is anyone familiar with MITRE ATT\&CK? How is this different? How is this different from the NVD/CVE system?
+Likewise, a romance scam is not really a cybersecurity problem. But it's the same root issue of the Internet's lack of strong identification. It's hard to really know who you are talking to. So maybe this is a security problem?
 
-Activity: For each attack, list out 1) who the attack targets (individuals, enterprises), and 2) what some reasonable defenses might be.
-
-Question: What do most of the attacks have in common? (social engineering)
-
-Question: What do most security researchers spend their time focused on? (Finding/patching vulnerabilities, researching new attack classes)
-
-Question: What do most of the reasonble defenses against the most common attacks have in common? (Social engineering---we can't rely on technology to save us!). 
-
-{\bf Security is a social problem with technical elements, not a technical problem with social elements!}
-No amount of research on clever attacks and defenses is going to change this fact.
-
-Does that mean we should give up on technical solutions? No! Many of the social engineering attacks {\it can} be addressed through technology. E.g. stronger authentication to verify identity (is this really my professor asking for gift cards?), or more in-browser support to detect phishing, e.g.
-
-For example, stopping romance scams seems to fall out of the scope of cybersecurity, but maybe it shouldn't! 
 
 (I'm going to ruffle some feathers with this one) Question: Can someone define ``hacking''? (Among the hacker crowd, this usually is something close to ``exploiting a technological flaw to achieve some goal''). Under this definition, how are romance scams {\it not} considered hacking? It is exploiting a technological flaw (namely, the lack of strong identification on the Internet) to achieve the goal of scamming people for money. 
 
-This brings up a very deep philosophical question: The lack of identification on the Internet is not a bug, it's a feature in most cases. It was a deliberate decision. How can you call it a flaw? (OK I concede, I'm motte-and-baileying this one). My point is that the difference between a technological flaw and a deliberate design decision is more or less a matter of perspective. C doesn't have memory safety. Is that a feature or a bug? Depends who you ask! DRAM cells are very tiny and can be perturbed. Feature or a bug? CPUs speculate unsafely. Feature or a bug? Most web services still use passwords. Feature or a bug? It's a matter of perspective in many cases. The line between them is blurred in many cases.
 
-Problem: The feature-or-bug decision is usually decided by vendors, who may not have security as a top priority. 
 
-Activity: For each of the defenses proposed, who ends up paying the cost?
 
-Question: So how do we pick which party to be repsonsible for the cost? (As you can see, this really is a question of balancing costs! Doctrine papers help us here!)
+{\it Ask: Is the lack of identity on the Internet a feature or a bug?} (Probably a feature, but it still ends up being the source of many if not most of our security problems!)
+
+
+\FloatBarrier
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=5.5in]{crime_tvd.png}
+    \caption{Maybe we should think of this topic like this}
+\end{figure}
+\FloatBarrier
+
+\section*{}
+
+Activity: Have students list out some of the attacks mentioned in the papers. Ask students to define them. Write in form of table
+
+% Activity: Have students try to rank which attack classes they thought would be highest.
+
+% Question: Is anyone familiar with MITRE ATT\&CK? How is this different? How is this different from the NVD/CVE system?
+
+Activity: For each attack, list out 1) who the attack targets (individuals, enterprises), and 2) what some reasonable defenses might be.
+
+\begin{table}[]
+    \begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+                                             & \textbf{Ransomware} & \textbf{Investment} & \textbf{BEC} & \textbf{Ad fraud} & \textbf{...} \\ \hline
+    \textit{Cost (Sophos estimate)}          &                     &                     &              &                   &              \\ \hline
+    \textit{Cost (FBI estimate)}             &                     &                     &              &                   &              \\ \hline
+    \textit{Cost (Anderson et al. estimate)} &                     &                     &              &                   &              \\ \hline
+    \textit{Who pays direct costs?}          &                     &                     &              &                   &              \\ \hline
+    \textit{Who pays indirect costs?}        &                     &                     &              &                   &              \\ \hline
+    \textit{Who pays defense costs?}         &                     &                     &              &                   &              \\ \hline
+    \textit{Other factors}                   &                     &                     &              &                   &              \\ \hline
+    \end{tabular}
+\end{table}
+
+
+
+
+
+\section*{Sophos State of Ransomware 2023}
+
+\begin{itemize}
+    \item Who bothered to look up what Sophos was? Can someone explain? (Cybersecurity company. They sell network and endpoint security products like firewalls and endpoint detection. Website says they also do detection and response )
+    \item What are some of the findings that confirmed your suspicions?
+    \item What are some of the findings that countered your intuitions or were surprising to you? 
+    \item How was this data collected? (Survey of 13,000 cybersecurity leaders)
+    \item What are some of the threats to the validity of this data? (Many ransomware events might go unreported)
+    \item What are some of the issues with trusting reports from the cybersecurity industry on the state of cycbersecurity? (Incentive to oversell. Scare people into buying your product!)
+\end{itemize}
+
+
+Let's compare this to the other two works.
 
 
 
 \section*{FBI Cybercrime Report 2022}
 
 \begin{itemize}
-    \item What are some of the findings in the FBI report that confirmed your suspicions?
-    \item What are some of the findings the FBI report that countered your intuitions or were surprising to you? 
-    \item How was this data collected?
-    \item What are some of the threats to the validity of this data?
-\end{itemize}
-
-
-\begin{itemize}
     \item What is the IC3? {\it FBI's Internet Crime Complaint Center}
     \item What does the IC3 do? {\it Collect complaints, analyze threats and trends, raise public awareness, refer complainers to law enforcement agencies.}
-\end{itemize}
-
-\section*{Sophos State of Ransomware 2023}
-
-\begin{itemize}
-    \item Who bothered to look up what Sophos was? Can someone explain?
     \item What are some of the findings in the FBI report that confirmed your suspicions?
     \item What are some of the findings the FBI report that countered your intuitions or were surprising to you? 
-    \item How was this data collected?
-    \item What are some of the threats to the validity of this data?
+    \item How was this data collected? (Complaints filed with the FBI's Internet Crime Complaint Center, or IC3)
+    \item What are some of the threats to the validity of this data? (Underreporting)
 \end{itemize}
+
+
+{\it Have Ina give an introduction of this paper. Ask her to point out the things in this paper, and the things that could be better.}
 
 \section*{Measuring the Changing Cost of Cybercrime}
 
 \begin{itemize}
-    \item Who bothered to look up what Sophos was? Can someone explain?
-    \item What are some of the findings in the FBI report that confirmed your suspicions?
-    \item What are some of the findings the FBI report that countered your intuitions or were surprising to you? 
-    \item How was this data collected?
-    \item What are some of the threats to the validity of this data?
+    \item What are some of the findings that confirmed your suspicions?
+    \item What are some of the findings that countered your intuitions or were surprising to you? 
+    \item How was this data collected? (Gov reports, industry reports, victimization studies)
+    \item What's the advantage of victimization surveys? (Statistically random sample, detect underreported, etc.)
+    \item What are some of the threats to victimization surveys? (Under-reporting)
+    \item What are some of the threats to the validity of this data? (Relies on much of the same data, e.g. from the IC3. Also a bit older than the other two)
 \end{itemize}
 
 
+\section*{A Large-Scale Measurement of Cybercrime Against Individuals}
+
+Did anyone read this? Want to tell us what you learned? 
+
+An academic's version of the victimization surveys done by governments as cited in the Anderson et al. paper. 
+
+
+\section*{Concluding remarks/questions}
+
+\begin{itemize}
+    \item Question: Should the law enforcement community take a proportionate response to cybercrime based on the amount of harm done?
+    \item Should the security community?
+    \item Question: What do most of the attacks have in common? (social engineering)
+    \item Question: What do most security researchers spend their time focused on? (Finding/patching vulnerabilities, researching new attack classes)
+    \item Question: What do most of the reasonable defenses against the most common attacks have in common? (Social engineering---we can't rely on technology to save us!). 
+    \item {\bf Security is a social problem with technical elements, not a technical problem with social elements!} No amount of research on clever attacks and defenses is going to change this fact.
+    \item This brings up a very deep philosophical question: The lack of identification on the Internet is not a bug, it's a feature in most cases. It was a deliberate decision. How can you call it a flaw? (OK I concede, I'm motte-and-baileying this one). My point is that the difference between a technological flaw and a deliberate design decision is more or less a matter of perspective. C doesn't have memory safety. Is that a feature or a bug? Depends who you ask! DRAM cells are very tiny and can be perturbed. Feature or a bug? CPUs speculate unsafely. Feature or a bug? Most web services still use passwords. Feature or a bug? It's a matter of perspective in many cases. The line between them is blurred in many cases.
+    \item Problem: The feature-or-bug decision is usually decided by vendors, who may not have security as a top priority. 
+    \item How do we pick which party to be responsible for the cost? (As you can see, this really is a question of balancing costs! Doctrine papers help us here!)
+\end{itemize}
 
 
 \end{document}
