@@ -25,4 +25,73 @@
 
 
 
+\section{Hack for Hire: Exploring the Emerging Market for Account Hijacking}
+
+
+\begin{itemize}
+    \item Let's revisit the key points from this paper. 
+    \begin{itemize}
+        \item What is a honeypot?
+        \item Setup: Creating fake personas
+        \begin{itemize}
+            \item Victims were U.S.-based
+            \item Always used Gmail-based email address 
+            \item The authors created victims in the native language of the hacking service (``Natasha Belkin''). Why?
+            \item How did the authors create the illusion that these were real email accounts? (Enron email corpus w/ changed dates \& names)
+            \item How else did the authors create the illusion that these were real people? (Fake Facebook accounts, blogs, fictitious small business. Also fake associate personas as well!)
+            \item Do we think this worked? (The majority didn't even attack! Outright scam, or did they smell something was fishy? If the latter, how would they have known?)
+        \end{itemize}
+        \item What were the key findings?
+        \begin{itemize}
+            \item 
+        \end{itemize}
+    \end{itemize}
+    \item What do we think about the fact that email is more or less considered the root of trust for most online activities?
+    \begin{itemize}
+        \item Who benefits from this arrangement?
+        \item What are the risks?
+        \item What are the alternatives? (Hardware-backed tokens? What are the downsides here? The costs?)
+        \item Is it surprising that email compromise is a significant target for attackers? Probably not. 
+    \end{itemize}
+    \item What is {\it targeted } attacking? 
+    \begin{itemize}
+        \item How is it different from untargeted attacking?
+        \item How common is it?
+        \item Which one is more profitable?
+    \end{itemize}
+    \item What are the economics of targeted attacking?
+    \begin{itemize}
+        \item 
+    \end{itemize}
+    \item What can we learn from this style of research?
+    \begin{itemize}
+        \item What are the ethical concerns here?
+        \item Could this data have been collected any other way?
+    \end{itemize}
+    \item Let's talk about the economics elements of this work.
+    \begin{itemize}
+        \item The authors found that attackers want to double their pay if the account hijack requires a 2FA bypass. Can we use this as a proxy for the ``cost'' that 2FA imposes on an attacker?
+        \item Why or why not?
+        \item If so, is this a reasonable method of doing cost-benefit analysis of security defenses? Can we rank the efficiency of defenses based on the ratio of (cost) : (cost to compromise)?
+        \item If so, can we do this for all types of defenses? Why or why not? 
+        \item If so, who should pay for this type of research? Academia? Government? Industry? What if the attackers find out they've been honeypotted?
+    \end{itemize}
+    \item If the average cost to compromise is \$300, what are the implications?
+    \begin{itemize}
+        \item The economics of the cost of this service mean that there must be a significant reward for doing so.
+        \item This means that either the financial reward must be big (maybe it's the email of a high-ranking business executive, and compromising their email can enable lucrative BEC scams)
+        \item OR you are not motivated by money. Maybe you are a spy agency trying to gain intelligence on someone.
+    \end{itemize}
+    \item What can be done to reduce this type of crime?
+    \begin{itemize}
+        \item As mentioned earlier, increase the adoption of authenticator devices. 
+    \end{itemize}
+    \item What has changed since 2019, when this paper was published?
+    \begin{itemize}
+        \item Surprisingly little, it seems. I sort of remember SMS-2FA starting around ~2016 maybe. And this still seems to be the status quo, eight years later. 
+        \item I wouldn't be surprised if these results replicated today. 
+    \end{itemize}
+\end{itemize}
+
+
 \end{document}
