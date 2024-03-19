@@ -29,6 +29,12 @@
 
 
 \begin{itemize}
+    \item What is {\it targeted } attacking? 
+    \begin{itemize}
+        \item How is it different from untargeted attacking?
+        \item How common is it? I don't know.
+        \item Which one is more profitable? I don't know.
+    \end{itemize}
     \item What do we think about the fact that email is more or less considered the root of trust for most online activities?
     \begin{itemize}
         \item Who benefits from this arrangement?
@@ -36,13 +42,13 @@
         \item What are the alternatives? (Hardware-backed tokens? What are the downsides here? The costs?)
         \item Is it surprising that email compromise is a significant target for attackers? Probably not. 
     \end{itemize}
-    \item What is {\it targeted } attacking? 
-    \begin{itemize}
-        \item How is it different from untargeted attacking?
-        \item How common is it?
-        \item Which one is more profitable?
-    \end{itemize}
-    \item Let's revisit the key points from this paper. 
+\end{itemize}
+
+\subsection{Setup}
+
+Let's revisit the key points from this paper. 
+
+
     \begin{itemize}
         \item What is a honeypot?
         \item Setup: Creating fake personas
@@ -79,16 +85,31 @@
             \item Ethics of funding criminal enterprises? What do we think?
             \item What about the ethics of harming criminals? If their actions are identifiable. Recently there's been a bit of reporting on ``pig butchering'' scams (confidence scams typically invovling cryptocurrencies) and it turns out that many of the scammers on the other end are themselves the victims of trafficking or extortion and are working under fear of retaliation from various criminal organizations. Should we be concerned about these people's welfare in our studies? 
         \end{itemize}
-        \item What were the key findings?
-        \begin{itemize}
-            \item 4 out of 5 relied on phishing. Is this in line with what we saw in the ransomware reports? Yes---the majority of exploits start with some kind of social engineering (and FWIW, the malware attack failed!)
+    \end{itemize}
+
+\subsection{Hack for Hire Playbook}
+    
+    What were the key findings?
+    \begin{itemize}
+        \item No brute force efforts, attempts to contact directly by Facebook, attempts to communicate with affiliated personas.
+        \item 4 out of 5 relied on phishing. Is this in line with what we saw in the ransomware reports? Yes---the majority of exploits start with some kind of social engineering (and FWIW, the malware attack failed!)
+        \begin{itemize}    
             \item Technical exploits exist, and systems are often unpatched, and may be more reliable than social engineering. So why did most attackers still choose to use social engineering? (Answers: It's cheap; don't need technical sophistication; don't need to ``burn'' 0-days on low-value targets; Some services (Gmail, Windows) already do a fair amount of virus scanning/spam detection/automatic patching)
             \item Keep in mind---these are probably not the more elite of the elite crew of hackers here. 
             \item Most efforts started with sending emails.
             \item What were some of the lures? (personal associates, banks, government, Google). Google makes sense since the attackers were after the Gmail account (same login info). 
-            \item What did the attackers do to trick people? (Fake URLS a la www.googlesupporthelpdesk.com or even phony 2FA flow!)
+            \item What did the attackers do to trick people? (Fake URLs e.g. www.googlesupporthelpdesk.com)
+            \item Easily bypassed 2FA by phishing for codes.
+            \item What's the name for this style of attack? Man-in-the-middle (or monkey-in-the-middle if we'd like to be gender inclusive. Or given Alice/Bob/Eve/Mallory, should be Woman in the middle IMO!)
+            \item Can this be defended against using technology? Yes, FIDO2 authenticators sign a challenge given by requesting protocol and encrypt it using TLS and the signing key is authenticated by a certificate. So it defeats this man-in-the-middle attack. But they cost \$40.
         \end{itemize}
-        \item Real victims and market activity:
+        \item Malware attempt was hilariously low-effort (sent a RAR hoping victim would click on it. Didn't work and the attackers gave up).
+    \end{itemize}
+
+\subsection{Real Victims \& Market Activity}
+
+    \begin{itemize}
+        \item Google was able to analyze attack patterns (details are lacking)
         \begin{itemize}
             \item Services A, B, and E targeted 372 attacks during a seven-month period (lower bound, unsuccessful attacks unknown). Which averages out to ~4 a week per service. 
             \item Let's ignore the overhead involved in hacking, since they are probably pretty small anyway.
@@ -107,33 +128,27 @@
         \end{itemize}
         \item The authors don't actually name the platforms or services they used to connect with hackers. Presumably to make it harder for people to find. What do we think? Should they have named where they actually found the hackers? My understanding is that most of this happens on the dark web (TOR) or maybe these days over private e2e messaging services like Telegram (but I don't really know).
     \end{itemize}
-    \item Let's talk about the economics implications of this work.
+
+
+\subsection{Discussion}
+
+    Let's talk about the economics implications of this work.
     \begin{itemize}
         \item The authors found that attackers want to double their pay if the account hijack requires a 2FA bypass. Can we use this as a proxy for the ``cost'' that 2FA imposes on an attacker?
         \item Why or why not?
         \item If so, is this a reasonable method of doing cost-benefit analysis of security defenses? Can we rank the efficiency of defenses based on the ratio of (cost) : (cost to compromise)?
         \item If so, can we do this for all types of defenses? Why or why not? 
         \item If so, who should pay for this type of research? Academia? Government? Industry? What if the attackers find out they've been honeypotted?
-        \item If the average cost to compromise is \$300, what are the implications?
+        \item What has changed since 2019, when this paper was published?
         \begin{itemize}
-            \item The economics of the cost of this service mean that there must be a significant reward for doing so.
-            \item This means that either the financial reward must be big (maybe it's the email of a high-ranking business executive, and compromising their email can enable lucrative BEC scams)
-            \item OR you are not motivated by money. Maybe you are a spy agency trying to gain intelligence on someone.
+            \item Surprisingly little, it seems. I sort of remember SMS-2FA starting around ~2016 maybe. And this still seems to be the status quo, eight years later. 
+            \item I wouldn't be surprised if these results replicated today. 
+            \item The authors remarked that they thought this was a fledgling, immature market with poor customer service. How does that compare to what we read about with the Conti ransomware group? They had health insurance!
+            \item By comparison, the authors remarked that markets for CAPTCHA solving, Twitter spam, and other activities had better customer service and more established pricing, which may indicate a more mature market, and that account compromise may be a ``side hustle''. After all, they were only compromising four account a week on average. 
+            \item What were the trends on business email compromise? Anyone remember? It's increased from 2019 (but actually decreased from last year! Just checked the new IC3 report).
         \end{itemize}
     \end{itemize}
-    \item What can be done to reduce this type of crime?
-    \begin{itemize}
-        \item As mentioned earlier, increase the adoption of authenticator devices. 
-    \end{itemize}
-    \item What has changed since 2019, when this paper was published?
-    \begin{itemize}
-        \item Surprisingly little, it seems. I sort of remember SMS-2FA starting around ~2016 maybe. And this still seems to be the status quo, eight years later. 
-        \item I wouldn't be surprised if these results replicated today. 
-        \item The authors remarked that they thought this was a fledgling, immature market with poor customer service. How does that compare to what we read about with the Conti ransomware group? They had health insurance!
-        \item By comparison, the authors remarked that markets for CAPTCHA solving, Twitter spam, and other activities had better customer service and more established pricing, which may indicate a more mature market, and that account compromise may be a ``side hustle''. After all, they were only compromising four account a week on average. 
-        \item What were the trends on business email compromise? Anyone remember? It's increased from 2019 (but actually decreased from last year! Just checked the new IC3 report).
-    \end{itemize}
-\end{itemize}
+
 
 \section{ContiLeaks}
 
