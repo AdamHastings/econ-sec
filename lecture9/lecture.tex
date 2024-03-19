@@ -38,10 +38,43 @@
             \item Always used Gmail-based email address 
             \item The authors created victims in the native language of the hacking service (``Natasha Belkin''). Why?
             \item How did the authors create the illusion that these were real email accounts? (Enron email corpus w/ changed dates \& names)
-            \item How else did the authors create the illusion that these were real people? (Fake Facebook accounts, blogs, fictitious small business. Also fake associate personas as well!)
+            \item How else did the authors create the illusion that these were real people? (Fake Facebook accounts, blogs, fictitious small business. Also fake associate personas as well! And fake buyers, of course)
             \item Do we think this worked? (The majority didn't even attack! Outright scam, or did they smell something was fishy? If the latter, how would they have known?)
         \end{itemize}
+        \item Setup: Monitoring Infrastructure
+        \begin{itemize}
+            \item Email Monitoring, Login Monitoring, Phone Monitoring, Website Monitoring
+            \item Anything else tney should have monitored?
+        \end{itemize}
+        \item Setup: Hacking services
+        \begin{itemize}
+            \item Most communication not in English. Surprising?
+            \item A common piece of advice in corporate security trainings is to look out for emails with bad grammar or spelling. What do we think about this? Is it fair? (Probably, yes)
+        \end{itemize}
+        \item Setup: Legal and ethical issues
+        \begin{itemize}
+            \item What did the class think?
+            \item Let's talk about the legal aspect (IANAL). 
+            \begin{itemize}
+                \item The big law that affect hacking is the Computer Fraud and Abuse Act (CFAA) whic prohibits ``unauthorized access''. They don't violate the CFAA though because they the targets are under their own control and are hence not ``unauthorized''.
+                \item The other legal aspect is that they explicitly gained permission from Google to knowingly break GMail Terms of Service. 
+                \item Why do you think Google's legal team allowed this exception? (probably because the results benefit Google---either they learn something new from the research, or they look good to the community by allowing such research.)
+                \item Look up Van Buren vs. United States for a 2021 ruling on the Computer Fraud and Abuse Act (CFAA)
+            \end{itemize}
+            \item ``Not considered human subjects research by our IRB'' --- surprising? Because ``it focuses on measuring organizational behaviors and not those of individuals.'' (sound a bit like Linux PR fiasco cop-out)
+            \item Nonetheless it does seem like they at least consulted their IRB.
+            \item Ethics of funding criminal enterprises? What do we think?
+            \item What about the ethics of harming criminals? If their actions are identifiable. Recently there's been a bit of reporting on ``pig butchering'' scams (confidence scams typically invovling cryptocurrencies) and it turns out that many of the scammers on the other end are themselves the victims of trafficking or extortion and are working under fear of retaliation from various criminal organizations. Should we be concerned about these people's welfare in our studies? 
+        \end{itemize}
         \item What were the key findings?
+        \begin{itemize}
+            \item 4 out of 5 relied on phishing. Is this in line with what we saw in the ransomware reports? Yes---the majority of exploits start with some kind of social engineering (and FWIW, the malware attack failed!)
+            \item Technical exploits exist, and systems are often unpatched, and may be more reliable than social engineering. So why did most attackers still choose to use social engineering? (Answers: It's cheap; don't need technical sophistication; don't need to ``burn'' 0-days on low-value targets; Some services (Gmail, Windows) already do a fair amount of virus scanning/spam detection/automatic patching)
+            \item Keep in mind---these are probably not the more elite of the elite crew of hackers here. 
+            \item Most efforts started with sending emails.
+            \item What were some of the lures? (personal associates, banks, government, Google). Google makes sense since the attackers were after the Gmail account (same login info). 
+            \item What did the attackers do to trick people? (Fake URLS a la www.googlesupporthelpdesk.com or even phony 2FA flow!)
+        \end{itemize}
         \begin{itemize}
             \item 
         \end{itemize}
