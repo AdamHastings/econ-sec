@@ -29,7 +29,26 @@
 
 
 \begin{itemize}
-    \item Let's revisit the key points from this paper. 
+    \item What is {\it targeted } attacking? 
+    \begin{itemize}
+        \item How is it different from untargeted attacking?
+        \item How common is it? I don't know.
+        \item Which one is more profitable? I don't know.
+    \end{itemize}
+    \item What do we think about the fact that email is more or less considered the root of trust for most online activities?
+    \begin{itemize}
+        \item Who benefits from this arrangement?
+        \item What are the risks?
+        \item What are the alternatives? (Hardware-backed tokens? What are the downsides here? The costs?)
+        \item Is it surprising that email compromise is a significant target for attackers? Probably not. 
+    \end{itemize}
+\end{itemize}
+
+\subsection{Setup}
+
+Let's revisit the key points from this paper. 
+
+
     \begin{itemize}
         \item What is a honeypot?
         \item Setup: Creating fake personas
@@ -66,65 +85,129 @@
             \item Ethics of funding criminal enterprises? What do we think?
             \item What about the ethics of harming criminals? If their actions are identifiable. Recently there's been a bit of reporting on ``pig butchering'' scams (confidence scams typically invovling cryptocurrencies) and it turns out that many of the scammers on the other end are themselves the victims of trafficking or extortion and are working under fear of retaliation from various criminal organizations. Should we be concerned about these people's welfare in our studies? 
         \end{itemize}
-        \item What were the key findings?
-        \begin{itemize}
-            \item 4 out of 5 relied on phishing. Is this in line with what we saw in the ransomware reports? Yes---the majority of exploits start with some kind of social engineering (and FWIW, the malware attack failed!)
+    \end{itemize}
+
+\subsection{Hack for Hire Playbook}
+    
+    What were the key findings?
+    \begin{itemize}
+        \item No brute force efforts, attempts to contact directly by Facebook, attempts to communicate with affiliated personas.
+        \item 4 out of 5 relied on phishing. Is this in line with what we saw in the ransomware reports? Yes---the majority of exploits start with some kind of social engineering (and FWIW, the malware attack failed!)
+        \begin{itemize}    
             \item Technical exploits exist, and systems are often unpatched, and may be more reliable than social engineering. So why did most attackers still choose to use social engineering? (Answers: It's cheap; don't need technical sophistication; don't need to ``burn'' 0-days on low-value targets; Some services (Gmail, Windows) already do a fair amount of virus scanning/spam detection/automatic patching)
             \item Keep in mind---these are probably not the more elite of the elite crew of hackers here. 
             \item Most efforts started with sending emails.
             \item What were some of the lures? (personal associates, banks, government, Google). Google makes sense since the attackers were after the Gmail account (same login info). 
-            \item What did the attackers do to trick people? (Fake URLS a la www.googlesupporthelpdesk.com or even phony 2FA flow!)
+            \item What did the attackers do to trick people? (Fake URLs e.g. www.googlesupporthelpdesk.com)
+            \item Easily bypassed 2FA by phishing for codes.
+            \item What's the name for this style of attack? Man-in-the-middle (or monkey-in-the-middle if we'd like to be gender inclusive. Or given Alice/Bob/Eve/Mallory, should be Woman in the middle IMO!)
+            \item Can this be defended against using technology? Yes, FIDO2 authenticators sign a challenge given by requesting protocol and encrypt it using TLS and the signing key is authenticated by a certificate. So it defeats this man-in-the-middle attack. But they cost \$40.
         \end{itemize}
+        \item Malware attempt was hilariously low-effort (sent a RAR hoping victim would click on it. Didn't work and the attackers gave up).
+    \end{itemize}
+
+\subsection{Real Victims \& Market Activity}
+
+    \begin{itemize}
+        \item Google was able to analyze attack patterns (details are lacking)
         \begin{itemize}
-            \item 
+            \item Services A, B, and E targeted 372 attacks during a seven-month period (lower bound, unsuccessful attacks unknown). Which averages out to ~4 a week per service. 
+            \item Let's ignore the overhead involved in hacking, since they are probably pretty small anyway.
+            \item Recall that the average cost is ~\$200/compromise. I.e. attackers are making \$800/week
+            \item Some quick internet searching found me that the median weekly wage in Russia is about \$300/week
+            \item And the median monthly wages in China is about \$100.
+            \item For reference, the median weekly wage in the United States is about \$1000/week. 
+            \item You often hear about Russian or Chinese hackers, and I think this is why. It financially does not make sense to be a hacker (or at least this type of hacker) in the United States. It pays less than the median wage, when you could be making much more working in tech! 
+            \item But if you're in a poorer country, you could be making several times the national weekly wage by being a scammer. (Again there are overheads, but probably small? What might they be?)
+            \item What are the solutions? We can't pressure their governments to go after them (safe harbor in some cases!) Should we give them all work visas?
         \end{itemize}
+        \item Can we use market prices as an estimation of a product or service's security posture?
+        \begin{itemize}
+            \item E.g. it costs four times as much to attack a Gmail account than a Mail.ru account. Is Gmail four times as secure? Why or why not?
+            \item Recall last class when we talked about the cyber insurance underwriting process. From what we know, it seems like cyber insurers are hilariously bad at estimating their customers' security posture (recall very basic questionnaires?). Whereas black market prices may in fact represent the true cost of a breach. What do we think?
+        \end{itemize}
+        \item The authors don't actually name the platforms or services they used to connect with hackers. Presumably to make it harder for people to find. What do we think? Should they have named where they actually found the hackers? My understanding is that most of this happens on the dark web (TOR) or maybe these days over private e2e messaging services like Telegram (but I don't really know).
     \end{itemize}
-    \item What do we think about the fact that email is more or less considered the root of trust for most online activities?
-    \begin{itemize}
-        \item Who benefits from this arrangement?
-        \item What are the risks?
-        \item What are the alternatives? (Hardware-backed tokens? What are the downsides here? The costs?)
-        \item Is it surprising that email compromise is a significant target for attackers? Probably not. 
-    \end{itemize}
-    \item What is {\it targeted } attacking? 
-    \begin{itemize}
-        \item How is it different from untargeted attacking?
-        \item How common is it?
-        \item Which one is more profitable?
-    \end{itemize}
-    \item What are the economics of targeted attacking?
-    \begin{itemize}
-        \item 
-    \end{itemize}
-    \item What can we learn from this style of research?
-    \begin{itemize}
-        \item What are the ethical concerns here?
-        \item Could this data have been collected any other way?
-    \end{itemize}
-    \item Let's talk about the economics elements of this work.
+
+
+\subsection{Discussion}
+
+    Let's talk about the economics implications of this work.
     \begin{itemize}
         \item The authors found that attackers want to double their pay if the account hijack requires a 2FA bypass. Can we use this as a proxy for the ``cost'' that 2FA imposes on an attacker?
         \item Why or why not?
         \item If so, is this a reasonable method of doing cost-benefit analysis of security defenses? Can we rank the efficiency of defenses based on the ratio of (cost) : (cost to compromise)?
         \item If so, can we do this for all types of defenses? Why or why not? 
         \item If so, who should pay for this type of research? Academia? Government? Industry? What if the attackers find out they've been honeypotted?
+        \item What has changed since 2019, when this paper was published?
+        \begin{itemize}
+            \item Surprisingly little, it seems. I sort of remember SMS-2FA starting around ~2016 maybe. And this still seems to be the status quo, eight years later. 
+            \item I wouldn't be surprised if these results replicated today. 
+            \item The authors remarked that they thought this was a fledgling, immature market with poor customer service. How does that compare to what we read about with the Conti ransomware group? They had health insurance!
+            \item By comparison, the authors remarked that markets for CAPTCHA solving, Twitter spam, and other activities had better customer service and more established pricing, which may indicate a more mature market, and that account compromise may be a ``side hustle''. After all, they were only compromising four account a week on average. 
+            \item What were the trends on business email compromise? Anyone remember? It's increased from 2019 (but actually decreased from last year! Just checked the new IC3 report).
+        \end{itemize}
     \end{itemize}
-    \item If the average cost to compromise is \$300, what are the implications?
+
+
+\section{ContiLeaks}
+
+\subsection{Part I: Evasion} 
+
+\begin{itemize}
+    \item Who's the author? (Brian Krebs, a longtime cybercrime reporter and investigator. Not a technical backgroud, but still a widely-read resource in the field)
+    \item What is a botnet?
+    \item Who was/is Conti? Russian cybercrime group. Focused on ransomware. \$100M in annual revenue with 100 salaried employees. That's \$1M an employee!!! (For reference---Fortune \#500 has revenue of \$7B. Only off by one order of magnitude.)
+    \item Interesting mix of technology and geopolitics. Conti said they were not aligned with any government and condemn the war, but will ``use our resources to strike back if the well being and safety of peaceful citizens will be a stake due to American cyber aggression''.
+    \item We often hear about hackers from Russia, China, Iran, North Korea. What about the US? Is Conti's complaint here valid? If this were a class on cybersecurity economics in Russia, would we be talking about American hackers?
     \begin{itemize}
-        \item The economics of the cost of this service mean that there must be a significant reward for doing so.
-        \item This means that either the financial reward must be big (maybe it's the email of a high-ranking business executive, and compromising their email can enable lucrative BEC scams)
-        \item OR you are not motivated by money. Maybe you are a spy agency trying to gain intelligence on someone.
+        \item I don't know. The economics of it don't really make sense (see above). But we know the US Government is a cyber superpower and snoops around in other countries. Do they target civilians? I don't know.
     \end{itemize}
-    \item What can be done to reduce this type of crime?
+    \item Where did this data come from?
     \begin{itemize}
-        \item As mentioned earlier, increase the adoption of authenticator devices. 
+        \item One researcher said that the ``the person who leaked the information is not a former Conti affiliate — as many on Twitter have assumed. Rather, he said, the leaker is a Ukrainian security researcher who has chosen to stay in his country and fight.''
+        \item ``The person releasing this is a Ukrainian and a patriot,” Holden said. “He’s seeing that Conti is supporting Russia in its invasion of Ukraine, and this is his way to stop them in his mind at least.''
+        \item Leaks are from a six-month period in 2020
     \end{itemize}
-    \item What has changed since 2019, when this paper was published?
+    \item Some of the things I found interesting:
     \begin{itemize}
-        \item Surprisingly little, it seems. I sort of remember SMS-2FA starting around ~2016 maybe. And this still seems to be the status quo, eight years later. 
-        \item I wouldn't be surprised if these results replicated today. 
+        \item ``The one who made this garbage did it very well'' (on NSA interruption of Trickbot botnet). US is a cyber superpower! Clearly know how to reverse attackers' code/high level of technical sophistication. Had clever way of taking down hacked botnets. 
+        \item What do we think about this? Tax-funded disruption efforts. Is this cost effective? Probably!! Any other concerns?
+        \item They targeted USA healthcare services because the USA interferes in their actions. Thoughts?
+        \item Hired legal defense for an arrested worker Alla Witte
+        \item Arrest of 14 people working for REvil. Krebs cites experts ``believe the crackdown was part of a cynical ploy to assuage (or distract)'' before invasion of Ukraine. So...safe harbor or not? Challenges prior assumptions.
     \end{itemize}
 \end{itemize}
 
+\subsection{Part II: The Office}
+
+\begin{itemize}
+    \item Conti ran like a small business---budgets, schedules, HR department!!
+    \item Departments---Coders, testers, Administrators, Reverse Engineers, Pen Testers/Hackers
+    \item Ads on Russian-language cybercrime forums --- \$1--2k salary (monthly---not specified) = \$12k--\$24k annually, internally believed \$5-10k salary (monthly) (up to \$120k annually). Recall that Russian median wages are about \$16k. An OK job. But most of the money going to the top bosses (\$180M revenue!!)
+    \item Employees complained about boring and repetitive work, and not being able to take time off
+    \item Despite the organization, still seemed quite disorganized (can't keep track of alive bots, etc.)
+\end{itemize}
+
+\subsection{Part III: Weaponry}
+
+
+\begin{itemize}
+    \item Paid for EDR antivirus!
+    \item Heavily budgeted for OSINT tools
+    \item Set ransom payments to be a percentage of victim's annual revenues!!!! [CITE IN PAPER]
+    \item How can an illegitimate business buy a license to Cobalt Strike? Have another legitimate company purchase it on their behalf
+    \item Also invested in security research---finding and exploiting vulnerabilities (reversing Patch Tuesday patches?)
+    \item Pros and cons of attacking insured companies (more likely to pay out, less likely to pay huge ransoms)
+    \item ``Double extortion'' --- pay to decrypt, pay to keep data secret. Attackers need to build up a reputation of keeping their word!
+\end{itemize}
+
+\subsection{Part IV: Cryptocrime}
+
+\begin{itemize}
+    \item (Idea: Distract cryptohackers by ``heavenbanning'' them)
+    \item There was interest in smart contracts. What's a smart contract?
+    \item Interest in crypto market manipulation
+\end{itemize}
 
 \end{document}
