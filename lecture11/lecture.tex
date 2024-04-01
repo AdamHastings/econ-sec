@@ -1,4 +1,6 @@
 \documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{placeins}
@@ -7,6 +9,8 @@
 \usepackage{amsmath}
 \usepackage[normalem]{ulem}
 \usepackage[table,xcdraw]{xcolor}
+\usepackage{datetime}
+\settimeformat{hhmmsstime}
 
 \graphicspath{{figures/}}
 
@@ -23,6 +27,218 @@
 \begin{document}
 \maketitle
 
+\section{Game Theory Recap}
 
+\subsection{Backwards Induction}
+
+% Cake cutting example?
+
+
+
+\section{Control Systems}
+
+What does this look like? (A system diagram! Remember HW1?)
+
+\section{Mechanism Design}
+
+\subsection{The Divide-and-Choose Mechanism}
+
+\begin{itemize}
+    \item The paper begins with a description of the divide-and-choose mechanism. Can someone tell me what this is? (A mechanism for creating a fair split )
+    \item We learned game theory last week. Let's write this out as a game:
+    \begin{itemize}
+        \item Players: $\mathcal{I} = \{1,2\}$
+        \item Actions: 
+    \end{itemize}
+    \item Does this work for more than two players? What if we wanted to split a cake three ways?
+    \begin{itemize}
+        \item I could cut a cake into three pieces. What does this look like as a game?
+        \begin{itemize}
+            \item Players: $\mathcal{I} = \{1,2,3\}$
+            \item Actions: $\mathcal{A} = \{a_1 = \text{Choose piece 1}, a_2 = {Choose piece 2}, a_3 = {Choose piece 3}$
+            \item Utility: $u_i = \text{size}(a)$
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Auctions}
+
+Auctions are a classic area of study in mechanism design.
+Auctions are one of those things that may seem so simple you don't need to study them at all, but it turns out that there are many different types of auctions and many reasons why you might choose form over another.
+
+\subsection{Simple Auctions}
+
+Let's start with an open-air auction at, say, and art gallery:
+\begin{itemize}
+    \item Bidders will place bids that are monotonically increasing. There is usually minimum ``bid increment'' of about 10\%, so that if the previous bid is \$100, you have to bid at least \$110, not \$100.01. 
+    \item The bidding repeats until a highest bid is placed. The person who places the highest bid 
+\end{itemize}
+
+\subsection{Mathematical Definition}
+
+The definition of a mechanism is similar to that of a game:
+
+\begin{itemize}
+    \item A set of players $\mathcal{I}, |\mathcal{I}| = n \in \mathbb{N}$
+    \item A set of outcomes $\mathcal{O} = \{o_1, o_2, o_3...o_k\}$
+    \item Each agent $i \in \mathcal{I}$ has private information $\theta_i \in \Theta_i$
+    \item Each agent $i$ has a utility function $u_i : \mathcal{O} \times \Theta_i \rightarrow \mathbb{R}$
+    \item Utility is assumed to be of the quasi-linear form $$u_i(o, \theta_i) = v_i(o, \theta_i) - p_i(\theta_i)$$ where $v_i : \mathcal{O} \times \Theta_i \rightarrow \mathbb{R}_{\geq 0}$ represents an arbitrary valuation function and $p_i \mapsto \mathbb{R}$ 
+    \begin{itemize}
+        \item If $o \in \mathcal{O}$ is an outcome, then $p_i$ can be thought of as the cost (or price) imposed upon player $i$ for that particular outcome $o$. 
+    \end{itemize}
+    \item The social welfare $W$ can be defined as the collective summation of all agents valuations, that is \begin{equation}W(o, \theta) = \sum_{i \in \mathcal{I}} v_i(o, \theta)\end{equation}
+\end{itemize}
+
+What we've talked about previously in the class is that the state of security is often an economic failure, where we are in a socially suboptimal state because of things like misaligned incentives, prisoners dilemmas, and tragedies of the commons. 
+So if you're a social planner and you want to maximize for everyone, your goals is to find the outcome $o$ that maximizes 
+$$ \max_{o \in \mathcal{O}}~SW(o, \theta)$$.
+
+{\it Question: If you're the social planner, why are you trying to find the $o$ that maximizes social welfare? Why not try to find the $\theta$ as well?} Answer: Because you can't control people's private information and can't control their internal preferences!
+
+This leads to a somewhat obvious problem though: If we are the social planner and are trying to maximize welfare, you are relying on the players' self-reported $\theta_i$ to find the $o$ that maximizes welfare. A self-interested non-cooperative player may lie about their $\theta_i$ to try to increase their own personal welfare. 
+
+For example, consider the naive cake cutting protocol. Player X may 
+
+
+
+\section{Workshop Report}
+
+\subsection{Formula 1 and "dirty air"}
+
+\begin{itemize}
+    \item The workshop report mentioned something about Formula 1 racing. {\it Anyone remember the name of the ``problem''}
+    \item Last class, Gabe mentioned how game theory is used in international relations, but not strictly in a mathematical or quantitative way. 
+    \begin{itemize}
+        \item Which is still a perfectly valid application, in my opinion. 
+    \end{itemize}
+    \item This workshop report is maybe an analogue of that idea but applied to mechanism design and security.
+    \item As we've just seen, mechanism design can be a purely mathematical pursuit.
+    \item Or we can ditch the math and just apply the themes. 
+\end{itemize}
+
+\section{Braess's Paradox}
+
+{\it Ask: What do we think---do we need a social planner (i.e. government) to come in and solve all our problems?}
+
+I want to point out that if you don't fully understand the system you're modifying, you can very easily make things worse. 
+
+Imagine there are two town, separated by a mountain range. There is one highway to the north, and one highway to the south. 
+Connecting the highways to the towns are smaller country roads.  
+The highways take 10 minutes to drive, and the country roads take 4 minutes, so no matter on which route you take, it takes 14 minutes to drive from Town A to Town B.
+
+Suppose 1200 cars drive from Town A to Town B every hour. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=5in]{braess_1.png}
+    \caption{Before the tunnel, it takes 1200 cars 14 minutes to travel from Town A to Town B}
+\end{figure}
+
+% An urban planner looks at this and says, {\it why don't we build a tunnel through the mountains, connecting the country roads? It will take 2 minutes to drive through the tunnel, therefore we'll shorten the drive from 15 minutes to 12!}
+
+Let's look at this as a game from the persepctive of the players. 
+
+\begin{itemize}
+    \item {\it What is the number of players?} $\mathcal{I} = \{1,2,\ldots 1200\}$.
+    \item {\it What is the set of actions available to the players?} Take the north route or take the south route: $a = \{\text{North}, \text{South}\}$.
+    \item {\it How much utility do players get from either strategy?} In both cases the players are trying to minimize negative utility (lost travel time). We can write this as $u(R_N) = u(R_S) = -14{:}00$.
+    \begin{itemize}
+        \item {\it Why is the utility negative?} Negative utility represents a bad thing. In this case, the bad thing is travel time. So the longer the drive time is, the greater the negative utility is, and the worse it is.
+    \end{itemize}
+\end{itemize}
+
+
+{\it So what is the strategy?} The strategy is to maximize utility, i.e. choose $\operatorname*{argmax}_a (u(a))$.
+
+Since the utility of both is equal, we can assume that 50\% of players will choose the north route and that 50\% of players take the south route. In terms of game theory, we call this a {\it mixed strategy} since strategies are probabilistic in nature. Just in case you end up reading or working more on game theory later on and you see the term {\it mixed strategy}, that's all it means.
+
+
+{\it Let's say you're an urban planner, and you just been hired by the Inter-Town Transit Authority to reduce the travel time between the two towns. What might you do to reduce travel times?} You could dig a tunnel through the mountains.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=5in]{braess_2.png}
+    \caption{A naive urban planner might expect the tunnel to reduce the drive time to 10 minutes}
+\end{figure}
+
+{\it Does anyone see a problem here?} (If a student notices: We're going to incentivize all the traffic to go on the small country roads)
+
+Let's suppose that you, the urban planner, did a little bit more research on the roads before digging the tunnel, and you found that the country roads have a limited capacity. Suppose they can only allow 12 cars/minute. 
+
+Recall that there are 1200 cars per hour. Since there are two routes, and they're identical, we can assume that every hour 600 cars take the north route and 600 cars take the south route per hour, or 10 cars per minute. 
+
+$$ \frac{600~\text{cars}}{\text{hour}} = \frac{10~\text{cars}}{\text{minute}}$$
+
+Can our country roads handle this capacity? Yes. 
+In other words, the travel time is unconstrained by the number of cars.
+We can write the travel time of the country roads as
+
+$$ t = \max(4, 4n/12)$$
+where $n$ is the number of cars per minute.
+
+TODO draw graph and explain!!
+
+{\it Any questions?}
+
+What happens if {\it every} car takes the tunnel? I.e. instead of 10 cars per minute, the country roads now have 20 cars per minute? The travel time for each stretch of the country road becomes
+
+$$ t = \max(4, 4(20)/12) = 6{:}40~\text{minutes}$$ 
+
+What happens if we dig the tunnel? In the best case the travel time will be 10 minutes, if there were no other cars on the road. But if everybody takes the tunnel, the travel time will be $6{:}40 + 6{:}40  + 2{:}00 = 15{:}20~\text{minutes}$. This isn't any faster than the old route, which was 14 minutes.
+
+But what is the time of the old route now? $6{:}40 + 10{:}00 = 16{:}40$. Taking the highway is still the slowest option, but it too is slower than before!
+
+Let's look at the game.
+
+\begin{itemize}
+    \item $\mathcal{I} = \{1,2,\ldots 1200\}$
+    \item $a = \{\text{North},\text{South},\text{Tunnel}\}$
+    \item $u(R_N) = -16{:}40,~~u(R_S) = -16{:}40,~~u(R_T) = -15{:}20$
+\end{itemize}
+
+Recall that the strategy is to maximize utility. The highest utility is achieved by taking the tunnel.
+But note that this is no longer a mixed strategy. This is a dominant strategy! Every player is going to take the tunnel.
+
+{\it Can someone tell me the plain-English interpretation of what I just said?} We built a tunnel. The tunnel incentivized everybody to take the tunnel. But because of the road capacity issues, this route ended up being slower than the old routes around the mountains. But the tragedy is that the old routes now also became slower as well! You can't get from Town A to Town B in 14 minutes anymore.  
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=5in]{braess_3.png}
+    \caption{A naive urban planner might expect the tunnel to reduce the drive time to 12 minutess}
+\end{figure}
+
+Note that the old roads still exist! Everyone could cooperate and have 50\% take the north road and 50\% take the south road. But that's really hard to enforce! 
+Because then what happens? 
+That tunnel is still there, and is just too tempting---If you're the only one taking the tunnel, your travel time is 10 minutes! 
+
+\subsubsection{Price of Anarchy}
+
+In economics, game theory, and mechanism design, there is a concept called the {\it POA}, or {\it Price of Anarchy}.
+This is a quantitative measure of the overhead imposed by agents choosing selfish behavior, and is defined as the ratio between the Nash equilibrium outcomem and the socially optimal outcome. 
+In this game, the socially optimal outcome was -14 minutes while the equilibrium outcome was -15 minutes 20 seconds. 
+{\it (Note that the socially optimal outcome was -14 minutes even after the tunnel is built)}.
+So we have
+$$ PoA = \frac{15{:}20}{14{:}00} \approx 1.095 = 9.5\%$$
+
+In other words, the system is 9.5\% worse off because the rules of the game allow for selfish behavior which comes at the expense of the other drivers. 
+
+As a fun fact, the term {\it Price of Anarchy} comes from a 1999 paper ``Worst-case equilibria'' by  Elias Koutsoupias and our very own Christos Papadimitriou (although the concept of measuring the inefficiency of selfish behaviour predates this paper by quite a bit. But within the algorithmic game theory and algorithmic mechanism design, this is a very commonly-used term.)
+
+\subsubsection{Braess' Paradox}
+
+This is called Braess' Paradox. You may have also seen this with two springs and a weight. {\it(Has anyone seen this before?)} It's a physical analog to this situtation with roads and tunnels. 
+
+What are the takeaways from Braess's Paradox?
+\begin{itemize}
+    \item If we're going to meddle with systems, we have to be very confident that we fully understand the system we are meddling with. Otherwise we can make things much worse. I suppose this is a mathematical example of a perverse incentive. 
+    \item {\it Any others}?
+    \item The takeaway that I've led you to thus far is that a misguided planner can make things worse. Equivalently, a smart planner can make things better by doing counterintuitive roads. Imagine that you're the city planner hired to improve travel times between Town A and Town B, {\it and the tunnel already existed}. How do you think the public would react if your solution is to {\it close the tunnel}?
+    \begin{itemize}
+        \item Sometimes you need the political will and determination to do things that are beneficial but unpopular.
+        \item {\it In general though, how do you know if you're the smart planner who is going to make things better, or the naive planner who is going to make things worse??} I don't know. Would love some answers to this question! 
+    \end{itemize}
+\end{itemize}
 
 \end{document}
