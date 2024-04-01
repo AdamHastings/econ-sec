@@ -38,11 +38,10 @@ We are going to touch on Mechanism Design, cover some of the well-known and cele
 % Cake cutting example?
 
 
-\section{Control Systems}
-
-What does this look like? (A system diagram! Remember HW1?)
-
 \section{Mechanism Design}
+
+I'm going to lecture a bit on mechanism design and build up the paradigm and the motivation.
+Later we can get back into the actual paper (which is on control systems).
 
 \subsection{The Divide-and-Choose Mechanism}
 
@@ -389,7 +388,65 @@ Very little! I think there is massive potential in applying mechanism design to 
     \end{itemize}
 \end{itemize}
 
+\section{Control Systems}
+
+The first paper I had you read was a tutorial for mechanism design, but was published in an academic magazine for control engineers. Why did I have you read this one?
+\begin{enumerate}
+    \item Believe it or not, I think this is one of the more readable and gentle introductions to the topic.
+    \item The focus was on control engineering but they were kind enough to include some examples of mechanism design applied to security games.
+    \item Control engineering is not something that most computer scientists are exposed to and is not something that most people in security are even aware of but in my opinion it is a useful toolbox for approaching systems problems (of which security is one).
+\end{enumerate}
+
+\subsection{What is control engineering?}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=5in]{controlsystems.jpeg}
+    \caption{Example of a control systems problem (source: https://www.tutorialspoint.com/control\_systems/images/reduction\_diagram.jpg)}
+\end{figure}
+
+This is, in many ways, very similar to mechanism design, and so I wanted to expose you to it so that it can sit in the back of your mind when you think about security problems. 
+Control systems engineering is typically going to be found in electrical and mechanical engineering, while mechanism design is going to be found in economics and computer science departments, but they have many of the same goals and are worth knowing about:
+
+Similarities:
+\begin{itemize}
+    \item Shared goal of mathematically describing a complex system with feedback
+    \item Shared goal of designing ways to interact with and modify the system in a way that achieves some desireable outcome.
+\end{itemize}
+
+Differences:
+\begin{itemize}
+    \item Control systems engineering lacks a notion of agents and in particular, strategies.
+    \item Continuing this theme: Control systems engineering is primarily used when dealing with the physical world, where problems like ``what if the game players lie to each other or to the rule maker'' don't come up. 
+\end{itemize}
+
+\subsection{Control systems engineering and systems thinking}
+
+What does this look like? (A system diagram! Remember HW1?)
+
+{\it Ask: Why don't security practitioners or policymakers apply control systems theory to security problems?} Something to think about. Some possible explanations:
+\begin{itemize}
+    \item Is it because the ``signals'' in security are too noisy? (Recall: there is a general lack of information in security, because there are incentives for companies to not be open with others about the details of breaches and attacks).
+    \begin{itemize}
+        \item Possibly. But control systems engineering is speficially all about how to maintain stability in a system that is subject to random and unpredictable noise and perturbations.
+        \item Counterpoint: There are mathematical notions of stability in control systems engineering, i.e. your system can remain in this stabilized position if the size of the perturbations are bounded by some amount; maybe given the strength of the signals we are working with and the scale of attacks and the {\it adversarial nature}, it is not feasible to apply control systems engineering principles to security. 
+    \end{itemize}
+    \item Perhaps it's not just the signals that are the problem. Perhaps due to the lack of information it's the functions between the signals that are unknown.
+    \begin{itemize}
+        \item Example: If you're designing the shock system on an automobile, you know that perturbations to your system are due to variations in the road (things like potholes) and are going to be in one direction only (up and down). Your modeling is going to account for the functions you know of because you're very confident that these are the functions that are going to impact your real-world system, and you're probably going to be right about it.  Your shock system is not meant to dampen forces from a lateral blow. But in security, you don't know which direction the blows are going to come from (omnidirectional and multidimensional). Thoughts? 
+    \end{itemize}
+\end{itemize}
+
+\subsection{Mechanism Design for Security Games}
 
 \section{Homework}
+
+I'm going to release the homework shortly.
+
+I want you to revisit your systems diagram from Homework 1 and, with the information that you have acquired from this class, try to take a mechanism design and policy approach towards improving the outcomes of your system. 
+
+{\bf If you were not present for the first week of class and didn't submit Homework 1 as a result, this is your chance to go do it (it's pretty short) and submit it penalty-free}.
+
+Still working on details but I'm going to have you analyze the effects of various interventions onto your system. 
 
 \end{document}
