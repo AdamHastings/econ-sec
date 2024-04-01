@@ -27,12 +27,15 @@
 \begin{document}
 \maketitle
 
+\section{Introduction}
+
+We are going to touch on Mechanism Design, cover some of the well-known and celebrated results from this field, and then discuss how we can apply mechanism design to problems facing security.
+
 \section{Game Theory Recap}
 
 \subsection{Backwards Induction}
 
 % Cake cutting example?
-
 
 
 \section{Control Systems}
@@ -63,16 +66,79 @@ What does this look like? (A system diagram! Remember HW1?)
 
 \subsection{Auctions}
 
+{\it Note: Much of this section on auctions is inspired by and borrowed from Tim Roughgarden's class notes on Algorithmic Mechanism Design---a class here at Columbia! Go take it if this topic interests you.}
+
 Auctions are a classic area of study in mechanism design.
 Auctions are one of those things that may seem so simple you don't need to study them at all, but it turns out that there are many different types of auctions and many reasons why you might choose form over another.
 
-\subsection{Simple Auctions}
+We're going to go over auctions first to help us develop a taste for what mechanism design and what its uses are before we try to tackle the mathematical definition of it. 
+
+\subsection{Simple Auctions (English auctions or open outcry auctions)}
 
 Let's start with an open-air auction at, say, and art gallery:
 \begin{itemize}
     \item Bidders will place bids that are monotonically increasing. There is usually minimum ``bid increment'' of about 10\%, so that if the previous bid is \$100, you have to bid at least \$110, not \$100.01. 
-    \item The bidding repeats until a highest bid is placed. The person who places the highest bid 
+    \item The bidding repeats until a highest bid is placed. The person who places the highest bid pays the value of the bid and receives the item.
 \end{itemize}
+
+{\it From a computability perspective: What is the complexity of this algorithm?} It is $O(n)$, where $n$ is the number of bids\footnote{Technically $O(n)$ transactions, but then computing the maximum bid is $O(1)$}. If you're in an auction house, maybe that is tolerable, but what if you're in a situation where time is critical? 
+
+{\it Ask: Does anyone know of any real-world situations where the runtime of an auction is of critical importance?}
+Online advertisements. Ad personalization is a huge part of the online economy, and pays for a large portion of the tech economy. But did anyone know that it's all based on auctions? Google or Facebook provide your data (age, sex, search history, etc.) and then advertisers place bids based on your data to determine which advertisement you see. This all happens on the order of milliseconds. This can't rely on a $O(n)$ process if you consider the relative slowness of network connections. It relies on a $O(1)$ auction\footnote{Technically you still have to find the highest bid, which is $O(n)$. But the number of sequential transactions between auction players and auction house is now $O(1)$}.
+
+{\it What are some of the other drawbacks of this auction design?} It is very public. Even if the auction is done anonymously, you are revealing to the market what your valuation of goods is; if the same good or type of good (like ads) is auctioned repeatedly, this public information can be used against you. 
+
+{\it Ask: If you're an auction designer, how can you design an auction that doesn't require a back-and-forth $O(n)$ algorithm? And perhaps one that isn't quite so public?} (Answer: Students will probably suggest a first-price sealed auction, a.k.a. a ``silent auction'')
+
+
+\subsection{First-price sealed bids}
+
+This is another type of auction commonly seen in fundraising events: People interested in the good write their bids on a piece of paper, seal it in an envelope, and drop it in a basket; the person who writes the highest bid pays the amount on the bid and receives the good.
+
+What are the available strategies? 
+\begin{enumerate}
+    \item You can bid the amount of how much you value the auctioned good. E.g. if you value the good at \$100, you could place your bid at \$100. {\it Is this a rational strategy?}
+    \begin{itemize}
+        \item No. If your valuation is \$100, then you are indifferent between having \$100 or having the good. If you were to win the auction with this bid, your net utility would remained unchanged.
+    \end{itemize}
+    \item You can (and should) bid less than your valuation of the good. {\it Ask: what's the challenge here?}
+    \begin{itemize}
+        \item It's difficult to compute how much less than your valuation you should bid, because this relies on knowing information about the valuations of all the bidders you're bidding against. You're forced to do a Bayesian analysis of the game and---based on your estimates of the other players---you ideal strategy is to bid the smallest amount possible that you think will still win you the auction.
+        \item An extension of this is that it's likely that, in the end, the auctioned good goes to a bidder whose valuation was {\it not} the highest out of the bidders, if they happened to do their calculations differently. This is an economic inefficiency! In an ideal auction, the good would go to the person who has the highest valuation of the good.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Vickrey auctions and Generalized Second Price auctions}
+
+In terms of game theory an mechanism design, you are forced to engage in strategic bidding. {\it Ask: Imagine you are auction holder, like Google or Ebay or Sotheby's. Does anyone know of an auction ``game'' you can design that eliminates the problem of strategic bidding?}
+
+A commonly-used auction design---one that has been used for centuries---is the {\it sealed-bid second price auction}, also known as the {\it Vickrey auction}\footnote{named after William Vickrey, professor of economics here at Columbia who was the first to describe the mathematical properties of the sealed-bid second-price auction. For this and other work on incentives under asymmetric information, Vickrey was the co-recipient of the 1996 Nobel Memorial Prize in Economics. Fun fact---William Vickrey is also regarded by many to be ``the father of congestion pricing'', which, if you've been following the news, is a politically hot topic as Governer Hochul has recently approved congestion pricing for New York City south of 60th st. }
+In a Vickrey auction, everyone submits one bid ($O(1)$ transactions) the price goes to the person who submits the highest bid, but the amount they pay is the price of the {\it second-highest bid}.
+
+{\it How does this change the stragies of the players?} I'm not going to go through the proof---but there is a proof---that this auction design has a dominant strategy ({\it Someone remind me---what's a dominant strategy?} One that is optimal regardless of all the other players' actions). And the dominant strategy, believe it or not, is to simply bid your true valuation! 
+
+The benefits over the sealed-bid first-price auction:
+\begin{itemize}
+    \item If you are a bidder, your strategy is very simple! Just bid your true valuation. You don't need to estimate other player's strategies or valuations
+    \item It is incentive compatible. In fact, because there is a dominant strategy, this ``game'' has a special name in game theory: It is a {\bf dominant strategy incentive compatible game}, or {\bf DSIC} game. 
+    \item The auctioned good always goes to the bidder with the highest valuation.
+    \item If you're the highest bidder, you certainly walk away happy---you end up paying less than your valuation! You end up with positive surplus utility. 
+    \item Computationally efficient (1 transaction from each bidder, finding two highest bids is $O(n)$).
+    \item Privacy-preserving (same with first-price sealed bid auction).
+\end{itemize}
+
+This is not just academic hot air---these are used in the real world:
+\begin{itemize}
+    \item Facebook used a Vickrey-Clarke-Groves auction, which is a generalization of the Vickrey auction that extends an auction of one good into an auction of multiple goods.  
+    \item Google used a Generalized Second Price auction (similar to a Vickrey auction with a few modifications)
+    \item I read somewhere that due to ``trust issues'' among advertisers there has been a switch to different types of auctions (source: https://www.cmu.edu/tepper/news/stories/2020/april/display-advertisting-research-ravi.html) but I haven't really been able to corroborate this (I found conflicting information when I looked).
+\end{itemize}
+
+Pretty cool, right? 
+
+Do you understand why mechanism design is called ``reverse game theory?'' The ``game'' of mechanism design is {\it designing a game} (like an auction) whose rules lead strategic players to choose actions that improve overall welfare and utility. 
+
+{\it Any questions?}
 
 \subsection{Mathematical Definition}
 
@@ -100,7 +166,17 @@ This leads to a somewhat obvious problem though: If we are the social planner an
 
 For example, consider the naive cake cutting protocol. Player X may 
 
+\section{Mechanism Design in Behavioral Economics}
 
+Recall my paper ``How much is performance worth to users?'', where I measured users' willingness to accept performance losses on their personal devices. 
+
+TODO discussion on incentive compatibility. 
+
+\subsection{Single Discrete Binary Choice Mechanism}
+
+\subsection{Best-Worst Scaling}
+
+\subsection{}
 
 \section{Workshop Report}
 
@@ -231,11 +307,21 @@ In the prisoner's dilemma, we had a (-1,-1) payoff for (cooperate, cooperate) an
 
 As a fun fact, the term {\it Price of Anarchy} comes from a 1999 paper ``Worst-case equilibria'' by  Elias Koutsoupias and our very own Christos Papadimitriou (although the concept of measuring the inefficiency of selfish behaviour predates this paper by quite a bit. But within the algorithmic game theory and algorithmic mechanism design, this is a very commonly-used term.)
 
-\subsubsection{Braess' Paradox}
+\subsection{Extending Braess' Paradox to Security}
 
-This is called Braess' Paradox. You may have also seen this with two springs and a weight. {\it(Has anyone seen this before?)} It's a physical analog to this situtation with roads and tunnels. 
+The general concept of what is going on here is called Braess' Paradox. 
+You may have also seen this with two springs and a weight. {\it(Has anyone seen this before?)} It's a physical analog to this situtation with roads and tunnels. 
+It's counterintuitive but cutting the middle string causes the weight to {\it rise}, not fall. 
+The reason is because with the middle string, the two springs are acting in series, and both springs are bearing the full weight, whereas once the middle string is cut, the two springs are acting in parallel, meaning that they each are only holding half the weight. 
 
-What are the takeaways from Braess's Paradox?
+In traffic engineering and urban planning, it's often explained in terms of roads between two cities.
+
+
+
+\subsubsection{Discussion}
+
+What are the takeaways?
+
 \begin{itemize}
     \item If we're going to meddle with systems, we have to be very confident that we fully understand the system we are meddling with. Otherwise we can make things much worse. I suppose this is a mathematical example of a perverse incentive. 
     \item {\it Any others}?
@@ -283,6 +369,25 @@ What do we think? Did we get it right? What did we miss? What did we get wrong? 
 One thing I'd like to point out is that you should not assume that just because the audience of people who contributed to this list was a bunch of established professors that their level of wisdom or insight in the topic is much better than yours. Don't think of this list as infallible, and don't think of your intuitions as invalid. Like I said, this is an emerging area, so someone who has spent all their life working in security may barely have a leg up on you (if at all!) when it comes to taking an economic perspective at security problems. 
 
 {\it Ask Simha: In retrospect, what changes would you make to the set of recommendations?}
+
+\subsubsection{What does this have to do with auctions, study design, etc.?}
+
+Very little! I think there is massive potential in applying mechanism design to problems of security and security policy. 
+
+{\it Open ended discussion: What are some areas in security where we can apply what we've learned here today to solve problems in security?}
+\begin{itemize}
+    \item Are there mechanisms we can use to improve patching practices?
+    \item Are there mechanisms we can use to get the right people to invest in security in the right places?
+    \item Can we use {\it liability} as a mechanism to balance the costs of security?
+    \begin{itemize}
+        \item (Remember my Doctrine of Shared Burdens?)
+        \item (Seems like this is happening behind the scenes in Washington---based on statements and reports, there's clear interest in getting software vendors to take on greater liability for releasing software that is full of vulnerabilities. 
+        \begin{itemize}
+            \item {\it What are some of the challenges here?}
+            \item Most software is a tangled web of dependencies. Who heard about the xz vulnerability over the weekend? Who should be responsible if your open source dependency leads to a vulnerability in your software? (You? The open source programmer? Someone else? Who?)
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
 
 
 \section{Homework}
