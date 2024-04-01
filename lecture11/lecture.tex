@@ -224,6 +224,11 @@ $$ PoA = \frac{15{:}20}{14{:}00} \approx 1.095 = 9.5\%$$
 
 In other words, the system is 9.5\% worse off because the rules of the game allow for selfish behavior which comes at the expense of the other drivers. 
 
+
+In the prisoner's dilemma, we had a (-1,-1) payoff for (cooperate, cooperate) and a (-2,-2) payoff for (defect, defect). The social cost of (cooperate, cooperate) is 2 and the social cost of (defect, defect) is 4. This is a $4/2 = 2\text{X} = 100\%$ price of anarchy. {\it Any questions?}
+
+{\it Ask: In the prisoner's dilemma, who is the social planner?} The party who has a degree of influence or control over the players, so in this case, the mob :) 
+
 As a fun fact, the term {\it Price of Anarchy} comes from a 1999 paper ``Worst-case equilibria'' by  Elias Koutsoupias and our very own Christos Papadimitriou (although the concept of measuring the inefficiency of selfish behaviour predates this paper by quite a bit. But within the algorithmic game theory and algorithmic mechanism design, this is a very commonly-used term.)
 
 \subsubsection{Braess' Paradox}
@@ -240,5 +245,46 @@ What are the takeaways from Braess's Paradox?
         \item {\it In general though, how do you know if you're the smart planner who is going to make things better, or the naive planner who is going to make things worse??} I don't know. Would love some answers to this question! 
     \end{itemize}
 \end{itemize}
+
+
+\section{Mechanism Design for Hardware Security}
+
+This is not a peer-reviewed paper. This is a report from a workshop event a couple of summers ago, where me, Prof. Sethumadhavan, and about 50 other people from academia, industry, and government got together and discussed what mechanism design means for hardware security. 
+
+Aside: For anyone who doesn't know, {\it Hardware Security} is exactly what it sounds like: It's a sub-field of security that focuses on securing systems from the ground up, starting from the circuit level to the physical device level and typically including up to computer architecture. 
+If this is a topic that interests you, and you are not graduating this semester, there is a hardware security class in this department, taught by Prof. Sethumadhavan. 
+(Today's class is really just an advertisement for other graduate-level classes at Columbia, isn't it?)
+
+The workshop was from people who work in the hardware security area. I.e. topics like side channel detection and exploitation, hardware trojans, speculation safety, Rowhammer, hardware-based defenses like CFI, secure embedded systems, tamper-proof hardware, hardware enclaves and trusted execution environments ({\it to Simha: any others I'm missing?})
+To prevent an echo chamber, there were also some people from economics and a few people who worked in government policy (next week's topic).
+
+{\it Ask: Why did I have you read a workshop report rather than a peer-reviewed paper on mechanism design for security?} Mostly because there is no work on this topic! This is an emerging research area. The purpose of this workshop is to spur research in this direction. But mechanism design is such an interesting tool and one that security practitioners ought to have in their toolbox. It's economics applied directly to improving security. Extremely relevant to this class, (hopefully) extremely important to the field of security moving forward.
+
+\subsection{Recommendations}
+
+The format of the event was a mix of presentations and discussion, with the end goal of coming up with a set of recommendations for what the hardware and computing communities can do to improve hardware security through mechanism design. 
+
+These were the recommendations we came up with {\it (write on board)}:
+
+\subsubsection{Foster Diverse Educational, Professional, and Industrial Communities in Hardware Security}
+
+\subsubsection{Lay the Scientific Foundations for Work that Combines Incentives and Technology}
+
+\subsubsection{ Make Security Accountable and Explainable}
+
+\subsubsection{Co-Develop Emerging Technologies with the Understanding of their Hardware Security Ramifications}
+
+\subsubsection{Prioritize the Human Impact of Hardware Security}
+
+\subsection{Discussion}
+
+What do we think? Did we get it right? What did we miss? What did we get wrong? {\it Write recommendations on board.}
+
+One thing I'd like to point out is that you should not assume that just because the audience of people who contributed to this list was a bunch of established professors that their level of wisdom or insight in the topic is much better than yours. Don't think of this list as infallible, and don't think of your intuitions as invalid. Like I said, this is an emerging area, so someone who has spent all their life working in security may barely have a leg up on you (if at all!) when it comes to taking an economic perspective at security problems. 
+
+{\it Ask Simha: In retrospect, what changes would you make to the set of recommendations?}
+
+
+\section{Homework}
 
 \end{document}
