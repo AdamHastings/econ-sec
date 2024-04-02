@@ -50,11 +50,12 @@ Later we can get back into the actual paper (which is on control systems).
     \item We learned game theory last week. Let's write this out as a game:
     \begin{itemize}
         \item Players: $\mathcal{I} = \{1,2\}$
-        \item Actions: 
+        \item Actions: $A = \{\text{cut} \mapsto p \in \{l,r\},~~\text{choose} \mapsto \operatorname*{argmax}_p (S(l), S(r)),~~\text{receive} \mapsto \operatorname*{argmin}_p (S(l), S(r))$ (where $p$ is a piece is $S(p)$ is the size of the piece)
+        \item Utility: $u_i = S(p)$
     \end{itemize}
     \item Does this work for more than two players? What if we wanted to split a cake three ways?
     \begin{itemize}
-        \item I could cut a cake into three pieces. What does this look like as a game?
+        \item I could cut a cake into three pieces. What does this look like as a game? (TODO outcomes?)
         \begin{itemize}
             \item Players: $\mathcal{I} = \{1,2,3\}$
             \item Actions: $\mathcal{A} = \{a_1 = \text{Choose piece 1}, a_2 = {Choose piece 2}, a_3 = {Choose piece 3}$
@@ -147,7 +148,21 @@ The definition of a mechanism is similar to that of a game:
     \item A set of players $\mathcal{I}, |\mathcal{I}| = n \in \mathbb{N}$
     \item A set of outcomes $\mathcal{O} = \{o_1, o_2, o_3...o_k\}$
     \item Each agent $i \in \mathcal{I}$ has private information $\theta_i \in \Theta_i$
-    \item Each agent $i$ has a utility function $u_i : \mathcal{O} \times \Theta_i \rightarrow \mathbb{R}$
+    \begin{itemize}
+        \item Since private information may affect the player's strategies i.e. decisionmaking, we call $\theta_i$ the player's {\it type}.
+    \end{itemize}
+    \item ``We write $(\theta_i)_{i \in \mathcal{I}} = \theta, \theta \in \Theta$, where $\Theta = \Pi_{i\in \mathcal{I}}\Theta_i$ to represent the type profile of all agents''
+    \begin{itemize}
+        \item WTF?
+        \item Let's break this down---recall from our game theory discussion that ``action profile'' is the set of possible combinations of actions that players can take.
+        \item So intuitively, we should expect that the ``type profile'' is the set of possible combinations of possible types that players can be
+        \item Maybe the $\Pi$ is throwing you off---you've seen $\Sigma$ in math before, maybe even $\Pi$ in algebra---it's the product of terms rather than the sum. 
+        \item We're dealing with sets here, so $\Pi$ is Caretsian product of $i$ types $\theta$.
+    \end{itemize}
+    \item Each agent $i$'s preferences represented by a utility function $u_i : \mathcal{O} \times \Theta_i \rightarrow \mathbb{R}$
+    \begin{itemize}
+        \item Intepretation: The t
+    \end{itemize}
     \item Utility is assumed to be of the quasi-linear form $$u_i(o, \theta_i) = v_i(o, \theta_i) - p_i(\theta_i)$$ where $v_i : \mathcal{O} \times \Theta_i \rightarrow \mathbb{R}_{\geq 0}$ represents an arbitrary valuation function and $p_i \mapsto \mathbb{R}$ 
     \begin{itemize}
         \item If $o \in \mathcal{O}$ is an outcome, then $p_i$ can be thought of as the cost (or price) imposed upon player $i$ for that particular outcome $o$. 

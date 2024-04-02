@@ -8,13 +8,13 @@ FIGS = figures/
 
 .PHONY: all clean
 
-all: $(NOTES).pdf $(HOMEWORK)$(LECTURENO).pdf
+# all: $(NOTES).pdf $(HOMEWORK)$(LECTURENO).pdf
 
 $(NOTES).pdf: $(NOTES).tex $(FIGS)
 	pdflatex $(NOTES).tex
 
-$(HOMEWORK)$(LECTURENO).pdf: $(HOMEWORK).tex $(FIGS)
-	pdflatex $(HOMEWORK).tex
+# $(HOMEWORK)$(LECTURENO).pdf: $(HOMEWORK).tex $(FIGS)
+# 	pdflatex $(HOMEWORK).tex
 
 clean:
 	rm -f *.aux *.bbl *.blg *.log *.out *.fdb_latexmk *.fls *.synctex.gz $(NOTES).pdf $(HOMEWORK)$(LECTURENO).pdf
