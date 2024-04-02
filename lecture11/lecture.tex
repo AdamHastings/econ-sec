@@ -161,51 +161,222 @@ The definition of a mechanism is similar to that of a game:
     \end{itemize}
     \item Each agent $i$'s preferences represented by a utility function $u_i : \mathcal{O} \times \Theta_i \rightarrow \mathbb{R}$
     \begin{itemize}
-        \item Intepretation: The t
+        \item Intepretation: player's utility is dependent on two things---the outcome of the game, and the player's type. The Cartesian product means there is a utility score for each possible combination of outcome and type.
     \end{itemize}
     \item Utility is assumed to be of the quasi-linear form $$u_i(o, \theta_i) = v_i(o, \theta_i) - p_i(\theta_i)$$ where $v_i : \mathcal{O} \times \Theta_i \rightarrow \mathbb{R}_{\geq 0}$ represents an arbitrary valuation function and $p_i \mapsto \mathbb{R}$ 
     \begin{itemize}
+        \item See? Utility $u_i(o, \theta_i)$ is a combination of outcome and type (just like the it says above). 
+        \item Quasi-linear because while the functions $p$ and $v$ may be differential equations, at this level it looks like a linear equation.
+        \item Any time you see a $p$ and a $v$ in economics, your first thought should be ``price'' and ``value''
         \item If $o \in \mathcal{O}$ is an outcome, then $p_i$ can be thought of as the cost (or price) imposed upon player $i$ for that particular outcome $o$. 
+        \item {\it Do we understand why the function $v$ depends on the type $\theta$? What about the price $p$?}
+        \item {\it Ask: the value $v$ is dependent on the outcome $o$ but not the price $p$. Why?}
     \end{itemize}
-    \item The social welfare $W$ can be defined as the collective summation of all agents valuations, that is \begin{equation}W(o, \theta) = \sum_{i \in \mathcal{I}} v_i(o, \theta)\end{equation}
+    \item The social welfare $W$ can be defined as the collective summation of all agents valuations, that is \begin{equation}SW(o, \theta) = \sum_{i \in \mathcal{I}} v_i(o, \theta)\end{equation}
+    \item The goal of the players is to maximize $u_i$. But the goal of the social planner or mechanism designer is to maximize $SW(o, \theta)$!
+    \item If you're a social planner, in order to compute (1), you need to know each $v_i(o, \theta_i)$. I think you can assume that, because the rules of the game are known, then the social planner knows how to compute $v_i$ if they know the outcome $o$ and player type $\theta_i$. 
+    \begin{itemize}
+        \item What's the problem here? The outcome can't be misreported but the player can lie about their player type $\theta_i$. 
+        \item In fact, in many games there is an incentive to lie about your type. E.g. in auctions like a sealed-bid first price auction, you can gain an advantage if you lie to the other bidders and make them think that you hate the art being auctioned, making them lower their bids, and then you can more easily outbid them.
+    \end{itemize}
+    \item The question then becomes, {\it how can be incentivize agents to report their type truthfully?}. As the authors state, the answer is through the appropriate design of the price function $p_i$. 
+    \begin{itemize}
+        \item {\it Why does the social planner modify $p_i$ instead of $v_i$?} $v_i$ is players' personal valuation. A social planner can't change the amount of value I get out of some good or some outcome (like an apple) but they can make the desirability of buying apples either higher or lower depending on the costs of acquiring apples. 
+    \end{itemize}
+    \item Now we get to the definition of a mechanism: A mechanism is a tuple $\langle f, p\rangle$. 
+    \item $p$ is (like I mentioned) a vector of payment functions $p = (p_i)_{i \in \mathcal{I}}$, with $p_i: \Theta \rightarrow \mathbb{R}$.
+    \item $f$ is a {\it Social Choice Function (SCF)} $f : \Theta \rightarrow \mathcal{O}$
+    \begin{itemize}
+        \item Recall---$\Theta$ is the space of all possible combinations of player types. Don't worry if you can't fully wrap your head around what's going on. Just know that there's a function $f$ that maps from the space of possible player types $\Theta$ to an outcome $\mathcal{O}$, and a vector of price functions that for each player maps from $\Theta$ to $\mathbb{R}$. 
+    \end{itemize}
+    \item ``In other words, a mechanism $\langle f, p \rangle$ defines the rules by which we [the social planner] can implement a system objective by mapping the agents' types to an outcomes (by means of the SCF) while using the payments to ensure the optimality or efficiency of that outcome''
+    \item The social planner's problem is 
+    \begin{equation}
+        \max_{o \in \mathcal{O}} SW(o, \theta)
+    \end{equation}
+    (i.e. find the outcome that maximizes social welfare)
+    
+    subject to:
+    \begin{equation}
+        \hat{\theta}_i = \theta_i, \forall i \in \mathcal{I}~
+    \end{equation}
+    where~$\hat{\theta}_i$ is the reported type. (Interpretation: the outcome that we're trying to find that maximizes social welfare also has to incentivize players to not lie about their type).
+
+    Subject to:
+    \begin{equation}
+        \sum_{i \in \mathcal{I}} v_i(o,\theta_i) \geq \sum_{i \in \mathcal{I}}v_i(o', \theta_i),~~~\forall o' \in \mathcal{O}
+    \end{equation}
+    Interpretation: the outcome is efficient, i.e. produces higher utility than all other outcomes that fit the constraints
+
+    Subject to:
+    \begin{equation}
+        \sum_{i \in \mathcal{I}} p_i(s(\theta)) \geq 0,~\forall \theta\in\Theta
+    \end{equation}
+    where $s(\cdot)$ is the equilibrium strategy profile (for example, a Nash Equilibrium).
+    
+    (Interpretation: The price $p$ of behaving optimally is greater than $0$ for all possible player types)
+
+
+    Subject to:
+    \begin{equation}
+        v_i(f(s(\theta))) - p_i(s(\theta)) \geq 0,~\forall i\in\mathcal{I},~\forall \theta \in \Theta
+    \end{equation}
+    Interpretation: The value of participating in this game minus the price of participating in the game is $\geq 0$  for all players regardless of what player type they are. 
+
+    I am not an optimization theorist but the authors claim that if the social planner knows the true types of all players, they can solve this problem using standard optimization techniques. But as was mentioned earlier, the social planner may not know all the player types, who we can expect to be strategic and selfish, so the social planner needs to {\it elicit} $\theta$ from each player by designing the right price function $p$. 
+
+    \item The social planner has to answer two questions: The {\it preference aggregation}, which asks what is the best outcome $o \in \mathcal{O}$ for any give type profile $\theta \in \Theta$, and the {\it information elicitation}, which asks how one can extract truthfully the type $\theta_i \in \Theta$ of any agent $i \in \mathcal{I}$. 
+    \item ``The theory of mechanism design essentially helps us answer both questions by providing the mathematical framework to construct mechanisms $\langle f, p \rangle$ that can achieve our desireable outcome''
+    \item Example: In the three-person cake-cutting, the social planner (the parent) designed a protocol that incentivizes each child to be truthful in how much they value each piece of cake. Recall that in the naive chocolate bar implementation, the rules of the game made it so that the the first child cutting could be dishonest about their type, i.e. dishonest about how much they actually valued each of the initial three chocolate pieces. 
+
 \end{itemize}
 
-What we've talked about previously in the class is that the state of security is often an economic failure, where we are in a socially suboptimal state because of things like misaligned incentives, prisoners dilemmas, and tragedies of the commons. 
-So if you're a social planner and you want to maximize for everyone, your goals is to find the outcome $o$ that maximizes 
-$$ \max_{o \in \mathcal{O}}~SW(o, \theta)$$.
+% What we've talked about previously in the class is that the state of security is often an economic failure, where we are in a socially suboptimal state because of things like misaligned incentives, prisoners dilemmas, and tragedies of the commons. 
+% So if you're a social planner and you want to maximize for everyone, your goals is to find the outcome $o$ that maximizes 
+% $$ \max_{o \in \mathcal{O}}~SW(o, \theta)$$.
 
-{\it Question: If you're the social planner, why are you trying to find the $o$ that maximizes social welfare? Why not try to find the $\theta$ as well?} Answer: Because you can't control people's private information and can't control their internal preferences!
+% {\it Question: If you're the social planner, why are you trying to find the $o$ that maximizes social welfare? Why not try to find the $\theta$ as well?} Answer: Because you can't control people's private information and can't control their internal preferences!
 
-This leads to a somewhat obvious problem though: If we are the social planner and are trying to maximize welfare, you are relying on the players' self-reported $\theta_i$ to find the $o$ that maximizes welfare. A self-interested non-cooperative player may lie about their $\theta_i$ to try to increase their own personal welfare. 
+% This leads to a somewhat obvious problem though: If we are the social planner and are trying to maximize welfare, you are relying on the players' self-reported $\theta_i$ to find the $o$ that maximizes welfare. A self-interested non-cooperative player may lie about their $\theta_i$ to try to increase their own personal welfare. 
 
-For example, consider the naive cake cutting protocol. Player X may 
+% For example, consider the naive cake cutting protocol. Player X may 
+
+\subsection{The Revelation Principle}
+
+The challenge, obviously, is to design the functions $f$ and $p$ that achieve what we want. Unfortunately, in terms of theory, this is where our train stops. There are many more stops along this route if you're like to learn more; there is a large body of literature on how to algorithmically find mechanisms.
+
+Just a teaser:
+
+Technically the above is the definition of a {\bf direct mechanism}, meaning that players' types are observable. 
+Some mechanisms are indirect, meaning that types can only be inferred indirectly.
+The {\bf revelation principle} says that all indirect mechanisms can be implemented in a direct mechanism, meaning that any indirect mechanism can be modified in such a way to achieve the same result but while being {\it incentive compatible}.
+
+This is one of the major results of mechanism design and makes it computationally much easier to actually find mechanisms since you only need to consider at the incentive compatible outcomes. 
+
+If you want to learn more about algorithmic mechanism design, take Tim Roughgarden's class. 
+
 
 \section{Mechanism Design in Behavioral Economics}
 
 Recall my paper ``How much is performance worth to users?'', where I measured users' willingness to accept performance losses on their personal devices. 
 
-TODO discussion on incentive compatibility. 
+The challenge was that I wanted to measure how much people valued performance, but I could not trust ``player'' (i.e. research participants) to tell me their ``type'' (how much they valued performance) without adjusting the price function. What was the price function that I imposed on the game players? The price was that I actually slowed down their computers! 
 
 \subsection{Single Discrete Binary Choice Mechanism}
 
-\subsection{Best-Worst Scaling}
+Specifically, the mechanism that I used was called the Single Discrete Binary Choice Mechanism. Essentially a take-it-or-leave-it option. Can we confirm that it satisfies the above constraints for mechanisms? 
 
-\subsection{}
-
-\section{Workshop Report}
-
-\subsection{Formula 1 and "dirty air"}
-
+Was I trying to optimize social welfare? Technically no. So was this a true mechanism design? No, not really, I wasn't trying to design a mechanism, 
+I was trying to find out their types! But most the other conditions held:
 \begin{itemize}
-    \item The workshop report mentioned something about Formula 1 racing. {\it Anyone remember the name of the ``problem''}
-    \item Last class, Gabe mentioned how game theory is used in international relations, but not strictly in a mathematical or quantitative way. 
-    \begin{itemize}
-        \item Which is still a perfectly valid application, in my opinion. 
-    \end{itemize}
-    \item This workshop report is maybe an analogue of that idea but applied to mechanism design and security.
-    \item As we've just seen, mechanism design can be a purely mathematical pursuit.
-    \item Or we can ditch the math and just apply the themes. 
+    \item Players revealed to me their true type
+    \item I wasn't really concerned that the outcome I chose (assignment of offer prices to participants) maximized their values 
+    \item The prices that were imposed on them were greater than zero 
+    \item And there was an incentive to play this game because the value from playing their optimal strategy minus the price of playing their optimal strategy was greater than zero if they accepted the offer, and zero if they declined the offer. 
 \end{itemize}
+
+I was an indifferent mechanism designer, I suppose. 
+
+\subsection{Becker-DeGroot-Marschak lotteries}
+
+An incentive-compatible way to measure willingness to pay or (willingness to accept).
+
+Suppose you want to know how much some good is worth to people. You can't ask people to name their price, since they're going to lowball you. And you can't name the price, because the point is not that you're trying to sell something but figure out what is the most they'd be willing to pay for the good (i.e. in economics research).
+
+The BDM lottery protocol is as follows:
+\begin{enumerate}
+    \item The buyer submits a bid $b$ for the maximum they'd be willing to pay for the good
+    \item You draw a random number $r$ from a uniform distribution (where the high end of the distribution is assumed to be well above the max WTP, I think)
+    \item If $b < r$, the buyer pays nothing and receives nothing
+    \item If $b > r$, the buyer pays $b$ and receives the item.
+\end{enumerate}
+
+What are the strategies?
+\begin{itemize}
+    \item The buyer should never bid a $b$ higher than their true WTP because this means they will pay more for the good than it's worth to them if $b > r$.
+    \item The buyer should never bid a $b$ {\it lower} that their true WTP because this proportionally decreases the chances of receiving the good that they truly would be happy paying their WTP to receive. 
+    \begin{itemize}
+        \item Example: if $ 0 < r < 100$, and I value some good at \$50, I'm not going to give a lowball bid of \$1 because this essentially eliminates my odds of receiving the item.
+    \end{itemize}
+\end{itemize}
+
+What's the result? The optimal strategy as a buyer is to submit a bid $b$ that equals your WTP! It's incentive compatible. The rules of the game incentivize you to act in a way that reveals your true type. 
+
+% \section{Workshop Report}
+
+% \subsection{Formula 1 and "dirty air"}
+
+% \begin{itemize}
+%     \item The workshop report mentioned something about Formula 1 racing. {\it Anyone remember the name of the ``problem''}
+%     \item Last class, Gabe mentioned how game theory is used in international relations, but not strictly in a mathematical or quantitative way. 
+%     \begin{itemize}
+%         \item Which is still a perfectly valid application, in my opinion. 
+%     \end{itemize}
+%     \item This workshop report is maybe an analogue of that idea but applied to mechanism design and security.
+%     \item As we've just seen, mechanism design can be a purely mathematical pursuit.
+%     \item Or we can ditch the math and just apply the themes. 
+% \end{itemize}
+
+
+
+\section{Mechanism Design for Hardware Security}
+
+(Coming back down to earth---and security---now)
+
+This is not a peer-reviewed paper. This is a report from a workshop event a couple of summers ago, where me, Prof. Sethumadhavan, and about 50 other people from academia, industry, and government got together and discussed what mechanism design means for hardware security. 
+
+Aside: For anyone who doesn't know, {\it Hardware Security} is exactly what it sounds like: It's a sub-field of security that focuses on securing systems from the ground up, starting from the circuit level to the physical device level and typically including up to computer architecture. 
+If this is a topic that interests you, and you are not graduating this semester, there is a hardware security class in this department, taught by Prof. Sethumadhavan. 
+(Today's class is really just an advertisement for other graduate-level classes at Columbia, isn't it?)
+
+The workshop was from people who work in the hardware security area. I.e. topics like side channel detection and exploitation, hardware trojans, speculation safety, Rowhammer, hardware-based defenses like CFI, secure embedded systems, tamper-proof hardware, hardware enclaves and trusted execution environments ({\it to Simha: any others I'm missing?})
+To prevent an echo chamber, there were also some people from economics and a few people who worked in government policy (next week's topic).
+
+{\it Ask: Why did I have you read a workshop report rather than a peer-reviewed paper on mechanism design for security?} Mostly because there is no work on this topic! This is an emerging research area. The purpose of this workshop is to spur research in this direction. But mechanism design is such an interesting tool and one that security practitioners ought to have in their toolbox. It's economics applied directly to improving security. Extremely relevant to this class, (hopefully) extremely important to the field of security moving forward.
+
+\subsection{Recommendations}
+
+The format of the event was a mix of presentations and discussion, with the end goal of coming up with a set of recommendations for what the hardware and computing communities can do to improve hardware security through mechanism design. 
+
+These were the recommendations we came up with {\it (write on board)}:
+
+\subsubsection{Foster Diverse Educational, Professional, and Industrial Communities in Hardware Security}
+
+\subsubsection{Lay the Scientific Foundations for Work that Combines Incentives and Technology}
+
+\subsubsection{ Make Security Accountable and Explainable}
+
+\subsubsection{Co-Develop Emerging Technologies with the Understanding of their Hardware Security Ramifications}
+
+\subsubsection{Prioritize the Human Impact of Hardware Security}
+
+\subsection{Discussion}
+
+What do we think? Did we get it right? What did we miss? What did we get wrong? {\it Write recommendations on board.}
+
+One thing I'd like to point out is that you should not assume that just because the audience of people who contributed to this list was a bunch of established professors that their level of wisdom or insight in the topic is much better than yours. Don't think of this list as infallible, and don't think of your intuitions as invalid. Like I said, this is an emerging area, so someone who has spent all their life working in security may barely have a leg up on you (if at all!) when it comes to taking an economic perspective at security problems. 
+
+{\it Ask Simha: In retrospect, what changes would you make to the set of recommendations?}
+
+\subsubsection{What does this have to do with auctions, study design, etc.?}
+
+Very little! I think there is massive potential in applying mechanism design to problems of security and security policy. 
+
+{\it Open ended discussion: What are some areas in security where we can apply what we've learned here today to solve problems in security?}
+\begin{itemize}
+    \item Are there mechanisms we can use to improve patching practices?
+    \item Are there mechanisms we can use to get the right people to invest in security in the right places?
+    \item Can we use {\it liability} as a mechanism to balance the costs of security?
+    \begin{itemize}
+        \item (Remember my Doctrine of Shared Burdens?)
+        \item (Seems like this is happening behind the scenes in Washington---based on statements and reports, there's clear interest in getting software vendors to take on greater liability for releasing software that is full of vulnerabilities. 
+        \begin{itemize}
+            \item {\it What are some of the challenges here?}
+            \item Most software is a tangled web of dependencies. Who heard about the xz vulnerability over the weekend? Who should be responsible if your open source dependency leads to a vulnerability in your software? (You? The open source programmer? Someone else? Who?)
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
 
 \section{Braess's Paradox}
 
@@ -346,63 +517,6 @@ What are the takeaways?
     \end{itemize}
 \end{itemize}
 
-
-\section{Mechanism Design for Hardware Security}
-
-This is not a peer-reviewed paper. This is a report from a workshop event a couple of summers ago, where me, Prof. Sethumadhavan, and about 50 other people from academia, industry, and government got together and discussed what mechanism design means for hardware security. 
-
-Aside: For anyone who doesn't know, {\it Hardware Security} is exactly what it sounds like: It's a sub-field of security that focuses on securing systems from the ground up, starting from the circuit level to the physical device level and typically including up to computer architecture. 
-If this is a topic that interests you, and you are not graduating this semester, there is a hardware security class in this department, taught by Prof. Sethumadhavan. 
-(Today's class is really just an advertisement for other graduate-level classes at Columbia, isn't it?)
-
-The workshop was from people who work in the hardware security area. I.e. topics like side channel detection and exploitation, hardware trojans, speculation safety, Rowhammer, hardware-based defenses like CFI, secure embedded systems, tamper-proof hardware, hardware enclaves and trusted execution environments ({\it to Simha: any others I'm missing?})
-To prevent an echo chamber, there were also some people from economics and a few people who worked in government policy (next week's topic).
-
-{\it Ask: Why did I have you read a workshop report rather than a peer-reviewed paper on mechanism design for security?} Mostly because there is no work on this topic! This is an emerging research area. The purpose of this workshop is to spur research in this direction. But mechanism design is such an interesting tool and one that security practitioners ought to have in their toolbox. It's economics applied directly to improving security. Extremely relevant to this class, (hopefully) extremely important to the field of security moving forward.
-
-\subsection{Recommendations}
-
-The format of the event was a mix of presentations and discussion, with the end goal of coming up with a set of recommendations for what the hardware and computing communities can do to improve hardware security through mechanism design. 
-
-These were the recommendations we came up with {\it (write on board)}:
-
-\subsubsection{Foster Diverse Educational, Professional, and Industrial Communities in Hardware Security}
-
-\subsubsection{Lay the Scientific Foundations for Work that Combines Incentives and Technology}
-
-\subsubsection{ Make Security Accountable and Explainable}
-
-\subsubsection{Co-Develop Emerging Technologies with the Understanding of their Hardware Security Ramifications}
-
-\subsubsection{Prioritize the Human Impact of Hardware Security}
-
-\subsection{Discussion}
-
-What do we think? Did we get it right? What did we miss? What did we get wrong? {\it Write recommendations on board.}
-
-One thing I'd like to point out is that you should not assume that just because the audience of people who contributed to this list was a bunch of established professors that their level of wisdom or insight in the topic is much better than yours. Don't think of this list as infallible, and don't think of your intuitions as invalid. Like I said, this is an emerging area, so someone who has spent all their life working in security may barely have a leg up on you (if at all!) when it comes to taking an economic perspective at security problems. 
-
-{\it Ask Simha: In retrospect, what changes would you make to the set of recommendations?}
-
-\subsubsection{What does this have to do with auctions, study design, etc.?}
-
-Very little! I think there is massive potential in applying mechanism design to problems of security and security policy. 
-
-{\it Open ended discussion: What are some areas in security where we can apply what we've learned here today to solve problems in security?}
-\begin{itemize}
-    \item Are there mechanisms we can use to improve patching practices?
-    \item Are there mechanisms we can use to get the right people to invest in security in the right places?
-    \item Can we use {\it liability} as a mechanism to balance the costs of security?
-    \begin{itemize}
-        \item (Remember my Doctrine of Shared Burdens?)
-        \item (Seems like this is happening behind the scenes in Washington---based on statements and reports, there's clear interest in getting software vendors to take on greater liability for releasing software that is full of vulnerabilities. 
-        \begin{itemize}
-            \item {\it What are some of the challenges here?}
-            \item Most software is a tangled web of dependencies. Who heard about the xz vulnerability over the weekend? Who should be responsible if your open source dependency leads to a vulnerability in your software? (You? The open source programmer? Someone else? Who?)
-        \end{itemize}
-    \end{itemize}
-\end{itemize}
-
 \section{Control Systems}
 
 The first paper I had you read was a tutorial for mechanism design, but was published in an academic magazine for control engineers. Why did I have you read this one?
@@ -448,11 +562,19 @@ What does this look like? (A system diagram! Remember HW1?)
     \end{itemize}
     \item Perhaps it's not just the signals that are the problem. Perhaps due to the lack of information it's the functions between the signals that are unknown.
     \begin{itemize}
-        \item Example: If you're designing the shock system on an automobile, you know that perturbations to your system are due to variations in the road (things like potholes) and are going to be in one direction only (up and down). Your modeling is going to account for the functions you know of because you're very confident that these are the functions that are going to impact your real-world system, and you're probably going to be right about it.  Your shock system is not meant to dampen forces from a lateral blow. But in security, you don't know which direction the blows are going to come from (omnidirectional and multidimensional). Thoughts? 
+        \item Example: If you're designing the shock system on an automobile, you know that perturbations to your system are due to variations in the road (things like potholes) and are going to be in one direction only (up and down). Your modeling is going to account for the functions you know of because you're very confident that these are the functions that are going to impact your real-world system, andmain assumption in this
+        approach is that the interactions among strategic agents in
+        a system in which securit you're probably going to be right about it.  Your shock system is not meant to dampen forces from a lateral blow. But in security, you don't know which direction the blows are going to come from (omnidirectional and multidimensional). Thoughts? 
     \end{itemize}
 \end{itemize}
 
 \subsection{Mechanism Design for Security Games}
+
+{\bf The Design of Security Games} --- writes out how security games we talked about last week can be mathematically expressed first as a game (which we did last week), and then as a mechanism design problem, i.e. what a social planner is trying to optimize. The challenge (unspecified how to do it) is to find the right price functions for all agents to incentivize participation.
+
+{\bf Security in Communication Systems} --- examines how mechanisms like auctions have been used in allocating resources 
+
+{\it Ask: What types of security goods are auctioned off? What types of security goods should be auctioned off?}
 
 \section{Homework}
 
