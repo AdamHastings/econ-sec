@@ -35,28 +35,106 @@ Let's clarify some terminology:
 \begin{itemize}
     \item {\bf Bug} --- unintended behavior. Could be a security issue, often times is not. Example: 
     \item {\bf Vulnerability} --- A specific instance of a bug that has the potential to be exploited. Makes the device running the code vulnerable. Example: Memory safety violations, integer overflow, executing untrusted unsanitized input (e.g. SQL injection). {\it What is the name of the database that tracks vulnerabilities?} Technically the NVD (National Vulnerability Database --- run by NIST!) is the {\it database}, but the entries are generally known by their {\it CVE} number (e.g. CVE-2021-44228). 
+    \item {\bf Exploit} --- Something that takes advantage of a vulnerability to achieve some goal. Important to note though that oftentimes there is a large gap between a vulnerability and an exploit! 
+    {\it Why?} A vulnerability can be thought of as a ``foot in the door'', but a vulnerability alone is rarely enough to do anything useful.
 \end{itemize}
 
-\subsubsection{Exploit} --- Something that takes advantage of a vulnerability to achieve some goal. Important to note though that oftentimes there is a large gap between a vulnerability and an exploit! 
-{\it Why?} A vulnerability can be thought of as a ``foot in the door'', but a vulnerability alone is rarely enough to do anything useful.
 
-For example, let's say some web app 
+\section{Characterising 0-Day Exploit Brokers}
+
+{\it Ask: What's a 0-day? Why are they important in security and in security economics?}
+
+This paper is an empirical study of the marketplace for 0-day exploits. Specifically, it tracks prices from public 0-day brokers, which facilitate exchanges beteween 0-day buyers and 0-day sellers. {\it This is fairly similar to the Hack-for-Hire paper we read, but what are some of the key differences?} (Empirical, not experimental; 0-day market, not hacking-as-a-service market.)
 
 \begin{itemize}
-    \item {\bf RCE} --- {\it Remote Code Execution}. Attacker has the ability to execute code on the victim's device. 
-    \item {\bf LPE} --- {\it Local Privilege Escalation}. 
-    \item {\bf RPE} --- {\it Local Privilege Escalation}.
-
-    \item {\bf SBX} --- {\it Sandbox Escape or Bypass}. {\it Can someone tell me what a sandbox is here in this case? }
+    \item {\it Who are the buyers?} Zerodium claims to sell to ``Western governments''. Don't know how to verify this claim. Generally as part of the terms of agreement, the buyer is supposed to get exclusive rights to the exploit. {\it How do you ensure no double-selling?} I don't know. Maybe a research project. 
+    \item {\it Who are the sellers?} A bit unclear; My understanding is that there are private hackers out there who are good at finding and exploiting vulnerabilities and are willing to sell to the highest bidder.  
+    \item {\it What is the role of the broker? Are they just a middleman?} They serve a key role actually! Stockpiling and modulating the rate of 0day releases. Useful for offensive actors to have a steady supply of resources, because they usually have a limited shelf life. Who does this help economically? The sellers! The brokers create a market and can keep prices high. Don't need to worry about gluts or timing the market. Also, the buyer wants a steady supply too. So yes a middleman but one that actually improves outcomes for both buyers and sellers. Not just rent seeking!!)
 \end{itemize}
 
-\subsection{Persistence} --- Some types of malware may only be active for a few seconds or less; others may become malicious processes that inject themselve into memory and may try to hide themselves.
+\subsection{Methods}
 
-{\it If a process exists only in memory and the machine is rebooted, what happens?} The malware is gone. If the attacker was trying to spy on the user, or just keep the malware alive with the intention of doing something malicious later, then simply rebooting will remove this malicious process from the device. 
+{\bf Figure 1:} Data was collected from snapshots on the Wayback Machine. 
 
-{\bf Persistence} is when the attacker has some way to retain access to the device even if the machine is rebooted. The malware persists. 
+Threats to the validity of this data?
+\begin{itemize}
+    \item Shows max prices only 
+\end{itemize}
 
-Bug bounties will usually pay more for vulnerabilities that have persistence. {\it Why is it hard to gain persistence?}
+\subsection{Results}
+
+{\bf Figure 2:} Prices are in the millions and have been for several years. 
+
+{\bf Figure 3:} Spikes are an artifact of data collection. {\it Which types of applications have the highest-priced 0-days?} Browser and messengers apps. {\it Why are browser and messenger exploits worth more?}
+\begin{itemize}
+    \item Maybe because more people use them?
+    \item more universal?
+    \item Others?
+\end{itemize}
+
+They actually quantitatively address this later in the paper. 
+
+{\bf Figure 4:} {\it Which types of exploits are most valuable?} (zero click, persistence). What does this mean? Let's define some of these acronyms:
+\begin{itemize}
+    \item {\bf rce} --- {\it Remote Code Execution}. Attacker has the ability to execute code on the victim's device. 
+    \item {\bf lpe} --- {\it Local Privilege Escalation}. 
+    \item {\bf sbx} --- {\it Sandbox Escape or Bypass}. {\it Can someone tell me what a sandbox is here in this case? } E.g. web browser, containers.
+    \item {\bf persistence} --- Some types of malware may only be active for a few seconds or less; others may become malicious processes that inject themselve into memory and may try to hide themselves. {\it If a process exists only in memory and the machine is rebooted, what happens?} The malware is gone. If the attacker was trying to spy on the user, or just keep the malware alive with the intention of doing something malicious later, then simply rebooting will remove this malicious process from the device. 
+    \item {\bf vme} --- {\it Virtual Machine Escape}. A form of sbx?
+    \item {\bf zero click} --- Exactly what it sounds like. Victim requires no interaction or ``mistake''.
+    \item {\bf requires local access} --- Exactly what it sounds like. (Note the price is lower)
+    \item {\bf bypass} --- bypasses specific security mechanisms (ASLR? NX-bit? Not sure which ones; unspecified)
+\end{itemize}
+
+{\it Is it surprising or expected that zero-click and persistence are the most valuable? Why or why not?} 
+
+{\it What other trends do we notice?} Growth (although they show max prices only? So of course these will be monotonic.)
+
+{\bf Figure 5}: {\it Which types of OS are most valuable?} IoS and Android. Both mobile! {\it Why?} Phone calls are sensitive; things are said that deliberately don't get written in text, perhaps? {\it Or is it because these platforms are harder to attack?} Probably not. General impression is that iOS is pretty secure, Android is insecure. Yet prices are very similar! I find this interesting.
+
+\subsection{Linear regression}
+
+I think CS people think of themselves as quantitative people yet are often a bit lacking when it comes to knowing quantitative methods (or maybe I'm just telling on myself). I could easily skip over the next part of this paper but it's so common in economics but also so common in data science and machine learning that I'm going to cover it here too. 
+
+{\it Poll: Who knows what linear regression is?} This is a really fundamental technique in data analysis you all should know. 
+OLS is ``curve fitting'' --- finding a line that minimzes distance betwen line and datapoints. 
+
+When fitting a curve, you want to find the line that most closely follows the data and ``punish'' the distance between the line and the datapoint. One common method is RSS (residual sum of squares):
+
+$$ RSS(b) = \sum_{i=1}^N (y_i - x_i^{T}b)^2 $$ 
+
+where $\beta$ is the coefficients to the polynomial. 
+
+In OLS you are trying to minimize RSS, i.e. find 
+
+$$ \hat{\beta} = arg\,min_b RSS(b) = (X^{T}X)^{-1}X^{T}y$$
+
+which fortunately has a closed for equation. 
+
+\subsubsection{Goodness of fit}
+
+The next part talks about $R^2$ values. {\it Show of hands---who knows what an $R^2$ score is?} $R^2$ is a measure betwen 0 (no correlation) and 1 (perfect correlation) that tells you how well the line whose parameters you found in OLS fits the data. It's defined as:
+$$ R^2 = 1 - RSS / TSS$$ 
+where TSS is the Total Sum of Squares, defined as 
+
+
+\subsubsection{Log-linear regression results}
+
+\begin{itemize}
+    \item Properties of the exploit (functionality it achieves) has the most explanatory power
+    \item Targeted system has comparably little explanatory power.
+    \item Some of the results are questionable (local access being a positive indicator of price?)
+\end{itemize}
+
+\subsection{Extended discussion}
+
+
+\begin{itemize}
+    \item {\it Why advertise prices at all?} Authors pose this question. For attention perhaps? Might be surprising that buyers are OK with information leakeage (e.g. upped prices in niche email application)
+    \item {\it Can we use prices as a predictor of risk?} If Zerodium is upping the price of exploiting some piece of software that you write, how should you react? What if you use the software in question?
+\end{itemize}
+
+
 
 \section{Exploit Brokers}
 
