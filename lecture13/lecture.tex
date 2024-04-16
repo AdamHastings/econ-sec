@@ -140,11 +140,48 @@ where TSS is the Total Sum of Squares, defined as
 
 Let's talk about bug bounties. Many companies have bug bounty programs where they will pay researchers money for disclosing bugs (especially security bugs). This is a mechanism for measuring the costs of security (not a very good one though).
 
+
+\section{Background}
+
 {\it What is HackerOne? Or Bugcrowd?} Crowdsourced bug bounty programs. 
 
-{\it How is this different from Zerodium or Crowdfense?} Recall: Bugs != exploits (although some bug bounties require proof of exploit before paying). Biggest difference is the buyers. In crowdsourced bug bounty programs, the product vendor themselves are  the ones paying for the disclosure, with the intention of {\bf patching} rather than {\bf exploiting}.
+{\it How is this different from Zerodium or Crowdfense?} 
+\begin{itemize}
+    \item Recall: Bugs != exploits (although some bug bounties require proof of exploit before paying). 
+    \item Biggest difference is the buyers. In crowdsourced bug bounty programs, the product vendor themselves are the ones paying for the disclosure, with the intention of {\bf patching} rather than {\bf exploiting}.
+    \item Another big difference --- bug bounties are often web exploits that leak information about the hosting service. The incentives are aligned! It's not about protecting someone else. 
+    \item {\it Is there a difference in the sellers?} My impression from being around the cybersecurity community is that bug bounties are a nice little extra cash for people but no one treats them as a job. 
+\end{itemize}
 
-My impression from being around the cybersecurity community is that bug bounties are a nice little extra cash for people but no one treats them as a job. 
+{\it ``In a perfectly competitive market, we would expect the prevailing market price to be the marginal cost of producing a good'' --- why might this not be true for bugs reported in bug bounties?} See above---many bugs may be found as a result of other security research endeavors or by accident. Contributes to a non-functioning market (along with incentive alignments) and lowers the price, and disincentivizes those who could be bug bounty hunters from doing so full time. 
+
+\subsection{Methodology}
+
+They also do an OLS regression! See---it really shows up everywhere {\bf (pull up regression formula)}. ``Industry'' is one-hot encoded. The dependent variable $Y_{ij}$ is the number of valid vulnerabilities submitted to program $i$ in month $j$.
+
+Problem with first attempt is ``endogeneity''. {\it What does ``endogenous'' mean in everyday language?} It means something that comes from within. Example --- some amino acids are endogenous (your body can synthesize them from other ingredients) whereas others are not (i.e. exogenous). Endogenous has the same root word (piecewise doublet to be precise) as ``indigenous'', which you've probably heard. 
+
+
+{\it So then what might we expect ``endogeneity'' to mean in statistics?} It means that the dependent variable $Y$ is correlated with the error. This can happen when the dependent variable and the regressor variables can causally influence each other. Example: imagine that you are trying to predict income based on education level. We know that higher eduction $\rightarrow$ higher pay. But these variables interact both directions: If you have low pay, you might not be able to afford an education. This is one source of endogeneity and is called ``simultaneity''. In this paper, {\it TimeToResolution} suffers from simultaneity: ``If a company receives a lot of valid reports [in a given month], it will overwhelm their internal security team and their average resolution time will naturally go up''. {\it Ask: Does this make sense?}
+
+% source: https://www.statisticssolutions.com/what-is-endogeneity/
+
+{\it Why is this an issue?} It doesn't prevent you from doing OLS. But it can introduce bias to statistical tests done on your OLS. You can fool yourself (or others) if you don't account for this. 
+
+To resolve their endogeneity, they did two things: First, they used a method called instrumental variable estimation (IV). To resolve, they use a 2SLS (two stage least squares) regression, which essentially is just doing a regression on some of the variables in question ({\it NewPrograms} and {\it AveragetimetoResoution}).
+
+
+But they suspected lingering endogeneity, so they also run a fixed effects regression via a least square dummy variable estimator (LSDV) which drops all time-invariant variables (industry, revenue, and brand profile).
+
+\subsection{Results}
+
+First, they do some statistical tests of exogeneity. The tests pass. I do not know much about these tests but it seems like a good thing they passed. 
+
+\begin{itemize}
+    \item Finds that ``hackers'' are price insensitive (elasticity at the median of between 0.1 and 0.2). {\it What is elasticity? What does this mean? Why do we think this is?} My personal intuition here explains most of this---people submit bug bounties for nice bonus cash but few rely on this as a source of income; naturally you're going to take what you can get, hence the price insensitivity. Often submitting for reputation.
+    \item ``Brand profile and revenue have an economically insignificant impact on reports companies receive'' --- {\it where in the data is this conclusion supported?} The authors use Twitter followers (and also compare this to web traffic, with they consider to be a worse metric of brand profile (i.e. eBay vs Walmart)).
+    \item What do we see in the $R^2$ values? Very, very low...meaning that the dependent variable ``explains'' very little of the variance. This means that there were other unmeasured variables not included in the analysis (omitted variable bias).
+\end{itemize}
 
 
 \subsection{Extended Discussion} 
@@ -154,7 +191,9 @@ My impression from being around the cybersecurity community is that bug bounties
 Some questions to chew on:
 \begin{itemize}
     \item {\it Why do exploits pay so much more than bug bounties?} There's almost no limit to the amount the US will pay to read Putin's emails. Whereas companies have no liability for vulnerabilities (yet---remember National Cybersecurity Strategy?) so paying bug bounties at all is almost just pure altruism (or is it?).
+    \item Let's revisit the ``axiom'' that ``many eyes make all bugs shallow''---{\it what does this mean?} Often used in reference to open source software. {\it Is it true?} Think about long tails in fuzzer bug finding. ``Many eyes'' may catch the ones that are easy to spot but that doesn't mean they don't exist. 
 \end{itemize}
+
 
 \section{Pwn2Own}
 
