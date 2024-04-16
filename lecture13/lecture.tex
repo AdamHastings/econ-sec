@@ -88,6 +88,8 @@ They actually quantitatively address this later in the paper.
 
 {\it Is it surprising or expected that zero-click and persistence are the most valuable? Why or why not?} 
 
+{\bf How does this data compare to what is currently on Zerodium's home page?}
+
 {\it What other trends do we notice?} Growth (although they show max prices only? So of course these will be monotonic.)
 
 {\bf Figure 5}: {\it Which types of OS are most valuable?} IoS and Android. Both mobile! {\it Why?} Phone calls are sensitive; things are said that deliberately don't get written in text, perhaps? {\it Or is it because these platforms are harder to attack?} Probably not. General impression is that iOS is pretty secure, Android is insecure. Yet prices are very similar! I find this interesting.
@@ -134,11 +136,29 @@ where TSS is the Total Sum of Squares, defined as
     \item {\it Can we use prices as a predictor of risk?} If Zerodium is upping the price of exploiting some piece of software that you write, how should you react? What if you use the software in question?
 \end{itemize}
 
+\section{Hacking for good: Leveraging HackerOne data to develop an economic model of Bug Bounties}
+
+Let's talk about bug bounties. Many companies have bug bounty programs where they will pay researchers money for disclosing bugs (especially security bugs). This is a mechanism for measuring the costs of security (not a very good one though).
+
+{\it What is HackerOne? Or Bugcrowd?} Crowdsourced bug bounty programs. 
+
+{\it How is this different from Zerodium or Crowdfense?} Recall: Bugs != exploits (although some bug bounties require proof of exploit before paying). Biggest difference is the buyers. In crowdsourced bug bounty programs, the product vendor themselves are  the ones paying for the disclosure, with the intention of {\bf patching} rather than {\bf exploiting}.
+
+My impression from being around the cybersecurity community is that bug bounties are a nice little extra cash for people but no one treats them as a job. 
 
 
-\section{Exploit Brokers}
+\subsection{Extended Discussion} 
 
-\section{}
+\section{Post-Paper Reading Discussion} 
+
+Some questions to chew on:
+\begin{itemize}
+    \item {\it Why do exploits pay so much more than bug bounties?} There's almost no limit to the amount the US will pay to read Putin's emails. Whereas companies have no liability for vulnerabilities (yet---remember National Cybersecurity Strategy?) so paying bug bounties at all is almost just pure altruism (or is it?).
+\end{itemize}
+
+\section{Pwn2Own}
+
+Pwn2Own is an annual hacking competition with low millions of prize money. Participants
 
 
 
