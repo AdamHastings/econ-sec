@@ -113,19 +113,43 @@ $$ \hat{\beta} = arg\,min_b RSS(b) = (X^{T}X)^{-1}X^{T}y$$
 
 which fortunately has a closed for equation. 
 
-\subsubsection{Goodness of fit}
+\subsubsection{Results}
 
-The next part talks about $R^2$ values. {\it Show of hands---who knows what an $R^2$ score is?} $R^2$ is a measure betwen 0 (no correlation) and 1 (perfect correlation) that tells you how well the line whose parameters you found in OLS fits the data. It's defined as:
+Source: https://semrasevi342192471.files.wordpress.com/2021/01/guide-to-interpreting-regression-tables.pdf
+
+Let's take a look at the regression table. 
+\begin{itemize}
+    \item The numbers not in parentheses are the coefficients $\beta_0, \beta_1, ... $ for each chosen independent variable. Note that $\beta_0$ is the y-intercept.
+    \item If the coefficient is positive, this means it has as positive relationship on the dependent variable. If negative, then a negative effect on the dependent variable.
+    \item The size of the coefficient represents the magnitude of an effect this variable has. 
+    \item The numbers in the parentheses is the standard error, which is the estimate of the standard deviation of the coefficient. (Big standard error = less confidence in this parameter)
+    \item There are also asterisks for ``p-values''--what are these? They are statistical significance of the coefficient. This is based off of statistical sampling theory. At $p < 0.05$, there is a 5 in 100 chance that there is no relationship between the independent variable and the dependent variable.
+    \item The lower the p-value, the higher your confidence is that you're observing a true relationship and didn't just get unlucky and are looking at statistical noise. Says nothing about the size of the effect. 
+    \item {\it Where do the p-values come from?} They come from the specific hypothesis test you're running, in this case is was the F-test. Go read about this if you want to learn more about the various ways of doing statistical hypothesis testing. 
+\end{itemize}
+
+Based on this regression table, which coefficients are the largest? Which ones have the most impact on the final regression estimate?
+
+
+The next part talks about $R^2$ values. {\it Show of hands---who knows what an $R^2$ score is?} $R^2$ is a measure between 0 (no correlation) and 1 (perfect correlation) that tells you the proportion of the variance that is explained by your regression estimate. It's a measure of the goodness of fit of data. It's defined as:
 $$ R^2 = 1 - RSS / TSS$$ 
 where TSS is the Total Sum of Squares, defined as 
+$$ TSS = \sum_{i=1}^N (y_i - \bar{y})^2 $$ 
+where $\bar{y}$ is the mean the observed dependent variables. 
+
+Think about this --- if your RSS is very close to 0 that means that the line perfectly fits the data, and your $R^2$ will be close to 1. {\it What does it take to have an $R^2$ of 0? What is the intuition behind this?} It means RSS = TSS. {\it If you have a bad fit, why would RSS be close to TSS?}
 
 
 \subsubsection{Log-linear regression results}
 
+They try out a few different models, each which chooses a different set of variables. 
+
 \begin{itemize}
+    \item Virtual Machine escapes have the biggest effect sizes 
     \item Properties of the exploit (functionality it achieves) has the most explanatory power
     \item Targeted system has comparably little explanatory power.
-    \item Some of the results are questionable (local access being a positive indicator of price?)
+    \item Local access coefficient is negative --- makes sense, but not statistically significant.
+    \item $R^2$ is good not great. Means there are some missing variables most likely. 
 \end{itemize}
 
 \subsection{Extended discussion}
@@ -194,10 +218,22 @@ Some questions to chew on:
     \item Let's revisit the ``axiom'' that ``many eyes make all bugs shallow''---{\it what does this mean?} Often used in reference to open source software. {\it Is it true?} Think about long tails in fuzzer bug finding. ``Many eyes'' may catch the ones that are easy to spot but that doesn't mean they don't exist. 
 \end{itemize}
 
+\subsection{Private BBPs}
+
+Large tech companies also often have their own private bug bounty programs (see linked websites on Courseworks). Pay is in the \$1000 --- \$60,000 range. {\bf Compare Zerodium prices with bug bounty prices.}
+
 
 \section{Pwn2Own}
 
-Pwn2Own is an annual hacking competition with low millions of prize money. Participants
+\begin{itemize}
+    \item Pwn2Own is an twice-yearly hacking competition with prize money in the low millions. 
+    \item Competitors are usually elite CTF teams or soloists. 
+    \item Supposed to incentivize ethical + responsible vulnerability disclosure
+    \item Sponsored by the Zero Day Initiative (now owned by Trend Micro, a Japanese cybersecurity firm)
+    \item Vibe is that pwn2own is for show + reputation ( + lower-tier exploits), but if you're really good you're going to sell to an exploit broker who typically will give you more money.
+    \item Incentive? ZDI handles vulnerability disclosure with vendor, makes sure the bug is patched 
+\end{itemize}
+
 
 
 
