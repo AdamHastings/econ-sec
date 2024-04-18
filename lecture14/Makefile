@@ -1,4 +1,3 @@
-LECTURENO = 3
 NOTES = lecture
 HOMEWORK = homework
 # TEX = $(wildcard *.tex)
@@ -13,7 +12,7 @@ FIGS = figures/
 $(NOTES).pdf: $(NOTES).tex $(FIGS)
 	pdflatex $(NOTES).tex
 
-$(HOMEWORK)$(LECTURENO).pdf: $(HOMEWORK).tex $(FIGS)
+$(HOMEWORK).pdf: $(HOMEWORK).tex $(FIGS)
 	pdflatex $(HOMEWORK).tex
 
 clean:
